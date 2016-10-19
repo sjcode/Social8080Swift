@@ -99,10 +99,10 @@
 		AAA784961DB4A01300A4AA3C = {
 			isa = PBXGroup;
 			children = (
-				AAA784A11DB4A01300A4AA3C /* Social8080Swift */,
-				AAA784A01DB4A01300A4AA3C /* Products */,
-				96BB326E35B7EA64A197027B /* Pods */,
 				D560FF2373FE61EB44D5F7D5 /* Frameworks */,
+				96BB326E35B7EA64A197027B /* Pods */,
+				AAA784A01DB4A01300A4AA3C /* Products */,
+				AAA784A11DB4A01300A4AA3C /* Social8080Swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,18 +117,18 @@
 		AAA784A11DB4A01300A4AA3C /* Social8080Swift */ = {
 			isa = PBXGroup;
 			children = (
-				AADAC2CB1DB4A8C80048AEDF /* Client */,
 				AAA784BA1DB4A0F800A4AA3C /* Base */,
+				AADAC2CB1DB4A8C80048AEDF /* Client */,
+				AAA784B51DB4A0D800A4AA3C /* Controller */,
+				AAA784AF1DB4A0B500A4AA3C /* Helper */,
+				AAA784B61DB4A0E000A4AA3C /* Model */,
 				AAA784B91DB4A0F300A4AA3C /* Service */,
 				AAA784B81DB4A0ED00A4AA3C /* Vendor */,
 				AAA784B71DB4A0E800A4AA3C /* View */,
-				AAA784B61DB4A0E000A4AA3C /* Model */,
-				AAA784B51DB4A0D800A4AA3C /* Controller */,
-				AAA784AF1DB4A0B500A4AA3C /* Helper */,
 				AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */,
 				AAA784A41DB4A01300A4AA3C /* Assets.xcassets */,
-				AAA784A61DB4A01300A4AA3C /* LaunchScreen.storyboard */,
 				AAA784A91DB4A01300A4AA3C /* Info.plist */,
+				AAA784A61DB4A01300A4AA3C /* LaunchScreen.storyboard */,
 				AA737D7A1DB5AAAB0058C72C /* MyPlayground.playground */,
 			);
 			path = Social8080Swift;
@@ -137,29 +137,29 @@
 		AAA784AF1DB4A0B500A4AA3C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				AA7D22391DB67F9C00E23E7E /* forumtable.plist */,
 				AAA784B21DB4A0C300A4AA3C /* DeviceUtil.swift */,
 				AAA784B01DB4A0BD00A4AA3C /* Logger.swift */,
+				AA7D22351DB665E400E23E7E /* NSDate+Extension.swift */,
 				AADAC2E41DB4CE570048AEDF /* String+Extension.swift */,
 				AA7D22331DB61F3400E23E7E /* UILabel+Extension.swift */,
-				AA7D22351DB665E400E23E7E /* NSDate+Extension.swift */,
 				AA7D225F1DB7AF5200E23E7E /* Utility.swift */,
+				AA7D22391DB67F9C00E23E7E /* forumtable.plist */,
 			);
-			name = Helper;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		AAA784B51DB4A0D800A4AA3C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */,
+				AA7D22371DB66F4200E23E7E /* SJForumViewController.swift */,
 				AADAC2C71DB4A8270048AEDF /* SJHomeViewController.swift */,
+				AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */,
 				AADAC2CC1DB4AA4A0048AEDF /* SJMessageViewController.swift */,
 				AADAC2CE1DB4AAA40048AEDF /* SJMineViewController.swift */,
-				AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */,
-				AA7D22371DB66F4200E23E7E /* SJForumViewController.swift */,
+				AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */,
 				AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		AAA784B61DB4A0E000A4AA3C /* Model */ = {
@@ -167,44 +167,44 @@
 			children = (
 				AA7D22281DB5C35900E23E7E /* Model.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AAA784B71DB4A0E800A4AA3C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */,
 				AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */,
+				AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */,
 				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
 				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AAA784B81DB4A0ED00A4AA3C /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Vendor;
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		AAA784B91DB4A0F300A4AA3C /* Service */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Service;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		AAA784BA1DB4A0F800A4AA3C /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */,
-				AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */,
 				AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */,
-				AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */,
 				AADAC2D21DB4B8060048AEDF /* SJSlideMenuController.swift */,
+				AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */,
+				AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */,
+				AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */,
 			);
-			name = Base;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		AADAC2CB1DB4A8C80048AEDF /* Client */ = {
@@ -212,7 +212,7 @@
 			children = (
 				AADAC2D41DB4B9870048AEDF /* SJClient.swift */,
 			);
-			name = Client;
+			path = Client;
 			sourceTree = "<group>";
 		};
 		D560FF2373FE61EB44D5F7D5 /* Frameworks */ = {
@@ -383,6 +383,7 @@
 				AAA784A71DB4A01300A4AA3C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
