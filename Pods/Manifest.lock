@@ -1,0 +1,53 @@
+PODS:
+  - Alamofire (3.5.1)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - Kanna (1.1.1)
+  - Kingfisher (2.6.1)
+  - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.12)
+  - RxSwift (2.6.0)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SlideMenuControllerSwift (2.3.0)
+  - SnapKit (0.22.0)
+  - SwiftHEXColors (1.0.4)
+  - SwiftyJSON (2.4.0)
+  - WMPageController-Swift (1.4.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.5.1)
+  - ChameleonFramework (~> 2.1.0)
+  - Kanna (~> 1.1.0)
+  - Kingfisher (~> 2.6.1)
+  - MBProgressHUD (~> 1.0.0)
+  - MJRefresh (~> 3.1.12)
+  - RxSwift (~> 2.6.0)
+  - SDCycleScrollView (~> 1.65)
+  - SlideMenuControllerSwift (~> 2.3.0)
+  - SnapKit (~> 0.22.0)
+  - SwiftHEXColors (~> 1.0.4)
+  - SwiftyJSON (~> 2.4.0)
+  - WMPageController-Swift (~> 1.4.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Kanna: 9d3118cff609bd21eb374be5be590b544941160f
+  Kingfisher: 7e5515bf6c4f2acad91f6400955d2257549cab7b
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SlideMenuControllerSwift: 09ef91aa30464e7e517bce2f2ecc6e323e3fe866
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  WMPageController-Swift: f65f410be0814667d73628a8e817510f899aea91
+
+COCOAPODS: 0.39.0
