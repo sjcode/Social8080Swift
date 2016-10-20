@@ -20,7 +20,7 @@ class SJHomeTableViewCell: UITableViewCell {
     private lazy var avatar : UIImageView = {
         let v = UIImageView()
         v.layer.masksToBounds = true
-        v.layer.cornerRadius = 25
+        v.layer.cornerRadius = 15
         return v
     }()
     
@@ -72,7 +72,7 @@ class SJHomeTableViewCell: UITableViewCell {
         avatar.snp_makeConstraints { (make) in
             make.left.equalTo(18)
             make.top.equalTo(3)
-            make.size.equalTo(CGSize(width: 50, height: 50))
+            make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
         author.snp_makeConstraints { (make) in
@@ -111,16 +111,11 @@ class SJHomeTableViewCell: UITableViewCell {
     }
     
     func configCell(item : SJThreadModel){
-        //http://bbs.8080.net/uc_server/data/avatar/000/26/12/05_avatar_small.jpg
-        
-        //let myuid : NSString = NSString(string : item.uid!)
-        
-        //let s1 = myuid.integerValue/10000
-        //let s2 = myuid.integerValue/100
-        
-        
-        
-        //avatar.kf_setImageWithURL(<#T##URL: NSURL?##NSURL?#>, placeholderImage: <#T##Image?#>, optionsInfo: <#T##KingfisherOptionsInfo?#>, progressBlock: <#T##DownloadProgressBlock?##DownloadProgressBlock?##(receivedSize: Int64, totalSize: Int64) -> ()#>, completionHandler: <#T##CompletionHandler?##CompletionHandler?##(image: Image?, error: NSError?, cacheType: CacheType, imageURL: NSURL?) -> ()#>)
+        avatar.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(item.uid!)),
+                                     placeholderImage: UIImage.init(named: "noavatar"),
+                                     optionsInfo: [.Transition(ImageTransition.Fade(1))],
+                                     progressBlock: nil,
+                                     completionHandler: nil)
         author.text = item.author
         title.text = item.title
         datetime.text = item.datetime?.stringFromDate

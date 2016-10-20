@@ -9,20 +9,23 @@
 import UIKit
 import MJRefresh
 
-class SJThreadViewController: UIViewController {
+class SJThreadViewController: SJViewController {
     var link : String?
     var page : Int = 1
     var dataArray = [SJPostModel]()
+    var lastArray = [SJPostModel]()
+    
+    
+    
     private lazy var tableView : UITableView = {
-        let v = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenSize.SCREEN_WIDTH, height: ScreenSize.SCREEN_HEIGHT - ControlSize.TABBAR_HEIGHT - 64), style: .Plain)
+        let v = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenSize.SCREEN_WIDTH, height: ScreenSize.SCREEN_HEIGHT - ControlSize.TABBAR_HEIGHT), style: .Plain)
         v.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.loadData(self.link!)
         })
-        v.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+        v.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { 
             self.page = self.page+1
             self.loadData(self.link!)
         })
-        v.rowHeight = 62
         v.separatorInset = UIEdgeInsetsZero
         v.delegate = self
         v.dataSource = self
@@ -37,17 +40,35 @@ class SJThreadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+        tableView.mj_header.beginRefreshing()
     }
     
     func loadData(link : String){
-        SJClient.sharedInstance.getPostList(link, page: page) { (posts) in
-            if self.page == 1{
-                self.dataArray = posts
+        SJClient.sharedInstance.getPostList(link, page: page) { [weak self](posts) in
+            if self!.page == 1{
+                self!.dataArray = posts
             }else{
-                self.dataArray.appendContentsOf(posts)
+                if self!.lastArray.count != posts.count{
+                    self!.dataArray.appendContentsOf(posts)
+                }else{
+                    let b = self!.lastArray.elementsEqual(posts, isEquivalent: { (src, dest) -> Bool in
+                        let b = src.postid == dest.postid
+                        dprint("result \(b)")
+                        return b
+                    })
+                    dprint("b == \(b)")
+                    if !b {
+                        self!.dataArray.appendContentsOf(posts)
+                    }else{
+                        dprint("没有更多的数据了")
+                    }
+                }
             }
-            self.tableView .reloadData()
-            self.tableView.mj_header.endRefreshing()
+            self!.lastArray = posts
+            self!.tableView .reloadData()
+            self!.tableView.mj_header.endRefreshing()
+            self!.tableView.mj_footer.endRefreshing()
         }
     }
 }
@@ -65,6 +86,10 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        let height = SJThreadTableViewCell.calculateCellHeight(dataArray[indexPath.row])
+
+        return height
     }
+    
+    
 }

@@ -175,8 +175,8 @@
 			children = (
 				AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */,
 				AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */,
-				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
 				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
+				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

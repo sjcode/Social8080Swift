@@ -9,6 +9,7 @@
 import UIKit
 import MJRefresh
 import Kanna
+import MBProgressHUD
 
 class SJHomeViewController: UIViewController {
     
@@ -20,7 +21,7 @@ class SJHomeViewController: UIViewController {
             menuBar.reloadMenus()
         }
     }
-    var currenttypeid : Int = 0
+    var currenttypeid : Int = -1
     private var menus = [NSDictionary]()
     
     private lazy var segmentControl : UISegmentedControl = {
@@ -64,11 +65,7 @@ class SJHomeViewController: UIViewController {
         //v.separatorInset = UIEdgeInsetsZero
         v.delegate = self
         v.dataSource = self
-        let refresh = v.mj_header
-        refresh.tintColor = UIColor.redColor()
-        
-        let f = refresh.frame
-                v.registerClass(SJHomeTableViewCell.self, forCellReuseIdentifier: "SJHomeTableViewCell")
+        v.registerClass(SJHomeTableViewCell.self, forCellReuseIdentifier: "SJHomeTableViewCell")
         return v
     }()
     
@@ -101,13 +98,16 @@ class SJHomeViewController: UIViewController {
     }
     
     func loadData(fid : Int, typeid : Int){
+        let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
+        progressHud.label.text = "加载中..."
+
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (threads) in
             if self!.page == 1{
                 self!.dataArray = threads
             }else{
                 self!.dataArray.appendContentsOf(threads)
             }
-            
+            progressHud.hideAnimated(true)
             self!.tableView_root.reloadData()
             self!.tableView_root.mj_header.endRefreshing()
             self!.tableView_root.mj_footer.endRefreshing()
@@ -200,6 +200,7 @@ extension SJHomeViewController : SJScrollTitleViewDataSource, SJScrollTitleViewD
         let typeid = Int(selectItem["typeid"] as! String)
         page = 1
         currenttypeid = typeid!
+        tableView_root.setContentOffset(CGPointZero, animated:true)
         loadData(currentfid, typeid: typeid!)
     }
 }

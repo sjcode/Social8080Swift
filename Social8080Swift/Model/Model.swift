@@ -18,8 +18,11 @@ struct SJThreadModel {
 }
 
 struct SJPostModel {
+    var uid : String?
     var author : String?
     var datetime : NSDate?
     var content : String?
+    var postid : String?
     var replylink : String?
+    var floor : String?
 }

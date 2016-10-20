@@ -19,6 +19,11 @@ extension String {
         return size.width
     }
     
+    func calculateLabelHeight(font : UIFont, width : CGFloat) -> CGFloat{
+        let size = (self as NSString).boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        return size.height
+    }
+    
     subscript (r: Range<Int>) -> String {
         get {
             let startIndex = self.startIndex.advancedBy(r.startIndex)
@@ -33,13 +38,4 @@ extension String {
             return (self as NSString).substringWithRange(r)
         }
     }
-    
-//    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-//        let constraintRect = CGSize(width: width, height: CGFloat.max)
-//        let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
-//        return boundingBox.height
-//    }
-//    
-    
-
 }

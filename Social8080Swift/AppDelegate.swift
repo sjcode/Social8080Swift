@@ -20,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appearance = UINavigationBar.appearance()
         appearance.barTintColor = UIColor(hexString: "#28384D")
+        appearance.tintColor = UIColor.whiteColor()
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont.systemFontOfSize(14)]
+        /*
+         [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],
+         NSFontAttributeName:[UIFont fontWithName:@"HoeflerText-Italic" size:32]};
+         */
+        
         
         let rootTabBarController = SJRootTabBarController()
         let leftViewController = SJLeftMenuViewController()

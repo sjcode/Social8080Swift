@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SJThreadTableViewCell: UITableViewCell {
     
     private lazy var avatar : UIImageView = {
         let v = UIImageView()
         v.layer.masksToBounds = true
-        v.layer.cornerRadius = 25
+        v.layer.cornerRadius = 15
         return v
     }()
     
@@ -26,7 +27,7 @@ class SJThreadTableViewCell: UITableViewCell {
         return l
     }()
     
-    private lazy var datetime : UILabel = {
+    private lazy var floor : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
         l.font = UIFont.systemFontOfSize(10)
@@ -35,10 +36,19 @@ class SJThreadTableViewCell: UITableViewCell {
         return l
     }()
     
-    private lazy var content : UILabel = {
+    private lazy var datetime : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
         l.font = UIFont.systemFontOfSize(10)
+        l.textAlignment = .Left
+        l.numberOfLines = 1
+        return l
+    }()
+    
+    private lazy var content : UILabel = {
+        let l = UILabel()
+        l.textColor = UIColor.grayColor()
+        l.font = UIFont.systemFontOfSize(14)
         l.textAlignment = .Left
         l.numberOfLines = 0
         return l
@@ -46,49 +56,66 @@ class SJThreadTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .None
         contentView.addSubview(avatar)
         contentView.addSubview(author)
+        contentView.addSubview(floor)
         contentView.addSubview(content)
         contentView.addSubview(datetime)
         
         avatar.snp_makeConstraints { (make) in
-            make.leading.equalTo(18)
+            make.left.equalTo(18)
             make.top.equalTo(3)
-            make.size.equalTo(CGSize(width: 50, height: 50))
+            make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
         author.snp_makeConstraints { (make) in
-            make.leading.equalTo(avatar.snp_right).offset(3)
+            make.left.equalTo(avatar.snp_right).offset(3)
             make.top.equalTo(3)
             make.width.equalTo(150)
             make.height.equalTo(18)
         }
         
         datetime.snp_makeConstraints { (make) in
-            make.trailing.equalTo(-18)
-            make.top.equalTo(3)
+            make.left.equalTo(avatar.snp_right).offset(3)
+            make.top.equalTo(author.snp_bottom)
+            make.height.equalTo(14)
             make.width.equalTo(150)
+        }
+        
+        floor.snp_makeConstraints { (make) in
+            make.right.equalTo(-18)
+            make.top.equalTo(3)
             make.height.equalTo(18)
+            make.width.equalTo(80)
         }
         
         content.snp_makeConstraints { (make) in
-            make.leading.equalTo(avatar.snp_right).offset(3)
-            make.top.equalTo(author.snp_bottom).offset(3)
-            make.trailing.equalTo(-3)
+            make.left.equalTo(18)
+            make.right.equalTo(contentView).offset(-18)
+            make.top.equalTo(datetime.snp_bottom).offset(3)
         }
-        
-        
-        
-        
-        
     }
     
     func configCell(item : SJPostModel){
-        content.text = item.content
-        content.sizeToFit()
+        avatar.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(item.uid!)),
+                                  placeholderImage: UIImage.init(named: "noavatar"),
+                                  optionsInfo: [.Transition(ImageTransition.Fade(1))],
+                                  progressBlock: nil,
+                                  completionHandler: nil)
         author.text = item.author
         datetime.text = item.datetime?.stringFromDate
-        //reply.text = "回复 \(item.reply)"
+        content.text = item.content
+        floor.text = item.floor
+    }
+    
+    static func calculateCellHeight(item : SJPostModel) -> CGFloat{
+        var heightOfCell : CGFloat = 35+6+1
+        let heightOfContent = item.content!.calculateLabelHeight(UIFont.systemFontOfSize(14), width: ScreenSize.SCREEN_WIDTH-36-6-30)
+        heightOfCell += heightOfContent
+        
+        return heightOfCell
     }
     
     required init?(coder aDecoder: NSCoder) {

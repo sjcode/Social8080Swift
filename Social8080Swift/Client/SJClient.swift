@@ -25,7 +25,12 @@ class SJClient: NSObject {
     }
     
     func getPostList(link : String, page : Int, completeHandle: (posts : [SJPostModel]) -> ()) {
-        let url = BASE_URL + link
+        var url = ""
+        if page == 1{
+            url = BASE_URL + link
+        }else{
+            url = BASE_URL + link + "&page=" + String(page)
+        }
         Alamofire.request(.GET, url)
                 .responseData{ (response) in
                 guard response.result.isSuccess else{
@@ -42,9 +47,19 @@ class SJClient: NSObject {
                                 var post : SJPostModel?
                                 for node in nodes{
                                     if node.className == "bm_c bm_c_bg"{
-                                        let author = node.xpath("div[@class='bm_user']/a")[0].content
+                                        let floornode = node.xpath("div[@class='bm_user']")[0].content!
+                                        let array = floornode.componentsSeparatedByString("\t")
+                                        let floor = array[1].stringByRemovingWhitespaceAndNewlineCharacterSet
+                                        
+                                        let usernode = node.xpath("div[@class='bm_user']/a")[0]
+                                        let uid = extractByRegex(usernode["href"]!, pattern: "uid=(\\d+)&mobile=yes")
+                                        let author = usernode.content
                                         let datetime = node.xpath("div[@class='bm_user']/em/font")[0].content
+                                        
                                         post = SJPostModel()
+                                        post?.uid = uid
+                                        post?.floor = floor
+                                        post?.postid = node["id"]
                                         post!.author = author
                                         post!.datetime = NSDate.dateFromString(datetime!)
                                     }else{
@@ -56,6 +71,8 @@ class SJClient: NSObject {
                                 completeHandle(posts: dataList)
                             }
                         }
+                    }else{
+                        completeHandle(posts: [])
                     }
         }
     }
@@ -91,7 +108,7 @@ class SJClient: NSObject {
                                     let writedate = node.xpath("span")[0].content!.stringByReplacingOccurrencesOfString("\r\n", withString: " ")
                                     
                                     let regex = try! NSRegularExpression(pattern:
-                                        "\\s+([0-9]{4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2})\\s+回(\\d?)",
+                                        "\\s+([0-9]{4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2})\\s+回(\\d+)",
                                         options: .CaseInsensitive)
                                     
                                     let results = regex.matchesInString(writedate, options: NSMatchingOptions.ReportProgress, range: NSMakeRange(0, writedate.characters.count))

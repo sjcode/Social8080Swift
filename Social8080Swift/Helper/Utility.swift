@@ -21,3 +21,13 @@ func extractByRegex(string : String, pattern : String) -> String{
     
     return ""
 }
+
+func getAvatarUrl(uid : String) -> String{
+    let uid = Int(uid)!
+    
+    let a = uid/10000%10000
+    let b = uid/100%100
+    let c = uid%100
+    
+    return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_small.jpg",a,b,c)
+}
