@@ -217,6 +217,55 @@
 		<key>array</key>
 		<array>
 			<dict>
+				<key>icon</key>
+				<string>111</string>
+				<key>array</key>
+				<array>
+					<dict>
+						<key>typeid</key>
+						<string>213</string>
+						<key>name</key>
+						<string>新房团购</string>
+					</dict>
+					<dict>
+						<key>typeid</key>
+						<string>214</string>
+						<key>name</key>
+						<string>租房</string>
+					</dict>
+					<dict>
+						<key>typeid</key>
+						<string>215</string>
+						<key>name</key>
+						<string>购房答疑</string>
+					</dict>
+					<dict>
+						<key>typeid</key>
+						<string>216</string>
+						<key>name</key>
+						<string>买房故事</string>
+					</dict>
+					<dict>
+						<key>typeid</key>
+						<string>212</string>
+						<key>name</key>
+						<string>二手房买卖</string>
+					</dict>
+					<dict>
+						<key>typeid</key>
+						<string>211</string>
+						<key>name</key>
+						<string>购房资讯</string>
+					</dict>
+				</array>
+				<key>fid</key>
+				<string>159</string>
+				<key>desc</key>
+				<string>有钱的没钱的,都逃不过</string>
+				<key>title</key>
+				<string>极速房产</string>
+			</dict>
+			<dict>
 				<key>array</key>
 				<array>
 					<dict>

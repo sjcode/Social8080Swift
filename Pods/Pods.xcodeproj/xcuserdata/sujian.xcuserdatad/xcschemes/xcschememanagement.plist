@@ -9,12 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireNetworkActivityIndicator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ChameleonFramework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>FDFullscreenPopGesture.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FLAnimatedImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,7 +102,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>16B24AD56CC6CE8BFAA64A706346BD12</key>
+		<key>1520003FEBEC114D6C84F832AFEDB994</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1A9C252514B27FFFB981D445AD8DA53F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E090641E0940DC2DE427ADE6ECCCC44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>228FFC4E78F899B58C33C57F31513A8E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30C3DAF13585099F482AD79E054B0C64</key>
+		<key>3E1EA8998E06786751C424456C70AF4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35A5A349ADCAF1A065EBBADDF8408CC6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>73A65ACBE296D83492FBF9848B8DA6FB</key>
+		<key>62FB00328C48A447C8C901CA338735F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,12 +157,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1B1AC9330382D1F40075F6B1FBB040A</key>
+		<key>B2577650769A850910185A423480FDEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B738A15E7AB0B1498A48DD312C83960A</key>
+		<key>B5CCD165C6B68A4F7F105F552D413C23</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA4F20CEF034824B21D18B7B74107049</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF17B5BF6AEBBC298A83BDFB249C3F61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C29B0FA110CAA8C2B760575E60235925</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,22 +187,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBE8B1E86A1639F162CE3D05812058A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EE57040B0F2FD9464A60DBE1F82FE001</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F0C41F3845B3EFF8E2C728FA44503692</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F89494018BF8F16CED9E6A4BD9DE324D</key>
+		<key>FE113CEF81C16AA59EC049ACE130BCB2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

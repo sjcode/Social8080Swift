@@ -9,11 +9,13 @@
 import UIKit
 
 class SJNavigationController: UINavigationController {
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
-        hidesBottomBarWhenPushed = true
-        super.pushViewController(viewController, animated: animated)
-    }
+//    override func pushViewController(viewController: UIViewController, animated: Bool) {
+//        hidesBottomBarWhenPushed = true
+//        super.pushViewController(viewController, animated: animated)
+//    }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
+    
 }

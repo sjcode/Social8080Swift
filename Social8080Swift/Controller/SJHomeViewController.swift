@@ -10,6 +10,7 @@ import UIKit
 import MJRefresh
 import Kanna
 import MBProgressHUD
+import Kingfisher
 
 class SJHomeViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class SJHomeViewController: UIViewController {
             menuBar.reloadMenus()
         }
     }
+    
+    var forumTableCells = [UITableViewCell]()
     var currenttypeid : Int = -1
     private var menus = [NSDictionary]()
     
@@ -53,16 +56,21 @@ class SJHomeViewController: UIViewController {
     
     private lazy var tableView_root : UITableView = {
         let v = UITableView(frame: CGRect(x: 0, y: 30, width: ScreenSize.SCREEN_WIDTH, height: ScreenSize.SCREEN_HEIGHT - ControlSize.TABBAR_HEIGHT - 64 - 30), style: .Plain)
-        v.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+        let header = MJRefreshNormalHeader(refreshingBlock: {
             self.page = 1
             self.loadData(self.currentfid, typeid: -1)
         })
-        v.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { 
+        let footer = MJRefreshAutoNormalFooter(refreshingBlock: {
             self.page = self.page+1
             self.loadData(self.currentfid,typeid: self.currenttypeid)
         })
+        footer.automaticallyHidden = true
+        footer.refreshingTitleHidden = true
+        footer.setTitle("", forState: .Idle)
+        v.mj_header = header
+        v.mj_footer = footer
+        v.tableFooterView = UIView()
         v.rowHeight = 62
-        //v.separatorInset = UIEdgeInsetsZero
         v.delegate = self
         v.dataSource = self
         v.registerClass(SJHomeTableViewCell.self, forCellReuseIdentifier: "SJHomeTableViewCell")
@@ -75,21 +83,71 @@ class SJHomeViewController: UIViewController {
         v.delegate = self
         v.dataSource = self
         v.separatorInset = UIEdgeInsetsZero
-        v.registerClass(SJForumTableViewCell.self, forCellReuseIdentifier: "SJForumTableViewCell")
+        v.registerClass(UITableViewCell.self, forCellReuseIdentifier: "SJForumTableViewCell")
         return v
     }()
+    
+    private lazy var rightbutton : UIButton = {
+        let b = UIButton(type: .Custom)
+        b.frame = CGRectMake(0,0,48,48)
+        b.layer.cornerRadius = 24
+        b.clipsToBounds = true
+        b.setImage(UIImage.init(named: "person_normal"), forState: .Normal)
+        b.addTarget(self, action: #selector(clickperson(_:)), forControlEvents: .TouchUpInside)
+        return b
+    }()
+    
+    func clickperson(sender : UIButton) {
+        let vc = SJLoginViewController()
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = segmentControl
+        
+        let fixedspace = UIBarButtonItem.init(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        fixedspace.width = -20
+        let items = [fixedspace,  UIBarButtonItem(customView: rightbutton)]
+        navigationItem.rightBarButtonItems = items
+        
+        loadForumCell()
+        
         view.addSubview(scrollView)
         scrollView.addSubview(menuBar)
         scrollView.addSubview(tableView_root)
         scrollView.addSubview(tableView_forum)
         
-        currentfid = 85
+        if let fid = NSUserDefaults.standardUserDefaults().valueForKey("currentfid"){
+            currentfid = Int(fid as! NSNumber)
+        }else{
+            currentfid = 85
+        }
         
-        tableView_root.mj_header.beginRefreshing()
+        NSNotificationCenter.defaultCenter().addObserverForName(kNotificationLoginSuccess, object: self, queue: NSOperationQueue.mainQueue()) { [weak self](notification) in
+            let uid = notification.userInfo!["uid"] as! String
+            self?.rightbutton.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(uid)), forState: .Normal)
+            self?.rightbutton.userInteractionEnabled = false
+            
+        }
+        
+        SJClient.sharedInstance.tryLoginAndLoadUI(false) { [weak self] (finish, error, uid) in
+            dprint("login ok")
+            
+            if finish{
+                if (uid != nil){
+                    
+                    KingfisherManager.sharedManager.downloader.downloadImageWithURL(NSURL.init(string: getAvatarUrl(uid!))!, options: [.ForceRefresh], progressBlock: nil, completionHandler: { [weak self](image, error, imageURL, originalData) in
+                        if (image != nil){
+                            self?.rightbutton.setImage(maskRoundedImage(image!.resizedImageWithBounds(CGSizeMake(30, 30)), radius: 15), forState: .Normal)
+                            self?.rightbutton.userInteractionEnabled = false
+                        }
+                    })
+                }
+            }
+            
+            self!.tableView_root.mj_header.beginRefreshing()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -138,6 +196,12 @@ class SJHomeViewController: UIViewController {
             }
         }
     }
+    
+    private lazy var defaultCell : UITableViewCell = {
+        let cell = UITableViewCell(style: .Default, reuseIdentifier: "SJForumTableViewCell")
+        cell.backgroundColor = UIColor.redColor()
+        return cell
+    }()
 }
 
 extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
@@ -145,7 +209,7 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
         if tableView == tableView_root{
             return dataArray.count
         }else{
-            return 0
+            return forumTableCells.count
         }
     }
     
@@ -156,34 +220,46 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
             cell.configCell(dataArray[indexPath.row])
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("SJForumTableViewCell", forIndexPath: indexPath) as! SJForumTableViewCell
-            return cell
+            return forumTableCells[indexPath.row]
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if tableView == tableView_root {
+            let item = dataArray[indexPath.row]
+            let vc = SJThreadViewController()
+            vc.link = item.link
+            vc.title = item.title
+            vc.fid = currentfid
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
-        let item = dataArray[indexPath.row] 
-        let vc = SJThreadViewController()
-        vc.link = item.link
-        vc.title = item.title
-        navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
-//            tableView.separatorInset = UIEdgeInsetsZero
-//        }
-//        
-//        if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
-//            tableView.layoutMargins = UIEdgeInsetsZero
-//        }
-//        
-//        if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
-//            cell.layoutMargins = UIEdgeInsetsZero
-//        }
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView == tableView_root {
+            return 62
+        }else{
+            return forumTableCells[indexPath.row].frame.size.height+5
+        }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == tableView_forum{
+            if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
+                tableView.separatorInset = UIEdgeInsetsZero
+            }
+            
+            if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
+                tableView.layoutMargins = UIEdgeInsetsZero
+            }
+            
+            if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
+                cell.layoutMargins = UIEdgeInsetsZero
+            }
+        }
+    }
 }
 
 extension SJHomeViewController : SJScrollTitleViewDataSource, SJScrollTitleViewDelegate{
@@ -217,5 +293,87 @@ extension SJHomeViewController : UIScrollViewDelegate{
         }else{
             
         }
+    }
+}
+
+extension SJHomeViewController{
+    func loadForumCell() {
+        if let path = NSBundle.mainBundle().pathForResource("forumtable", ofType: "plist"){
+            if let entireArray = NSArray(contentsOfFile: path){
+                for section in entireArray {
+                    
+                    let cell = UITableViewCell(style: .Default, reuseIdentifier: "SJForumTableViewCell")
+                    cell.selectionStyle = .None
+                    let array = section["array"] as! NSArray
+                    addButtonsOnCell(cell, array: array)
+                    forumTableCells.append(cell)
+                    
+                }
+            }
+        }
+    }
+    
+    
+    
+    func addButtonsOnCell(cell : UITableViewCell, array: NSArray){
+        var x : CGFloat = 8
+        var y : CGFloat = 8
+
+        let MARGIN : CGFloat = 8
+        let SPANCING : CGFloat = 5
+        let labelfont = UIFont.systemFontOfSize(12)
+        let MAX_LINE_ROW : CGFloat = 3
+        
+        let labelwidth : CGFloat = (ScreenSize.SCREEN_WIDTH - (MARGIN*2) - (SPANCING*2))/3
+        let labelheight : CGFloat = 25
+        for (index,item) in array.enumerate() {
+            let title = item["title"] as! String
+            let i = index
+            let m = Int(i / Int(MAX_LINE_ROW))
+            if m == 0{
+                let j : CGFloat = (CGFloat(i) % MAX_LINE_ROW)
+                x = labelwidth * j as CGFloat + (j == 0 ? 0 : j*SPANCING) + 8
+                y = 8
+            }else{
+                let j : CGFloat = CGFloat(i) % MAX_LINE_ROW
+                x = labelwidth * j + (j == 0 ? 0 : j * SPANCING) + 8
+                y = CGFloat(m) * labelheight + (CGFloat(m) * SPANCING) + 8
+            }
+            
+            let button = UIButton(type: .System)
+            button.frame = CGRectMake(x, y, labelwidth, labelheight)
+            button.titleLabel?.font = labelfont
+            let fid = item["fid"] as! NSString
+            button.tag = Int(fid as String)!
+            button.layer.borderColor = UIColor.grayColor().CGColor
+            button.layer.borderWidth = 1
+            button.layer.cornerRadius = 10
+            button.setTitleColor(UIColor.grayColor(), forState: .Normal)
+            button.setTitle(title, forState: .Normal)
+            
+            button.addTarget(self, action: #selector(clickforum(_:)), forControlEvents: .TouchUpInside)
+            cell.contentView.addSubview(button)
+        }
+        
+        var frame = cell.frame
+        let line : Int = array.count % 3 == 0 ? array.count/3: array.count/3+1
+        let mix = min(line-1, 1)
+        frame.size.height = 16 + labelheight * CGFloat(line) + CGFloat(mix)*5
+        cell.frame = frame
+    }
+    
+    func clickforum(sender : UIButton) {
+        let fid = sender.tag
+        dprint("fid - \(fid)")
+        
+        NSUserDefaults.standardUserDefaults().setInteger(fid, forKey: "currentfid")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        currentfid = fid
+        
+        let index = 0
+        scrollView.scrollRectToVisible(CGRect(x: index == 0 ? 0 : view.bounds.size.width, y: 0, width: view.bounds.size.width, height: view.bounds.size.height-64-49), animated: true)
+        segmentControl.selectedSegmentIndex = 0
+        tableView_root.mj_header.beginRefreshing()
     }
 }

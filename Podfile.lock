@@ -1,9 +1,13 @@
 PODS:
   - Alamofire (3.5.1)
+  - AlamofireNetworkActivityIndicator (1.1.0):
+    - Alamofire (~> 3.3)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - FDFullscreenPopGesture (1.1)
+  - FLAnimatedImage (1.0.12)
+  - IQKeyboardManagerSwift (4.0.5)
   - Kanna (1.1.1)
   - Kingfisher (2.6.1)
   - MBProgressHUD (1.0.0)
@@ -22,8 +26,11 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.1)
+  - AlamofireNetworkActivityIndicator (~> 1.1.0)
   - ChameleonFramework (~> 2.1.0)
   - FDFullscreenPopGesture (~> 1.1)
+  - FLAnimatedImage (~> 1.0.12)
+  - IQKeyboardManagerSwift (= 4.0.5)
   - Kanna (~> 1.1.0)
   - Kingfisher (~> 2.6.1)
   - MBProgressHUD (~> 1.0.0)
@@ -38,8 +45,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  AlamofireNetworkActivityIndicator: 36340ebf8d70241b2ebadc3dea38e8fbb95f5127
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   Kanna: 9d3118cff609bd21eb374be5be590b544941160f
   Kingfisher: 7e5515bf6c4f2acad91f6400955d2257549cab7b
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a

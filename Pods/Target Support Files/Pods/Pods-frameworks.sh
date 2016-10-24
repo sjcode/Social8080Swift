@@ -85,8 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods/ChameleonFramework.framework"
   install_framework "Pods/FDFullscreenPopGesture.framework"
+  install_framework "Pods/FLAnimatedImage.framework"
+  install_framework "Pods/IQKeyboardManagerSwift.framework"
   install_framework "Pods/Kanna.framework"
   install_framework "Pods/Kingfisher.framework"
   install_framework "Pods/MBProgressHUD.framework"
@@ -102,8 +105,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/AlamofireNetworkActivityIndicator.framework"
   install_framework "Pods/ChameleonFramework.framework"
   install_framework "Pods/FDFullscreenPopGesture.framework"
+  install_framework "Pods/FLAnimatedImage.framework"
+  install_framework "Pods/IQKeyboardManagerSwift.framework"
   install_framework "Pods/Kanna.framework"
   install_framework "Pods/Kingfisher.framework"
   install_framework "Pods/MBProgressHUD.framework"

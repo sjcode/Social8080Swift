@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import SlideMenuControllerSwift
+import IQKeyboardManagerSwift
+import Alamofire
+import AlamofireNetworkActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,23 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let appearance = UINavigationBar.appearance()
         appearance.barTintColor = UIColor(hexString: "#28384D")
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont.systemFontOfSize(14)]
-        /*
-         [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],
-         NSFontAttributeName:[UIFont fontWithName:@"HoeflerText-Italic" size:32]};
-         */
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
         
-        let rootTabBarController = SJRootTabBarController()
-        let leftViewController = SJLeftMenuViewController()
-        let slideMenuController = SJSlideMenuController(mainViewController: rootTabBarController, leftMenuViewController: leftViewController)
-        
-        self.window!.rootViewController = slideMenuController
+        self.window!.rootViewController = SJRootTabBarController()
         self.window!.makeKeyAndVisible()
         return true
     }

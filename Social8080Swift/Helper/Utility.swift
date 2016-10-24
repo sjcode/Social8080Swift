@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 func extractByRegex(string : String, pattern : String) -> String{
     let regex = try! NSRegularExpression(pattern:pattern,options: .CaseInsensitive)
@@ -30,4 +31,39 @@ func getAvatarUrl(uid : String) -> String{
     let c = uid%100
     
     return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_small.jpg",a,b,c)
+}
+
+/*
+ #define dp(filename) [([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]) stringByAppendingPathComponent:filename]
+ */
+
+func dp(filename : String) -> String{
+    let file : NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
+    return file.stringByAppendingPathComponent(filename)
+}
+
+func alertmessage(aView : UIView, message : String){
+    let progressHUD = MBProgressHUD.showHUDAddedTo(aView, animated: true)
+    progressHUD.mode = .Text
+    progressHUD.detailsLabel.text = message
+    progressHUD.margin = 10.0
+    progressHUD.offset.y = 160.0
+    progressHUD.removeFromSuperViewOnHide = true
+    progressHUD.hideAnimated(true, afterDelay: 1)
+}
+
+func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
+    var imageView: UIImageView = UIImageView(image: image)
+    var layer: CALayer = CALayer()
+    layer = imageView.layer
+    
+    layer.masksToBounds = true
+    layer.cornerRadius = CGFloat(radius)
+    
+    UIGraphicsBeginImageContext(imageView.bounds.size)
+    layer.renderInContext(UIGraphicsGetCurrentContext()!)
+    var roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return roundedImage
 }
