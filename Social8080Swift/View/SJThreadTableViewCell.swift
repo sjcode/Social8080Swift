@@ -196,7 +196,7 @@ class SJThreadTableViewCell: UITableViewCell {
                 imageView.backgroundColor = UIColor(hexString: "#E8ECEE")
                 imageView.contentMode = .ScaleAspectFill
                 imageView.clipsToBounds = true
-                imageView.kf_setImageWithURL(NSURL.init(string: "http://bbs.8080.net/" + image.thumbnailurl!),
+                imageView.kf_setImageWithURL(NSURL.init(string: image.thumbnailurl!),
                                           placeholderImage: UIImage.init(named: "bk_pic_placeholder"),
                                           optionsInfo: [.Transition(ImageTransition.Fade(1))],
                                           progressBlock: nil,

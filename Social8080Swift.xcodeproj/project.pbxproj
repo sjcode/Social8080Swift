@@ -22,7 +22,6 @@
 		AA7D22741DBA0CA500E23E7E /* SJLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */; };
 		AA7D22761DBA401F00E23E7E /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */; };
 		AA9F1CD61DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */; };
-		AA9F1CD91DBC6DB100A2D7CF /* SJMarginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9F1CD81DBC6DB100A2D7CF /* SJMarginLabel.swift */; };
 		AAA784A31DB4A01300A4AA3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */; };
 		AAA784A51DB4A01300A4AA3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA784A41DB4A01300A4AA3C /* Assets.xcassets */; };
 		AAA784A81DB4A01300A4AA3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA784A61DB4A01300A4AA3C /* LaunchScreen.storyboard */; };
@@ -34,6 +33,7 @@
 		AAD2E7711DBF065500D94A01 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76B1DBF058B00D94A01 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAD2E7721DBF065500D94A01 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */; };
+		AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */; };
 		AADAC2C21DB4A1970048AEDF /* SJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */; };
 		AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */; };
 		AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */; };
@@ -71,7 +71,7 @@
 		AA7D22331DB61F3400E23E7E /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AA7D22351DB665E400E23E7E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		AA7D22371DB66F4200E23E7E /* SJForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumViewController.swift; sourceTree = "<group>"; };
-		AA7D22391DB67F9C00E23E7E /* forumtable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = forumtable.plist; path = Helper/forumtable.plist; sourceTree = "<group>"; };
+		AA7D22391DB67F9C00E23E7E /* forumtable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = forumtable.plist; sourceTree = "<group>"; };
 		AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJScrollTitleView.swift; sourceTree = "<group>"; };
 		AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJThreadViewController.swift; sourceTree = "<group>"; };
 		AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJThreadTableViewCell.swift; sourceTree = "<group>"; };
@@ -79,7 +79,6 @@
 		AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJLoginViewController.swift; sourceTree = "<group>"; };
 		AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJPopUpViewControllerSwift.swift; sourceTree = "<group>"; };
-		AA9F1CD81DBC6DB100A2D7CF /* SJMarginLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMarginLabel.swift; sourceTree = "<group>"; };
 		AAA7849F1DB4A01300A4AA3C /* 极速社区.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "极速社区.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAA784A41DB4A01300A4AA3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		AAD2E76B1DBF058B00D94A01 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJOtherViewContrller.swift; sourceTree = "<group>"; };
+		AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMarginLabel.swift; sourceTree = "<group>"; };
 		AAD7F8291DBE0E9B00879291 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJNavigationController.swift; sourceTree = "<group>"; };
 		AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTabBarController.swift; sourceTree = "<group>"; };
@@ -160,10 +160,10 @@
 				AAA784B71DB4A0E800A4AA3C /* View */,
 				AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */,
 				AAA784A41DB4A01300A4AA3C /* Assets.xcassets */,
-				AA7D22391DB67F9C00E23E7E /* forumtable.plist */,
 				AAA784A91DB4A01300A4AA3C /* Info.plist */,
 				AAA784A61DB4A01300A4AA3C /* LaunchScreen.storyboard */,
 				AAD7F8291DBE0E9B00879291 /* MyPlayground.playground */,
+				AA7D22391DB67F9C00E23E7E /* forumtable.plist */,
 			);
 			path = Social8080Swift;
 			sourceTree = "<group>";
@@ -175,9 +175,9 @@
 				AAA784B01DB4A0BD00A4AA3C /* Logger.swift */,
 				AA7D22351DB665E400E23E7E /* NSDate+Extension.swift */,
 				AADAC2E41DB4CE570048AEDF /* String+Extension.swift */,
+				AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */,
 				AA7D22331DB61F3400E23E7E /* UILabel+Extension.swift */,
 				AA7D225F1DB7AF5200E23E7E /* Utility.swift */,
-				AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -188,13 +188,13 @@
 				AA7D22371DB66F4200E23E7E /* SJForumViewController.swift */,
 				AADAC2C71DB4A8270048AEDF /* SJHomeViewController.swift */,
 				AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */,
+				AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */,
 				AADAC2CC1DB4AA4A0048AEDF /* SJMessageViewController.swift */,
 				AADAC2CE1DB4AAA40048AEDF /* SJMineViewController.swift */,
+				AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */,
+				AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */,
 				AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */,
 				AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */,
-				AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */,
-				AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */,
-				AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,8 +212,8 @@
 			children = (
 				AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */,
 				AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */,
-				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
 				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
+				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,10 +221,9 @@
 		AAA784B81DB4A0ED00A4AA3C /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				AA9F1CD81DBC6DB100A2D7CF /* SJMarginLabel.swift */,
+				AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */,
 			);
-			name = Vendor;
-			path = ../../Vendor;
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		AAA784B91DB4A0F300A4AA3C /* Service */ = {
@@ -405,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9F1CD61DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift in Sources */,
-				AA9F1CD91DBC6DB100A2D7CF /* SJMarginLabel.swift in Sources */,
 				AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */,
 				AADAC2D11DB4B5030048AEDF /* SJLeftMenuViewController.swift in Sources */,
 				AADAC2D31DB4B8060048AEDF /* SJSlideMenuController.swift in Sources */,
@@ -434,6 +432,7 @@
 				AADAC2CD1DB4AA4A0048AEDF /* SJMessageViewController.swift in Sources */,
 				AA7D225E1DB76DED00E23E7E /* SJThreadTableViewCell.swift in Sources */,
 				AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */,
+				AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

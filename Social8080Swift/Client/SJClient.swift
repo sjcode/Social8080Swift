@@ -233,7 +233,21 @@ class SJClient: NSObject {
                                                         if let originalurl = ahref["href"]{
                                                             if let imagenode = ahref.at_xpath("img"){
                                                                 if let thumbnialurl = imagenode["src"]{
-                                                                    let image = SJImageItem(originalurl: originalurl, thumbnailurl: thumbnialurl)
+                                                                    var original : String?
+                                                                    var thumbnail : String?
+                                                                    if !originalurl.hasPrefix("http://"){
+                                                                        original = "http://bbs.8080.net/" + originalurl
+                                                                    }else{
+                                                                        original = originalurl
+                                                                    }
+                                                                    
+                                                                    if !thumbnialurl.hasPrefix("http://"){
+                                                                        thumbnail = "http://bbs.8080.net/" + thumbnialurl
+                                                                    }else{
+                                                                        thumbnail = thumbnialurl
+                                                                    }
+
+                                                                    let image = SJImageItem(originalurl: original, thumbnailurl : thumbnail)
                                                                     post!.images?.append(image)
                                                                 }
                                                             }

@@ -179,19 +179,22 @@ class SJThreadViewController: SJViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-
         super.viewWillAppear(animated)
-        
-        self.hidesBottomBarWhenPushed = true    //确保到这一页tab会消失
+        UIView.animateWithDuration(0.25) { [weak self] in
+            self!.tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 49)
+        }
         IQKeyboardManager.sharedManager().enable = false
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        let viewControllers = (navigationController?.viewControllers)! as NSArray
+        if viewControllers.count > 1 && viewControllers[viewControllers.count - 2] as! NSObject == self{
+        }else if (viewControllers.indexOfObject(self)) == NSNotFound{
+            UIView.animateWithDuration(0.25) { [weak self] in
+                self!.tabBarController?.tabBar.transform = CGAffineTransformIdentity
+            }
+        }
         IQKeyboardManager.sharedManager().enable = true
     }
     
@@ -276,7 +279,7 @@ class SJThreadViewController: SJViewController {
                 
                 var photos : [MWPhoto] = []
                 for image in dataArray[indexPath.row].images!{
-                    let photo = MWPhoto(URL: NSURL.init(string: "http://bbs.8080.net/" + image.originalurl!))
+                    let photo = MWPhoto(URL: NSURL.init(string: image.originalurl!))
                     photos.append(photo)
                 }
                 

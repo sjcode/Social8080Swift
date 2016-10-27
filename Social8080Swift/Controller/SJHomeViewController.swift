@@ -152,22 +152,10 @@ class SJHomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.hidesBottomBarWhenPushed = true
-//        UIView.animateWithDuration(0.25) { [weak self] in
-//            self!.tabBarController?.tabBar.transform = CGAffineTransformIdentity
-//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.hidesBottomBarWhenPushed = false
-//        UIView.animateWithDuration(0.25) { [weak self] in
-//            self!.tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 49)
-//        }
-    }
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
     
     override func shouldAutorotate() -> Bool {
