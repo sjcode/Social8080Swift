@@ -45,15 +45,15 @@ func dp(filename : String) -> String{
 func alertmessage(aView : UIView, message : String){
     let progressHUD = MBProgressHUD.showHUDAddedTo(aView, animated: true)
     progressHUD.mode = .Text
-    progressHUD.detailsLabel.text = message
+    progressHUD.detailsLabelText = message
     progressHUD.margin = 10.0
-    progressHUD.offset.y = 160.0
+    progressHUD.yOffset = 160.0
     progressHUD.removeFromSuperViewOnHide = true
-    progressHUD.hideAnimated(true, afterDelay: 1)
+    progressHUD.hide(true, afterDelay: 1)
 }
 
 func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
-    var imageView: UIImageView = UIImageView(image: image)
+    let imageView: UIImageView = UIImageView(image: image)
     var layer: CALayer = CALayer()
     layer = imageView.layer
     
@@ -62,7 +62,7 @@ func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
     
     UIGraphicsBeginImageContext(imageView.bounds.size)
     layer.renderInContext(UIGraphicsGetCurrentContext()!)
-    var roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+    let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
     return roundedImage

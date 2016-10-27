@@ -11,5 +11,19 @@ import SwiftHEXColors
 
 class SJTabBarController: UITabBarController {
     
+    override func shouldAutorotate() -> Bool {
+        if let viewController = self.selectedViewController{
+            return viewController.shouldAutorotate()
+        }else{
+            return false
+        }
+    }
     
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        if let viewController = self.selectedViewController{
+            return viewController.supportedInterfaceOrientations()
+        }else{
+            return .Portrait
+        }
+    }
 }

@@ -17,5 +17,11 @@ class SJNavigationController: UINavigationController {
         return .LightContent
     }
     
+    override func shouldAutorotate() -> Bool {
+        return (topViewController?.shouldAutorotate())!
+    }
     
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return (topViewController?.supportedInterfaceOrientations())!
+    }
 }

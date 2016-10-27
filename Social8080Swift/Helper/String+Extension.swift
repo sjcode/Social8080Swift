@@ -29,7 +29,7 @@ extension String {
             let startIndex = self.startIndex.advancedBy(r.startIndex)
             let endIndex = self.startIndex.advancedBy(r.endIndex)
             
-            return self[Range(start: startIndex, end: endIndex)]
+            return self[startIndex..<endIndex]
         }
     }
     

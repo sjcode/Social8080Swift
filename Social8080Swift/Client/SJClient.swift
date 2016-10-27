@@ -8,7 +8,7 @@
 
 import Alamofire
 import Kanna
-
+//*[@id="postmessage_12137293"]/text()[1]
 let kNotificationLoginSuccess = "kNotificationLoginSuccess"
 
 class SJClient: NSObject {
@@ -143,7 +143,12 @@ class SJClient: NSObject {
                     "Referer": "http://bbs.8080.net/member.php?mod=logging&action=login",
                 ]
                 
-                try? NSFileManager.defaultManager().removeItemAtPath(dp("seccode.gif"))
+                do{
+                    try NSFileManager.defaultManager().removeItemAtPath(dp("seccode.gif"))
+                }catch _{
+                    dprint("not found secode.gif")
+                }
+                
                 let destination : Alamofire.Request.DownloadFileDestination = {_, response in
                     let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
                     let pathComponent = "seccode.gif"
@@ -182,9 +187,9 @@ class SJClient: NSObject {
                         let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                         if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                             let bodyNode = doc.body
+                            
                             var dataList = [SJPostModel]()
                             if let nodes = bodyNode?.xpath("//div[@class='bm_c bm_c_bg' or @class='pbody']"){
-
                                 var post : SJPostModel?
                                 for node in nodes{
                                     if node.className == "bm_c bm_c_bg"{
@@ -198,14 +203,45 @@ class SJClient: NSObject {
                                         let datetime = node.xpath("div[@class='bm_user']/em/font")[0].content
                                         
                                         post = SJPostModel()
-                                        post?.uid = uid
-                                        post?.floor = floor
-                                        post?.postid = node["id"]
+                                        post!.uid = uid
+                                        post!.floor = floor
+                                        post!.postid = node["id"]
                                         post!.author = author
                                         post!.datetime = NSDate.dateFromString(datetime!)
                                     }else{
-                                        let content = node.xpath("div[@class='mes']")[0].content!.stringByRemovingWhitespaceAndNewlineCharacterSet
-                                        post?.content = content
+                                        let messageNode = node.xpath("div/div")
+                                        if case let XPathObject.NodeSet(nodeset) = messageNode{
+                                            for (_, element) in nodeset.enumerate(){
+                                                if let pstatus = element.at_xpath("i"){
+                                                    post!.pstatus = pstatus.text
+                                                }
+                                                if let quote = element.at_xpath("div"){
+                                                    post!.quote = quote.text
+                                                }
+                                                if case let XPathObject.NodeSet(nodeset) = element.xpath("text()"){
+                                                    var contents = ""
+                                                    for (_, content) in nodeset.enumerate(){
+                                                        if let value = content.text{
+                                                            contents.appendContentsOf(value)
+                                                        }
+                                                    }
+                                                    post!.content = contents.stringByRemovingWhitespaceAndNewlineCharacterSet
+                                                }
+                                                if case let XPathObject.NodeSet(anodes) = element.xpath("a"){
+                                                    
+                                                    for (_, ahref) in anodes.enumerate(){
+                                                        if let originalurl = ahref["href"]{
+                                                            if let imagenode = ahref.at_xpath("img"){
+                                                                if let thumbnialurl = imagenode["src"]{
+                                                                    let image = SJImageItem(originalurl: originalurl, thumbnailurl: thumbnialurl)
+                                                                    post!.images?.append(image)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                         dataList.append(post!)
                                     }
                                 }
@@ -274,12 +310,9 @@ class SJClient: NSObject {
                                 }
                                 completeHandle(threads: dataList)
                             }
-
-                            
                         }
                         
                     }
-                    
         }
     }
     
@@ -295,7 +328,7 @@ class SJClient: NSObject {
             }
             
             if response.result.value != nil{
-                let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
+                //let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                 completed()
             }else{
             

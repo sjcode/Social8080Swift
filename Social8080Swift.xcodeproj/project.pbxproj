@@ -29,6 +29,11 @@
 		AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784B01DB4A0BD00A4AA3C /* Logger.swift */; };
 		AAA784B31DB4A0C300A4AA3C /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784B21DB4A0C300A4AA3C /* DeviceUtil.swift */; };
 		AAA784BC1DB4A12F00A4AA3C /* SJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */; };
+		AAD2E76D1DBF058B00D94A01 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76B1DBF058B00D94A01 /* Realm.framework */; };
+		AAD2E76E1DBF058B00D94A01 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */; };
+		AAD2E7711DBF065500D94A01 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76B1DBF058B00D94A01 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAD2E7721DBF065500D94A01 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */; };
 		AADAC2C21DB4A1970048AEDF /* SJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */; };
 		AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */; };
 		AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */; };
@@ -41,6 +46,21 @@
 		AADAC2D51DB4B9870048AEDF /* SJClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2D41DB4B9870048AEDF /* SJClient.swift */; };
 		AADAC2E51DB4CE570048AEDF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2E41DB4CE570048AEDF /* String+Extension.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AAD2E76A1DBF047400D94A01 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAD2E7711DBF065500D94A01 /* Realm.framework in Embed Frameworks */,
+				AAD2E7721DBF065500D94A01 /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4488B16A4E013A8085C9C499 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +80,7 @@
 		AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJPopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		AA9F1CD81DBC6DB100A2D7CF /* SJMarginLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMarginLabel.swift; sourceTree = "<group>"; };
-		AAA7849F1DB4A01300A4AA3C /* Social8080Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social8080Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA7849F1DB4A01300A4AA3C /* 极速社区.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "极速社区.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAA784A41DB4A01300A4AA3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAA784A71DB4A01300A4AA3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +88,9 @@
 		AAA784B01DB4A0BD00A4AA3C /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		AAA784B21DB4A0C300A4AA3C /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJViewController.swift; sourceTree = "<group>"; };
+		AAD2E76B1DBF058B00D94A01 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJOtherViewContrller.swift; sourceTree = "<group>"; };
 		AAD7F8291DBE0E9B00879291 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJNavigationController.swift; sourceTree = "<group>"; };
 		AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTabBarController.swift; sourceTree = "<group>"; };
@@ -88,7 +111,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD2E76D1DBF058B00D94A01 /* Realm.framework in Frameworks */,
 				92BDA753FEFF39A330256927 /* Pods.framework in Frameworks */,
+				AAD2E76E1DBF058B00D94A01 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +142,7 @@
 		AAA784A01DB4A01300A4AA3C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AAA7849F1DB4A01300A4AA3C /* Social8080Swift.app */,
+				AAA7849F1DB4A01300A4AA3C /* 极速社区.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +194,7 @@
 				AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */,
 				AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */,
 				AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */,
+				AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,6 +257,8 @@
 		D560FF2373FE61EB44D5F7D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAD2E76B1DBF058B00D94A01 /* Realm.framework */,
+				AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */,
 				4488B16A4E013A8085C9C499 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -249,6 +277,8 @@
 				AAA7849D1DB4A01300A4AA3C /* Resources */,
 				85496DA8B46B566AA697E923 /* Embed Pods Frameworks */,
 				8D43954556B324915CEB0F45 /* Copy Pods Resources */,
+				AAD2E76A1DBF047400D94A01 /* Embed Frameworks */,
+				AAD2E7731DBF069700D94A01 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -256,7 +286,7 @@
 			);
 			name = Social8080Swift;
 			productName = Social8080Swift;
-			productReference = AAA7849F1DB4A01300A4AA3C /* Social8080Swift.app */;
+			productReference = AAA7849F1DB4A01300A4AA3C /* 极速社区.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -271,6 +301,7 @@
 				TargetAttributes = {
 					AAA7849E1DB4A01300A4AA3C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ZHDZB47VKB;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -352,6 +383,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AAD2E7731DBF069700D94A01 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -373,6 +418,7 @@
 				AA7D22341DB61F3400E23E7E /* UILabel+Extension.swift in Sources */,
 				AA7D22601DB7AF5200E23E7E /* Utility.swift in Sources */,
 				AA7D22321DB61A8600E23E7E /* SJForumTableViewCell.swift in Sources */,
+				AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */,
 				AADAC2CF1DB4AAA40048AEDF /* SJMineViewController.swift in Sources */,
 				AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */,
 				AA7D22761DBA401F00E23E7E /* UIImage+Resize.swift in Sources */,
@@ -494,11 +540,18 @@
 			baseConfigurationReference = 50BE783DD5D730BC46E28241 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: su jian (3Y6QN55DW4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Social8080Swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = FutureDial.Social8080Swift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.august.social8080;
+				PRODUCT_MODULE_NAME = Social8080Swift;
+				PRODUCT_NAME = "极速社区";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -508,11 +561,18 @@
 			baseConfigurationReference = CAF2FE28940F35BD157A1FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: su jian (3Y6QN55DW4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Social8080Swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = FutureDial.Social8080Swift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.august.social8080;
+				PRODUCT_MODULE_NAME = Social8080Swift;
+				PRODUCT_NAME = "极速社区";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -11,6 +11,7 @@ import MJRefresh
 import IQKeyboardManagerSwift
 import FDFullscreenPopGesture
 import MBProgressHUD
+import MWPhotoBrowser
 
 class SJThreadViewController: SJViewController {
     var fid : Int?
@@ -154,6 +155,8 @@ class SJThreadViewController: SJViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //navigationController?.delegate = self
+        
         view.addSubview(tableView)
         view.addSubview(editPanel)
         view.addSubview(showPanel)
@@ -176,23 +179,28 @@ class SJThreadViewController: SJViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+
         super.viewWillAppear(animated)
-        //动画隐藏tarbar
-        UIView.animateWithDuration(0.25) { [weak self] in
-            self!.tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 49)
-        }
         
+        self.hidesBottomBarWhenPushed = true    //确保到这一页tab会消失
         IQKeyboardManager.sharedManager().enable = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        //动画显示tabbar
-        UIView.animateWithDuration(0.25) { [weak self] in
-            self!.tabBarController?.tabBar.transform = CGAffineTransformIdentity
-        }
-        
         IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask{
+        return .Portrait
     }
     
     func loadData(link : String){
@@ -233,10 +241,10 @@ class SJThreadViewController: SJViewController {
     func clicksend(sender : UIButton){
         textView.endEditing(true)
         let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
-        progressHud.label.text = "发送中..."
+        progressHud.labelText = "发送中..."
         
         SJClient.sharedInstance.sendPost(textView.text, fid : fid!, tid: tid!) { [weak self] in
-            progressHud.hideAnimated(true, afterDelay: 1)
+            progressHud.hide(true, afterDelay: 1)
             self?.textView.text = ""
             self!.tableView.mj_header.beginRefreshing()
         }
@@ -246,6 +254,48 @@ class SJThreadViewController: SJViewController {
         dprint("弹出编辑框")
         editPanel.hidden = true
         textView.becomeFirstResponder()
+    }
+    
+    func clickimage(gesture : UITapGestureRecognizer){
+        if let cell = gesture.view?.superview?.superview{
+            if let indexPath = tableView.indexPathForCell(cell as! UITableViewCell){
+                let point = gesture.locationInView(gesture.view)
+                var imageView : UIImageView?
+                for v in (gesture.view?.subviews)!{
+                    if CGRectContainsPoint(v.frame, point){
+                        imageView = v as? UIImageView
+                        break
+                    }
+                }
+                
+                var index = 0
+                if let v = imageView{
+                    index = (gesture.view?.subviews.indexOf(v))!
+                    dprint("index = \(index)")
+                }
+                
+                var photos : [MWPhoto] = []
+                for image in dataArray[indexPath.row].images!{
+                    let photo = MWPhoto(URL: NSURL.init(string: "http://bbs.8080.net/" + image.originalurl!))
+                    photos.append(photo)
+                }
+                
+                let browser = MWPhotoBrowser(photos: photos)
+                browser.displayActionButton = true
+                browser.displayNavArrows = true;
+                browser.displaySelectionButtons = false
+                browser.alwaysShowControls = false
+                browser.zoomPhotosToFill = true
+                browser.enableGrid = false;
+                browser.startOnGrid = false
+                browser.enableSwipeToDismiss = false
+                browser.autoPlayOnAppear = false
+                browser.displaySelectionButtons = false
+                browser.setCurrentPhotoIndex(UInt(index))
+                
+                navigationController?.pushViewController(browser, animated: true)
+            }
+        }
     }
     
     func keyboardWillShow(notification : NSNotification){
@@ -271,7 +321,6 @@ class SJThreadViewController: SJViewController {
                 self!.tableView.frame = tableframe
             }
         }
-        
     }
     
     func keyboardWillHide(notification : NSNotification){
@@ -295,6 +344,7 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SJThreadTableViewCell", forIndexPath: indexPath) as! SJThreadTableViewCell
         let item = dataArray[indexPath.row]
+        cell.tapimage.addTarget(self, action: #selector(clickimage(_:)))
         cell.configCell(item)
         return cell
     }

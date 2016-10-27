@@ -10,12 +10,13 @@ import UIKit
 import IQKeyboardManagerSwift
 import Alamofire
 import AlamofireNetworkActivityIndicator
+import Siren
+import RealmSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
 
     var window: UIWindow?
-    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
@@ -29,10 +30,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
-        
         self.window!.rootViewController = SJRootTabBarController()
         self.window!.makeKeyAndVisible()
+        
+        setupSiren()
         return true
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        Siren.sharedInstance.checkVersion(.Immediately)
+    }
+    
+    func applicationWillEnterForeground(application: UIApplication) {
+        Siren.sharedInstance.checkVersion(.Daily)
+    }
+    
+    func setupSiren() {
+        let siren = Siren.sharedInstance
+        siren.forceLanguageLocalization = .ChineseSimplified
+        siren.delegate = self
+        siren.majorUpdateAlertType = .Force
+        siren.minorUpdateAlertType = .Option
+        siren.patchUpdateAlertType = .Skip
+        siren.revisionUpdateAlertType = .Skip
+        siren.checkVersion(.Immediately)
+    }
+    
+    func sirenUserDidLaunchAppStore() {
+        dprint(#function)
     }
 }
 

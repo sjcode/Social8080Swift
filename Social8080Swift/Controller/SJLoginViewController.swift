@@ -276,7 +276,7 @@ class SJLoginViewController: SJViewController {
         
         
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        progressHUD.label.text = "登陆中..."
+        progressHUD.labelText = "登陆中..."
         SJClient.sharedInstance.doLoginWithUsername(username.text!, password: password.text!, secode: seccode.text!, completed:{ [weak self] finished ,error, uid in
             
             if finished{
@@ -285,9 +285,9 @@ class SJLoginViewController: SJViewController {
             }else{
                 progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
                 progressHUD.mode = .CustomView
-                progressHUD.label.text = error!.userInfo["message"] as? String
+                progressHUD.labelText = error!.userInfo["message"] as? String
             }
-            progressHUD.hideAnimated(true, afterDelay: 1)
+            progressHUD.hide(true, afterDelay: 1)
         })
     }
 }

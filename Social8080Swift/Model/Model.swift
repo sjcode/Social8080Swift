@@ -25,4 +25,15 @@ struct SJPostModel {
     var postid : String?
     var replylink : String?
     var floor : String?
+    var pstatus : String?
+    var quote : String?
+    var images : [SJImageItem]?
+    init(){
+        images = []
+    }
+}
+
+struct SJImageItem {
+    var originalurl : String?
+    var thumbnailurl : String?
 }

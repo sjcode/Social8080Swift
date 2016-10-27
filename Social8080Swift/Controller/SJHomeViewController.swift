@@ -150,14 +150,37 @@ class SJHomeViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hidesBottomBarWhenPushed = true
+//        UIView.animateWithDuration(0.25) { [weak self] in
+//            self!.tabBarController?.tabBar.transform = CGAffineTransformIdentity
+//        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.hidesBottomBarWhenPushed = false
+//        UIView.animateWithDuration(0.25) { [weak self] in
+//            self!.tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 49)
+//        }
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask{
+        return .Portrait
+    }
+    
     func loadData(fid : Int, typeid : Int){
         let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
-        progressHud.label.text = "加载中..."
+        progressHud.labelText = "加载中..."
 
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (threads) in
             if self!.page == 1{
@@ -165,7 +188,7 @@ class SJHomeViewController: UIViewController {
             }else{
                 self!.dataArray.appendContentsOf(threads)
             }
-            progressHud.hideAnimated(true)
+            progressHud.hide(true)
             self!.tableView_root.reloadData()
             self!.tableView_root.mj_header.endRefreshing()
             self!.tableView_root.mj_footer.endRefreshing()
