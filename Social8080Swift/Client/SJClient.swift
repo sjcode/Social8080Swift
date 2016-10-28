@@ -59,6 +59,9 @@ class SJClient: NSObject {
             }
             
             if response.result.value != nil{
+                
+                
+                
                 let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                 if content.rangeOfString("欢迎您回来").location != NSNotFound{
                     if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
@@ -92,6 +95,10 @@ class SJClient: NSObject {
                     return
                  }
                     if response.result.value != nil{
+                        , forURL: <#T##NSURL#>)
+                        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String: String], forURL: response.URL!)
+                        Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cooki
+                        
                         let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                         if content.rangeOfString("欢迎您回来").location != NSNotFound{
                             if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
@@ -344,6 +351,28 @@ class SJClient: NSObject {
             if response.result.value != nil{
                 //let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                 completed()
+            }else{
+            
+            }
+        }
+    }
+    
+    func getMessageList(completed:([AnyObject])->()){
+        let url = "http://bbs.8080.net/home.php?mod=space&do=pm&mobile=yes"
+        
+        Alamofire.request(.GET, url).responseData { (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                return
+            }
+            
+            if response.result.value != nil{
+                let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
+                if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
+                    let bodyNode = doc.body
+                }
+                
+                completed([])
             }else{
             
             }

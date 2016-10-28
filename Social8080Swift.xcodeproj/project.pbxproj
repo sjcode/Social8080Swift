@@ -34,6 +34,7 @@
 		AAD2E7721DBF065500D94A01 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */; };
 		AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */; };
+		AAD2E83B1DC1DD8600D94A01 /* changelog in Resources */ = {isa = PBXBuildFile; fileRef = AAD2E83A1DC1DD8600D94A01 /* changelog */; };
 		AADAC2C21DB4A1970048AEDF /* SJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */; };
 		AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */; };
 		AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */; };
@@ -91,6 +92,7 @@
 		AAD2E76C1DBF058B00D94A01 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJOtherViewContrller.swift; sourceTree = "<group>"; };
 		AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMarginLabel.swift; sourceTree = "<group>"; };
+		AAD2E83A1DC1DD8600D94A01 /* changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog; sourceTree = "<group>"; };
 		AAD7F8291DBE0E9B00879291 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJNavigationController.swift; sourceTree = "<group>"; };
 		AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTabBarController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				AAA784A61DB4A01300A4AA3C /* LaunchScreen.storyboard */,
 				AAD7F8291DBE0E9B00879291 /* MyPlayground.playground */,
 				AA7D22391DB67F9C00E23E7E /* forumtable.plist */,
+				AAD2E83A1DC1DD8600D94A01 /* changelog */,
 			);
 			path = Social8080Swift;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAA784A51DB4A01300A4AA3C /* Assets.xcassets in Resources */,
+				AAD2E83B1DC1DD8600D94A01 /* changelog in Resources */,
 				AAA784A81DB4A01300A4AA3C /* LaunchScreen.storyboard in Resources */,
 				AA7D223A1DB67F9C00E23E7E /* forumtable.plist in Resources */,
 			);

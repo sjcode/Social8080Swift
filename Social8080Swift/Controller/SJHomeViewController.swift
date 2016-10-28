@@ -56,13 +56,13 @@ class SJHomeViewController: UIViewController {
     
     private lazy var tableView_root : UITableView = {
         let v = UITableView(frame: CGRect(x: 0, y: 30, width: ScreenSize.SCREEN_WIDTH, height: ScreenSize.SCREEN_HEIGHT - ControlSize.TABBAR_HEIGHT - 64 - 30), style: .Plain)
-        let header = MJRefreshNormalHeader(refreshingBlock: {
-            self.page = 1
-            self.loadData(self.currentfid, typeid: -1)
+        let header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            self!.page = 1
+            self!.loadData(self!.currentfid, typeid: -1)
         })
-        let footer = MJRefreshAutoNormalFooter(refreshingBlock: {
-            self.page = self.page+1
-            self.loadData(self.currentfid,typeid: self.currenttypeid)
+        let footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
+            self!.page = self!.page+1
+            self!.loadData(self!.currentfid,typeid: self!.currenttypeid)
         })
         footer.automaticallyHidden = true
         footer.refreshingTitleHidden = true
