@@ -37,3 +37,16 @@ struct SJImageItem {
     var originalurl : String?
     var thumbnailurl : String?
 }
+
+struct SJMessageModel{
+    var content : String?
+    var link : String?
+    var talk : String?
+    var datetime : String?
+}
+
+struct SJReplyModel{
+    var action : String?
+    var formhash : String?
+    var touid : String?
+}

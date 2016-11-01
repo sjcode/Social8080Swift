@@ -36,7 +36,7 @@ class SJLoginViewController: SJViewController {
         f.borderStyle = .None
         f.autocorrectionType = .No
         f.autocapitalizationType = .Words
-        f.font = UIFont.systemFontOfSize(18)
+        f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Next
         f.enablesReturnKeyAutomatically = true
@@ -53,7 +53,7 @@ class SJLoginViewController: SJViewController {
         f.secureTextEntry = true
         f.autocorrectionType = .No
         f.autocapitalizationType = .Words
-        f.font = UIFont.systemFontOfSize(18)
+        f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Next
         f.enablesReturnKeyAutomatically = true
@@ -68,7 +68,7 @@ class SJLoginViewController: SJViewController {
         f.delegate = self
         f.autocorrectionType = .No
         f.autocapitalizationType = .Words
-        f.font = UIFont.systemFontOfSize(18)
+        f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Go
         f.enablesReturnKeyAutomatically = true
@@ -287,7 +287,7 @@ class SJLoginViewController: SJViewController {
                 progressHUD.mode = .CustomView
                 progressHUD.labelText = error!.userInfo["message"] as? String
             }
-            progressHUD.hide(true, afterDelay: 1)
+            progressHUD.hide(true)
         })
     }
 }

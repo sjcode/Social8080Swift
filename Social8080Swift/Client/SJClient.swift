@@ -35,6 +35,7 @@ class SJClient: NSObject {
     override init() {
         super.init()
         Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_3 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B508 Safari/9537.53"]
+        Alamofire.Manager.sharedInstance.session.configuration.timeoutIntervalForRequest = 5
     }
     
     func doLoginWithUsername(username : String, password: String, secode : String, completed:(finished : Bool, error : NSError?, uid : String?)->()){
@@ -57,16 +58,18 @@ class SJClient: NSObject {
                 completed(finished: false, error: response.result.error!, uid: nil)
                 return
             }
-            
             if response.result.value != nil{
-                
-                
-                
                 let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                 if content.rangeOfString("欢迎您回来").location != NSNotFound{
                     if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                         let ahref = doc.xpath("//div[@class='pd2']/a")[0]
                         self!.uid = extractByRegex(ahref["href"]!, pattern: "uid=(\\d+)&do=profile&mobile=yes")
+                    }
+                    if let
+                        headerFields = response.response?.allHeaderFields as? [String: String],
+                        URL = response.request?.URL {
+                        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
+                        Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cookies, forURL: URL, mainDocumentURL: nil)
                     }
                     completed(finished: true, error : nil, uid: self!.uid)
                 }else{
@@ -95,10 +98,6 @@ class SJClient: NSObject {
                     return
                  }
                     if response.result.value != nil{
-                        , forURL: <#T##NSURL#>)
-                        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(response.allHeaderFields as! [String: String], forURL: response.URL!)
-                        Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cooki
-                        
                         let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                         if content.rangeOfString("欢迎您回来").location != NSNotFound{
                             if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
@@ -108,6 +107,12 @@ class SJClient: NSObject {
                                 
                                 self?.logout = doc.xpath("//a[@class='exit']")[0]["href"]
                                 self?.formhash = extractByRegex((self?.logout!)!, pattern: "formhash=(\\w+)&mobile=yes")
+                                if let
+                                    headerFields = response.response?.allHeaderFields as? [String: String],
+                                    URL = response.request?.URL {
+                                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
+                                    Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cookies, forURL: URL, mainDocumentURL: nil)
+                                }
                                 completed(finish: true, error: nil , uid : self?.uid)
                             }
                         }else{
@@ -275,7 +280,7 @@ class SJClient: NSObject {
         }
     }
     
-    func getThreadList( fid : Int, typeid : Int, page : Int, completeHandle: (threads : [SJThreadModel]) -> ()){
+    func getThreadList( fid : Int, typeid : Int, page : Int, completeHandle: (finish : Bool, threads : [SJThreadModel]) -> ()){
         var url = ""
         if typeid == -1{
             url = BASE_URL + "forum.php?mod=forumdisplay&fid="+String(fid)+"&mobile=yes&page=" + String(page)
@@ -285,7 +290,7 @@ class SJClient: NSObject {
         Alamofire.request(.GET, url)
                  .responseData { (response) in
                     guard response.result.isSuccess else{
-                        dprint("失败")
+                        completeHandle(finish: false, threads: [])
                         return
                     }
                     if response.result.value != nil{
@@ -329,7 +334,7 @@ class SJClient: NSObject {
                                         dataList.append(thread)
                                     }
                                 }
-                                completeHandle(threads: dataList)
+                                completeHandle(finish: true, threads: dataList)
                             }
                         }
                         
@@ -337,44 +342,175 @@ class SJClient: NSObject {
         }
     }
     
-    func sendPost(content : String, fid : Int, tid : Int, completed:()->()){
-        let url = BASE_URL + "forum.php?mod=post&action=reply&fid="+String(fid)+"&tid="+String(tid)+"&extra=&replysubmit=yes&mobile=yes"
+    func sendPost(content : String, tid : Int, completed:(finish : Bool)->()){
+        let url = BASE_URL + "forum.php?mod=post&action=reply&tid="+String(tid)+"&extra=&replysubmit=yes&mobile=yes"
         let params = ["formhash": formhash!,
                       "message":content,
                       "replaysubmit":"回复"]
         Alamofire.request(.POST, url, parameters : params ).responseData { ( response) in
             guard response.result.isSuccess else{
                 dprint("失败")
+                completed(finish: false)
                 return
             }
             
             if response.result.value != nil{
-                //let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
-                completed()
+                completed(finish: true)
             }else{
             
             }
         }
     }
     
-    func getMessageList(completed:([AnyObject])->()){
-        let url = "http://bbs.8080.net/home.php?mod=space&do=pm&mobile=yes"
-        
+    func getMessageList(page : Int, completed:(finish : Bool, messages : [SJMessageModel])->()){
+        let url = "http://bbs.8080.net/home.php?mod=space&do=pm&mobile=yes&page=" + String(page)
         Alamofire.request(.GET, url).responseData { (response) in
             guard response.result.isSuccess else{
                 dprint("失败")
+                completed(finish: false, messages: [])
                 return
             }
-            
             if response.result.value != nil{
                 let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
                 if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                     let bodyNode = doc.body
+                    if let inputNodes = bodyNode?.xpath("//div[@class='bm_c']"){
+                        var datalist = [SJMessageModel]()
+                        for node in inputNodes{
+                            var message = SJMessageModel()
+                            if let ahref = node.at_xpath("p/a"){
+                                message.content = ahref.content
+                                message.link = ahref["href"]
+                            }
+                            
+                            if let spancontent = node.at_xpath("p/span[@class='xg1'][1]"){
+                                message.talk = spancontent.content
+                            }
+                            
+                            if let spandatetime = node.at_xpath("p/span[@class='xg1'][2]"){
+                                message.datetime = spandatetime.content
+                            }
+                            datalist.append(message)
+                        }
+                        completed(finish: true, messages: datalist)
+                    }
                 }
-                
-                completed([])
-            }else{
+            }
+        }
+    }
+    
+    func getMessageDetail(link : String, completed:(finish: Bool, messages :[SJMessageModel], reply : Any?)->()){
+        let url = "http://bbs.8080.net/" + link
+        Alamofire.request(.GET, url).responseData { (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false, messages: [], reply: nil)
+                return
+            }
+            if response.result.value != nil{
+                let content : NSString = NSString.init(data: response.data!, encoding: NSUTF8StringEncoding)!
+                if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
+                    let bodyNode = doc.body
+                    if let inputNode = bodyNode?.xpath("//div[@class='bm_c']"){
+                        var datalist = [SJMessageModel]()
+                        var reply : SJReplyModel?
+                        if case let XPathObject.NodeSet(nodeset) = inputNode{
+                            let count = nodeset.count
+                            for (index,node) in nodeset.enumerate(){
+                                if index != count-1{    //不是最后一条
+                                    var message = SJMessageModel()
+                                    if let nickname = node.at_xpath("a"){
+                                        message.talk = nickname.content
+                                    }
+                                    if let datetime = node.at_xpath("span[@class='xg1']"){
+                                        message.datetime = datetime.content
+                                    }
+                                    
+                                    if let content = node.at_xpath("dd[@class='xs1']"){
+                                        message.content = content.content
+                                    }
+                                    datalist.append(message)
+                                }else{
+                                    //取出回复链接
+                                    var action : String?
+                                    var formhash : String?
+                                    var touid : String?
+                                    if let formnode = node.at_xpath("form"){
+                                        action = formnode["action"]
+                                        if let input1node = formnode.at_xpath("input[1]"){
+                                            formhash = input1node["value"]
+                                        }
+                                        
+                                        if let input2node = formnode.at_xpath("input[2]"){
+                                            touid = input2node["value"]
+                                        }
+                                        reply = SJReplyModel(action: action, formhash: formhash, touid: touid)
+                                    }
+                                }
+                            }
+                            completed(finish: true, messages: datalist, reply:  reply!)
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    func sendMessage(reply : SJReplyModel, message : String, completed : (finish : Bool)->()){
+        let url = BASE_URL + reply.action!
+        let params = ["formhash": reply.formhash!,
+                      "message":message,
+                      "pmsubmit":"true",
+                      "topmuid":reply.touid!]
+        Alamofire.request(.POST, url, parameters : params ).responseData { ( response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false)
+                return
+            }
             
+            if response.result.value != nil{
+                completed(finish: true)
+            }else{
+                completed(finish: false)
+            }
+        }
+    }
+    
+    func getNoticeList(type : SJNoticeType, page : Int, completed : (finish : Bool, notices : [SJMessageModel])->()){
+        let url = "http://bbs.8080.net/home.php?mod=space&do=notice&mobile=yes" + (type == SJNoticeType.OldNotice ? "&&isread=1" : "") + "&page=" + String(page)
+        Alamofire.request(.GET, url).responseString { (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false, notices : [])
+                return
+            }
+            if let doc = Kanna.HTML(html : response.result.value! as String, encoding : NSUTF8StringEncoding){
+                let bodyNode = doc.body
+                if let inputNodes = bodyNode?.xpath("//div[@class='bm_c']"){
+                    var datalist = [SJMessageModel]()
+                    for node in inputNodes{
+                        var message = SJMessageModel()
+                        if let ahref = node.at_xpath("div/a[2]"){
+                            message.content = ahref.content
+                            message.link = ahref["href"]
+                        }
+                        
+                        if let people = node.at_xpath("div/a[1]"){
+                            message.talk = people.content
+                        }
+                        
+                        if let datetime = node.at_xpath("div[2]"){
+                            message.datetime = datetime.content
+                        }
+                        datalist.append(message)
+                    }
+                    completed(finish: true, notices: datalist)
+                }
+            }else{
+                completed(finish: true, notices: [])
             }
         }
     }

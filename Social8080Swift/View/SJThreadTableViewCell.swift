@@ -14,8 +14,9 @@ let PICTURE_SPACING : Int = 3
 
 class SJThreadTableViewCell: UITableViewCell {
     
-    private lazy var avatar : UIImageView = {
-        let v = UIImageView()
+    private lazy var avatar : AnimatedImageView = {
+        let v = AnimatedImageView()
+        v.autoPlayAnimatedImage = false
         v.layer.masksToBounds = true
         v.layer.cornerRadius = 15
         return v
@@ -24,7 +25,7 @@ class SJThreadTableViewCell: UITableViewCell {
     private lazy var author : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
+        l.font = defaultFont(10)
         l.textAlignment = .Left
         l.numberOfLines = 1
         return l
@@ -33,7 +34,7 @@ class SJThreadTableViewCell: UITableViewCell {
     private lazy var floor : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
+        l.font = defaultFont(10)
         l.textAlignment = .Right
         l.numberOfLines = 1
         return l
@@ -42,7 +43,7 @@ class SJThreadTableViewCell: UITableViewCell {
     private lazy var datetime : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
+        l.font = defaultFont(10)
         l.textAlignment = .Left
         l.numberOfLines = 1
         return l
@@ -51,7 +52,7 @@ class SJThreadTableViewCell: UITableViewCell {
     private lazy var pstatus : UILabel = {
         let l = UILabel()
         l.textColor = UIColor ( red: 0.1264, green: 0.1264, blue: 0.1264, alpha: 1.0 )
-        l.font = UIFont.systemFontOfSize(12)
+        l.font = defaultFont(12)
         l.textAlignment = .Left
         l.numberOfLines = 0
         return l
@@ -62,7 +63,7 @@ class SJThreadTableViewCell: UITableViewCell {
         l.textColor = UIColor.grayColor()
         l.backgroundColor = UIColor ( red: 0.9729, green: 0.9776, blue: 0.7053, alpha: 1.0 )
         l.layer.borderColor = UIColor ( red: 1.0, green: 0.9031, blue: 0.3408, alpha: 1.0 ).CGColor
-        l.font = UIFont.systemFontOfSize(12)
+        l.font = defaultFont(12)
         l.textAlignment = .Left
         l.numberOfLines = 0
         return l
@@ -71,7 +72,7 @@ class SJThreadTableViewCell: UITableViewCell {
     private lazy var content : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(14)
+        l.font = defaultFont(14)
         l.textAlignment = .Left
         l.numberOfLines = 0
         return l
@@ -139,7 +140,7 @@ class SJThreadTableViewCell: UITableViewCell {
             make.right.equalTo(contentView).offset(-8)
             make.top.equalTo(pstatus.snp_bottom).offset(3)
         }
-        
+ 
         content.snp_makeConstraints { (make) in
             make.left.equalTo(8)
             make.right.equalTo(contentView).offset(-8)
@@ -161,11 +162,12 @@ class SJThreadTableViewCell: UITableViewCell {
                                   completionHandler: nil)
         author.text = item.author
         datetime.text = item.datetime?.stringFromDate
+        floor.text = item.floor
         pstatus.text = item.pstatus
         quote.text = item.quote
         content.text = item.content
-        floor.text = item.floor
-        
+        content.sizeToFit()
+    
         let imagegridsize = CGSizeMake(ScreenSize.SCREEN_WIDTH - 16, CGFloat.max)
         
         let imageWidth = (imagegridsize.width - 6) / 3
@@ -213,31 +215,33 @@ class SJThreadTableViewCell: UITableViewCell {
     }
     
     static func calculateCellHeight(item : SJPostModel) -> CGFloat{
-        var heightOfCell : CGFloat = 35+6+1
+        var heightOfCell : CGFloat = 3 + 30 + 3//35+6+1
         
         if let pstats = item.pstatus{
-            heightOfCell += pstats.calculateLabelHeight(UIFont.systemFontOfSize(12), width: ScreenSize.SCREEN_WIDTH-36-6-30)
-            heightOfCell += 3
+            heightOfCell += pstats.calculateLabelHeight(defaultFont(14), width: ScreenSize.SCREEN_WIDTH-16)
+            
         }
+        heightOfCell += 3
         
         if let quote = item.quote{
-            heightOfCell += quote.calculateLabelHeight(UIFont.systemFontOfSize(12), width: ScreenSize.SCREEN_WIDTH-36-6-30)
-            heightOfCell += 3
+            heightOfCell += quote.calculateLabelHeight(defaultFont(12), width: ScreenSize.SCREEN_WIDTH-16)
         }
+        heightOfCell += 3
         
         if let content = item.content{
-            heightOfCell += content.calculateLabelHeight(UIFont.systemFontOfSize(14), width: ScreenSize.SCREEN_WIDTH-36-6-30)
-            heightOfCell += 3
+            heightOfCell += content.calculateLabelHeight(defaultFont(14), width: ScreenSize.SCREEN_WIDTH-16)
         }
+        heightOfCell += 3
         
-        if let images = item.images{
+        if item.images?.count > 0{
+            let images = item.images
             let size = eachImageSize()
-            let line = (images.count / 3) + (images.count % 3 == 0 ? 0 : 1)
+            let line = (images!.count / 3) + (images!.count % 3 == 0 ? 0 : 1)
             let gridviewHeight = (size.height * CGFloat(line)) + CGFloat((line - 1) * 3)
             
             heightOfCell += gridviewHeight
-            heightOfCell += 3
         }
+        heightOfCell += 3
         
         return heightOfCell
     }

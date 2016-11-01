@@ -17,8 +17,9 @@ struct SJMargin {
 class SJHomeTableViewCell: UITableViewCell {
     static let margin : CGFloat = 3
     
-    private lazy var avatar : UIImageView = {
-        let v = UIImageView()
+    private lazy var avatar : AnimatedImageView = {
+        let v = AnimatedImageView()
+        v.autoPlayAnimatedImage = false
         v.layer.masksToBounds = true
         v.layer.cornerRadius = 15
         return v
@@ -27,7 +28,7 @@ class SJHomeTableViewCell: UITableViewCell {
     private lazy var title : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.darkGrayColor()
-        l.font = UIFont.systemFontOfSize(14)
+        l.font = defaultFont(14)
         l.textAlignment = .Left
         l.numberOfLines = 1
         return l
@@ -35,8 +36,8 @@ class SJHomeTableViewCell: UITableViewCell {
     
     private lazy var author : UILabel = {
         let l = UILabel()
-        l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
+        l.textColor = UIColor ( red: 0.1938, green: 0.5085, blue: 0.8523, alpha: 1.0 )
+        l.font = defaultFont(10)
         l.textAlignment = .Left
         l.numberOfLines = 1
         return l
@@ -45,7 +46,7 @@ class SJHomeTableViewCell: UITableViewCell {
     private lazy var datetime : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
+        l.font = defaultFont(10)
         l.textAlignment = .Left
         l.numberOfLines = 1
         return l
@@ -54,8 +55,8 @@ class SJHomeTableViewCell: UITableViewCell {
     private lazy var reply : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.grayColor()
-        l.font = UIFont.systemFontOfSize(10)
-        l.textAlignment = .Right
+        l.font = defaultFont(10)
+        l.textAlignment = .Left
         l.numberOfLines = 1
         return l
     }()
@@ -70,7 +71,7 @@ class SJHomeTableViewCell: UITableViewCell {
         contentView.addSubview(title)
         
         avatar.snp_makeConstraints { (make) in
-            make.left.equalTo(18)
+            make.left.equalTo(8)
             make.top.equalTo(3)
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
@@ -90,15 +91,15 @@ class SJHomeTableViewCell: UITableViewCell {
         }
         
         reply.snp_makeConstraints { (make) in
-            make.right.equalTo(-18)
+            make.left.equalTo(contentView.snp_right).offset(-50)
             make.top.equalTo(3)
             make.height.equalTo(18)
             make.width.equalTo(80)
         }
         
         title.snp_makeConstraints { (make) in
-            make.left.equalTo(18)
-            make.right.equalTo(contentView).offset(-18)
+            make.left.equalTo(8)
+            make.right.equalTo(contentView).offset(-8)
             make.top.equalTo(datetime.snp_bottom).offset(3)
             make.height.equalTo(20)
         }

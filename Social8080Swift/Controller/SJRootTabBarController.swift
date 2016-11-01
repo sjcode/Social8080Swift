@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import WMPageController_Swift
 
 class SJRootTabBarController: SJTabBarController {
     let home = SJHomeViewController()
-    let message = SJMessageViewController()
+    let message = SJMessageListViewController()
     let mine = SJMineViewController()
     
     override func viewDidLoad() {

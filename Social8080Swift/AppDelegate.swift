@@ -11,22 +11,22 @@ import IQKeyboardManagerSwift
 import Alamofire
 import AlamofireNetworkActivityIndicator
 import Siren
-import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
 
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let appearance = UINavigationBar.appearance()
+        appearance.translucent = false
         appearance.barTintColor = UIColor(hexString: "#28384D")
         appearance.tintColor = UIColor.whiteColor()
-        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont.systemFontOfSize(14)]
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:defaultFont(14)]
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         

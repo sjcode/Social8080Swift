@@ -44,7 +44,7 @@ class SJScrollTitleView: UIView {
         for index in 0...(count! - 1) {
             let title = datasource?.titleAtIndex(index)
             let label = SJTitleLabel()
-            label.font = UIFont.systemFontOfSize(12)
+            label.font = defaultFont(12)
             label.textColor = UIColor.darkGrayColor()
             label.text = title
             label.textAlignment = .Center

@@ -9,7 +9,6 @@
 import UIKit
 import MJRefresh
 import Kanna
-import WMPageController_Swift
 
 class SJForumViewController: SJViewController {
     var dataArray = [SJThreadModel]()

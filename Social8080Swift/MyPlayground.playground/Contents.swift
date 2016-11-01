@@ -28,5 +28,19 @@ if case let XPathObject.NodeSet(nodeset) = obj{
     print("nodeset = \(nodeset)")
 }
 
+let session = NSURLSession()
 
+let string = "大猫对我说"
+if let range = string.rangeOfString("我对"){
+    let startindex = range.endIndex
+    let endindex = string.endIndex.advancedBy(-1)
+    
+    string[startindex..<endindex]
+}
+
+if let range = string.rangeOfString("对我说"){
+    let startindex = string.startIndex
+    let endindex = range.startIndex
+    string[startindex..<endindex]
+}
 

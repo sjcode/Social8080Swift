@@ -70,6 +70,7 @@ class SJHomeViewController: UIViewController {
         v.mj_header = header
         v.mj_footer = footer
         v.tableFooterView = UIView()
+        v.separatorInset = UIEdgeInsetsZero
         v.rowHeight = 62
         v.delegate = self
         v.dataSource = self
@@ -109,7 +110,7 @@ class SJHomeViewController: UIViewController {
         let fixedspace = UIBarButtonItem.init(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         fixedspace.width = -20
         let items = [fixedspace,  UIBarButtonItem(customView: rightbutton)]
-        navigationItem.rightBarButtonItems = items
+        navigationItem.leftBarButtonItems = items
         
         loadForumCell()
         
@@ -170,16 +171,25 @@ class SJHomeViewController: UIViewController {
         let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
         progressHud.labelText = "加载中..."
 
-        SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (threads) in
-            if self!.page == 1{
-                self!.dataArray = threads
-            }else{
-                self!.dataArray.appendContentsOf(threads)
-            }
+        SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (finish, threads) in
             progressHud.hide(true)
-            self!.tableView_root.reloadData()
-            self!.tableView_root.mj_header.endRefreshing()
-            self!.tableView_root.mj_footer.endRefreshing()
+            if finish{
+                if self!.page == 1{
+                    self!.dataArray = threads
+                }else{
+                    self!.dataArray.appendContentsOf(threads)
+                }
+                
+                self!.tableView_root.reloadData()
+                self!.tableView_root.mj_header.endRefreshing()
+                self!.tableView_root.mj_footer.endRefreshing()
+            }else{
+                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
+                progressHUD.mode = .CustomView
+                progressHUD.labelText = "网络不给力"
+                progressHUD.hide(true, afterDelay: 1)
+            }
         }
     }
     
@@ -242,7 +252,6 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
             let vc = SJThreadViewController()
             vc.link = item.link
             vc.title = item.title
-            vc.fid = currentfid
             navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -257,18 +266,16 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if tableView == tableView_forum{
-            if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
-                tableView.separatorInset = UIEdgeInsetsZero
-            }
-            
-            if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
-                tableView.layoutMargins = UIEdgeInsetsZero
-            }
-            
-            if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
-                cell.layoutMargins = UIEdgeInsetsZero
-            }
+        if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
+            tableView.separatorInset = UIEdgeInsetsZero
+        }
+        
+        if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
+            tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        
+        if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
+            cell.layoutMargins = UIEdgeInsetsZero
         }
     }
 }
@@ -332,7 +339,7 @@ extension SJHomeViewController{
 
         let MARGIN : CGFloat = 8
         let SPANCING : CGFloat = 5
-        let labelfont = UIFont.systemFontOfSize(12)
+        let labelfont = defaultFont(12)
         let MAX_LINE_ROW : CGFloat = 3
         
         let labelwidth : CGFloat = (ScreenSize.SCREEN_WIDTH - (MARGIN*2) - (SPANCING*2))/3

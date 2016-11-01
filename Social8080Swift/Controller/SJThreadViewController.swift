@@ -14,10 +14,14 @@ import MBProgressHUD
 import MWPhotoBrowser
 
 class SJThreadViewController: SJViewController {
-    var fid : Int?
     var link : String?{
         didSet{
+            //如果不是从home过来的, 那就一定是从message过来的
             tid = Int(extractByRegex(link!, pattern : "forum.php\\?mod=viewthread&tid=(\\d+)&mobile=yes"))
+            if tid == nil{
+                tid = Int(extractByRegex(link!, pattern : "forum.php\\?mod=redirect&goto=findpost&ptid=(\\d+)&pid="))
+            }
+            
         }
     }
     var tid : Int?
@@ -64,10 +68,10 @@ class SJThreadViewController: SJViewController {
         label.layer.cornerRadius = 10
         label.layer.borderColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 ).CGColor
         label.layer.borderWidth = 0.5
-        label.text = "我想说些"
+        label.text = "我想说些..."
         label.userInteractionEnabled = true
         label.backgroundColor = UIColor.whiteColor()
-        label.font = UIFont.systemFontOfSize(10)
+        label.font = defaultFont(10)
         label.textColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
         label.contentInsets = UIEdgeInsetsMake(0, 15, 0, 0)
         v.addSubview(label)
@@ -103,7 +107,7 @@ class SJThreadViewController: SJViewController {
         let title = UILabel()
         title.text = "写跟贴"
         title.textColor = UIColor.grayColor()
-        title.font = UIFont.systemFontOfSize(16)
+        title.font = defaultFont(16)
         title.sizeToFit()
         v.addSubview(title)
         title.snp_makeConstraints(closure: { (make) in
@@ -114,7 +118,7 @@ class SJThreadViewController: SJViewController {
         let cancel = UIButton(type: .System)
         cancel.setTitle("取消", forState: .Normal)
         cancel.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        cancel.titleLabel?.font = UIFont.systemFontOfSize(12)
+        cancel.titleLabel?.font = defaultFont(12)
         cancel.addTarget(self, action: #selector(clickcancel(_:)), forControlEvents: .TouchUpInside)
         v.addSubview(cancel)
         cancel.snp_makeConstraints(closure: { (make) in
@@ -126,7 +130,7 @@ class SJThreadViewController: SJViewController {
         let send = UIButton(type: .System)
         send.setTitle("发送", forState: .Normal)
         send.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        send.titleLabel?.font = UIFont.systemFontOfSize(12)
+        send.titleLabel?.font = defaultFont(12)
         send.addTarget(self, action: #selector(clicksend(_:)), forControlEvents: .TouchUpInside)
         v.addSubview(send)
         send.snp_makeConstraints(closure: { (make) in
@@ -154,8 +158,6 @@ class SJThreadViewController: SJViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //navigationController?.delegate = self
         
         view.addSubview(tableView)
         view.addSubview(editPanel)
@@ -207,7 +209,10 @@ class SJThreadViewController: SJViewController {
     }
     
     func loadData(link : String){
+        let progressHud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        progressHud.labelText = "加载中..."
         SJClient.sharedInstance.getPostList(link, page: page) { [weak self](posts) in
+            progressHud.hide(true)
             if self!.page == 1{
                 self!.dataArray = posts
             }else{
@@ -222,6 +227,7 @@ class SJThreadViewController: SJViewController {
                         self!.dataArray.appendContentsOf(posts)
                     }else{
                         dprint("没有更多的数据了")
+                        alertmessage(self!.view, message: "没有更多的数据了")
                     }
                 }
             }
@@ -246,10 +252,25 @@ class SJThreadViewController: SJViewController {
         let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
         progressHud.labelText = "发送中..."
         
-        SJClient.sharedInstance.sendPost(textView.text, fid : fid!, tid: tid!) { [weak self] in
-            progressHud.hide(true, afterDelay: 1)
-            self?.textView.text = ""
-            self!.tableView.mj_header.beginRefreshing()
+        SJClient.sharedInstance.sendPost(textView.text, tid: tid!) { [weak self] (finish) in
+            progressHud.hide(true)
+            if finish{
+                self?.textView.text = ""
+                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
+                progressHUD.mode = .CustomView
+                progressHUD.labelText = "回贴成功"
+                progressHUD.completionBlock = { [weak self] in
+                    self!.tableView.mj_header.beginRefreshing()
+                }
+                progressHUD.hide(true, afterDelay: 1)
+            }else{
+                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
+                progressHUD.mode = .CustomView
+                progressHUD.labelText = "网络不给力"
+                progressHUD.hide(true, afterDelay: 1)
+            }
         }
     }
     
@@ -308,7 +329,7 @@ class SJThreadViewController: SJViewController {
         let keyboardRect = userinfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
         let keyboardHeight = keyboardRect?.size.height
         
-        showPanel.transform = CGAffineTransformMakeTranslation(0, -(110+keyboardHeight!))
+        showPanel.transform = CGAffineTransformMakeTranslation(0, -(110+keyboardHeight!+64))
         
         
         var heightOfVisibleCells : CGFloat = 0
@@ -363,6 +384,20 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
         textView.resignFirstResponder()
         //popupView.showInView(view)
     }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+            if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
+                tableView.separatorInset = UIEdgeInsetsZero
+            }
+            
+            if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
+                tableView.layoutMargins = UIEdgeInsetsZero
+            }
+            
+            if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
+                cell.layoutMargins = UIEdgeInsetsZero
+            }
+    }
 }
 
 extension SJThreadViewController : UITextViewDelegate{
@@ -373,5 +408,13 @@ extension SJThreadViewController : UITextViewDelegate{
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         dprint("textViewShouldEndEditing")
         return true
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if textView.isFirstResponder() {
+            if textView.textInputMode?.primaryLanguage == nil || textView.textInputMode?.primaryLanguage == "emoji" {
+                return false;
+            }
+        }
+        return true;
     }
 }

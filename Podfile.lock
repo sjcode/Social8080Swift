@@ -2,9 +2,6 @@ PODS:
   - Alamofire (3.5.1)
   - AlamofireNetworkActivityIndicator (1.1.0):
     - Alamofire (~> 3.3)
-  - ChameleonFramework (2.1.0):
-    - ChameleonFramework/Default (= 2.1.0)
-  - ChameleonFramework/Default (2.1.0)
   - DACircularProgress (2.3.1)
   - FDFullscreenPopGesture (1.1)
   - FLAnimatedImage (1.0.12)
@@ -17,23 +14,18 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - RxSwift (2.6.0)
   - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - Siren (0.9.5)
-  - SlideMenuControllerSwift (2.3.0)
   - SnapKit (0.22.0)
   - SwiftHEXColors (1.0.4)
-  - SwiftyJSON (2.4.0)
-  - WMPageController-Swift (1.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.1)
   - AlamofireNetworkActivityIndicator (~> 1.1.0)
-  - ChameleonFramework (~> 2.1.0)
   - FDFullscreenPopGesture (~> 1.1)
   - FLAnimatedImage (~> 1.0.12)
   - IQKeyboardManagerSwift (= 4.0.5)
@@ -42,19 +34,14 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.0)
   - MJRefresh (~> 3.1.12)
   - MWPhotoBrowser (~> 2.1.2)
-  - RxSwift (~> 2.6.0)
   - SDCycleScrollView (~> 1.65)
   - Siren (= 0.9.5)
-  - SlideMenuControllerSwift (~> 2.3.0)
   - SnapKit (~> 0.22.0)
   - SwiftHEXColors (~> 1.0.4)
-  - SwiftyJSON (~> 2.4.0)
-  - WMPageController-Swift (~> 1.4.0)
 
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   AlamofireNetworkActivityIndicator: 36340ebf8d70241b2ebadc3dea38e8fbb95f5127
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -64,14 +51,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Siren: a536a4fed41def10e540a9804b2a63a4b3634f6b
-  SlideMenuControllerSwift: 09ef91aa30464e7e517bce2f2ecc6e323e3fe866
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
-  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
-  WMPageController-Swift: f65f410be0814667d73628a8e817510f899aea91
 
 COCOAPODS: 0.39.0
