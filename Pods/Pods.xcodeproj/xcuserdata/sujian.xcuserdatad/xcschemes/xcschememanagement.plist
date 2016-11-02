@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KMPlaceholderTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kanna.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,22 +102,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09E2A8009F586853AE796425A234F4E9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>13E0BE4D5163D8A66CEE0726FD8CDF54</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>14E6E2E2484806AB62B60CA2EAD41F9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>1520003FEBEC114D6C84F832AFEDB994</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1620E2E063E0AB81C8B3A8260FC890AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54B419EFBA5501057D38A3A04576DBC8</key>
+		<key>563232439AF5E323F86B120F58122208</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,12 +157,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE7A5E8E0FDE9CA58316BC4D6568818D</key>
+		<key>B2C0223DDD96123D9462DFA6DBA66DF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC187EE2B6F0FC8D4238D5DFDB178A14</key>
+		<key>BAF0BDFDBFB8D9C13D1B7BB75B8DEC90</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE7A5E8E0FDE9CA58316BC4D6568818D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,12 +177,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EE57040B0F2FD9464A60DBE1F82FE001</key>
+		<key>E8056B10D63A587E65AADED72A86FFFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F23FA28268A019109BD68E9279E191D9</key>
+		<key>EC25B770E2E786F47106EE8F013163EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE57040B0F2FD9464A60DBE1F82FE001</key>
 		<dict>
 			<key>primary</key>
 			<true/>

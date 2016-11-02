@@ -237,7 +237,7 @@ class SJClient: NSObject {
                                                             contents.appendContentsOf(value)
                                                         }
                                                     }
-                                                    post!.content = contents.stringByRemovingWhitespaceAndNewlineCharacterSet
+                                                    post!.content = contents.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
                                                 }
                                                 if case let XPathObject.NodeSet(anodes) = element.xpath("a"){
                                                     

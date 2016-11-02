@@ -44,3 +44,19 @@ if let range = string.rangeOfString("对我说"){
     string[startindex..<endindex]
 }
 
+class Base{
+    init(string : String){
+        print("base init")
+    }
+}
+
+class Foo : Base{
+    override init(string : String){
+        super.init(string: string)
+        print("Foo init")
+    }
+}
+
+let foo = Foo(string: "hello")
+
+

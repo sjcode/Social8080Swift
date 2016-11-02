@@ -29,7 +29,6 @@ func getAvatarUrl(uid : String) -> String{
     let a = uid/10000%10000
     let b = uid/100%100
     let c = uid%100
-    //http://bbs.8080.net/uc_server/data/avatar/000/00/56/06_avatar_small.jpg
     return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_small.jpg",a,b,c)
 }
 
@@ -39,8 +38,16 @@ func getMiddleAvatarUrl(uid : String) -> String{
     let a = uid/10000%10000
     let b = uid/100%100
     let c = uid%100
-    //http://bbs.8080.net/uc_server/data/avatar/000/00/56/06_avatar_middle.jpg
     return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_middle.jpg",a,b,c)
+}
+
+func getBigAvatarUrl(uid : String) -> String{
+    let uid = Int(uid)!
+    
+    let a = uid/10000%10000
+    let b = uid/100%100
+    let c = uid%100
+    return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_big.jpg",a,b,c)
 }
 
 /*

@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		92BDA753FEFF39A330256927 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4488B16A4E013A8085C9C499 /* Pods.framework */; };
+		AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */; };
 		AA36EEC41DC330FD0045C055 /* SJMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36EEC31DC330FD0045C055 /* SJMessageTableViewCell.swift */; };
 		AA36EEC61DC3359C0045C055 /* SJMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */; };
 		AA51385F1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */; };
+		AA7C666C1DC88D1800C949B9 /* SJTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C666B1DC88D1800C949B9 /* SJTextField.swift */; };
 		AA7D22291DB5C35900E23E7E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22281DB5C35900E23E7E /* Model.swift */; };
 		AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */; };
 		AA7D22321DB61A8600E23E7E /* SJForumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */; };
@@ -63,9 +65,11 @@
 /* Begin PBXFileReference section */
 		4488B16A4E013A8085C9C499 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50BE783DD5D730BC46E28241 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJWritePostViewController.swift; sourceTree = "<group>"; };
 		AA36EEC31DC330FD0045C055 /* SJMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageTableViewCell.swift; sourceTree = "<group>"; };
 		AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailViewController.swift; sourceTree = "<group>"; };
 		AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailTableViewCell.swift; sourceTree = "<group>"; };
+		AA7C666B1DC88D1800C949B9 /* SJTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextField.swift; sourceTree = "<group>"; };
 		AA7D22281DB5C35900E23E7E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJHomeTableViewCell.swift; sourceTree = "<group>"; };
 		AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumTableViewCell.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */,
 				AADAC2CC1DB4AA4A0048AEDF /* SJMessageListViewController.swift */,
 				AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */,
+				AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */,
 				AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */,
 				AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */,
+				AA7C666B1DC88D1800C949B9 /* SJTextField.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7C666C1DC88D1800C949B9 /* SJTextField.swift in Sources */,
 				AA9F1CD61DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift in Sources */,
 				AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */,
 				AA36EEC61DC3359C0045C055 /* SJMessageDetailViewController.swift in Sources */,
@@ -409,6 +416,7 @@
 				AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */,
 				AA7D22761DBA401F00E23E7E /* UIImage+Resize.swift in Sources */,
 				AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */,
+				AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */,
 				AA7D22381DB66F4200E23E7E /* SJForumViewController.swift in Sources */,
 				AADAC2CA1DB4A8AE0048AEDF /* SJTableViewController.swift in Sources */,
 				AA7D22741DBA0CA500E23E7E /* SJLoginViewController.swift in Sources */,

@@ -88,7 +88,7 @@ class SJHomeViewController: UIViewController {
         return v
     }()
     
-    private lazy var rightbutton : UIButton = {
+    private lazy var leftbutton : UIButton = {
         let b = UIButton(type: .Custom)
         b.frame = CGRectMake(0,0,48,48)
         b.layer.cornerRadius = 24
@@ -98,9 +98,25 @@ class SJHomeViewController: UIViewController {
         return b
     }()
     
+    private lazy var rightbutton : UIButton = {
+        let b = UIButton(type: .System)
+        b.frame = CGRectMake(0,0,48,48)
+        b.setTitle("发贴", forState: .Normal)
+        b.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        b.clipsToBounds = true
+        b.addTarget(self, action: #selector(clicksend(_:)), forControlEvents: .TouchUpInside)
+        return b
+    }()
+    
     func clickperson(sender : UIButton) {
         let vc = SJLoginViewController()
         self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    func clicksend(sender : UIButton){
+        let vc = SJWritePostViewController()
+        vc.fid = currentfid
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLoad() {
@@ -109,8 +125,12 @@ class SJHomeViewController: UIViewController {
         
         let fixedspace = UIBarButtonItem.init(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         fixedspace.width = -20
-        let items = [fixedspace,  UIBarButtonItem(customView: rightbutton)]
+        let items = [fixedspace,  UIBarButtonItem(customView: leftbutton)]
         navigationItem.leftBarButtonItems = items
+        
+        let itmes2 = [fixedspace, UIBarButtonItem(customView: rightbutton)]
+        navigationItem.rightBarButtonItems = itmes2
+        
         
         loadForumCell()
         
@@ -127,21 +147,19 @@ class SJHomeViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserverForName(kNotificationLoginSuccess, object: self, queue: NSOperationQueue.mainQueue()) { [weak self](notification) in
             let uid = notification.userInfo!["uid"] as! String
-            self?.rightbutton.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(uid)), forState: .Normal)
-            self?.rightbutton.userInteractionEnabled = false
+            self?.leftbutton.kf_setImageWithURL(NSURL.init(string: getMiddleAvatarUrl(uid)), forState: .Normal)
+            self?.leftbutton.userInteractionEnabled = false
             
         }
         
         SJClient.sharedInstance.tryLoginAndLoadUI(false) { [weak self] (finish, error, uid) in
-            dprint("login ok")
-            
             if finish{
                 if (uid != nil){
                     
-                    KingfisherManager.sharedManager.downloader.downloadImageWithURL(NSURL.init(string: getAvatarUrl(uid!))!, options: [.ForceRefresh], progressBlock: nil, completionHandler: { [weak self](image, error, imageURL, originalData) in
+                    KingfisherManager.sharedManager.downloader.downloadImageWithURL(NSURL.init(string: getMiddleAvatarUrl(uid!))!, options: [.ForceRefresh], progressBlock: nil, completionHandler: { [weak self](image, error, imageURL, originalData) in
                         if (image != nil){
-                            self?.rightbutton.setImage(maskRoundedImage(image!.resizedImageWithBounds(CGSizeMake(30, 30)), radius: 15), forState: .Normal)
-                            self?.rightbutton.userInteractionEnabled = false
+                            self!.leftbutton.setImage(maskRoundedImage(image!.resizedImageWithBounds(CGSizeMake(30, 30)), radius: 15), forState: .Normal)
+                            self!.leftbutton.userInteractionEnabled = false
                         }
                     })
                 }
