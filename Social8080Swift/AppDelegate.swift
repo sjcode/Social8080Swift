@@ -17,7 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
 
     var window: UIWindow?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {        
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        let string = "laskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdf"
+        let font = UIFont.systemFontOfSize(14)
+        let lineHeight = font.lineHeight
+        let size = (string as NSString).boundingRectWithSize(CGSizeMake(200, CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName : font], context: nil)
+        let line = size.height / lineHeight
+        let actualheight = lineHeight * min(line, 3)
+        dprint("actualheight = \(actualheight)")
+        
+        
+        
+        
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -27,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
         appearance.barTintColor = UIColor(hexString: "#28384D")
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:defaultFont(14)]
-        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enable = false
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
         self.window!.rootViewController = SJRootTabBarController()

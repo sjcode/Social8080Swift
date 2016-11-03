@@ -69,12 +69,18 @@ class SJThreadTableViewCell: UITableViewCell {
         return l
     }()
     
-    private lazy var content : UILabel = {
-        let l = UILabel()
+    lazy var content : UITextView = {
+        let l = UITextView()
+        l.showsVerticalScrollIndicator = false
+        l.showsHorizontalScrollIndicator = false
+        l.textContainerInset = UIEdgeInsetsMake(-3, -5, -3, -5)
+        l.scrollEnabled = false
+        l.dataDetectorTypes = [.Link]
+        l.editable = false
+        l.selectable = true
         l.textColor = UIColor.grayColor()
-        l.font = defaultFont(14)
+        l.font = defaultFont(16)
         l.textAlignment = .Left
-        l.numberOfLines = 0
         return l
     }()
     
@@ -165,8 +171,15 @@ class SJThreadTableViewCell: UITableViewCell {
         floor.text = item.floor
         pstatus.text = item.pstatus
         quote.text = item.quote
+        
+        
+        let contentHeight = item.content?.calculateLabelHeight(defaultFont(16), width: ScreenSize.SCREEN_WIDTH - 16)
+        dprint("height = \(contentHeight) content = \(item.content)")
+        content.snp_updateConstraints { (make) in
+            make.height.equalTo(contentHeight! + 2)
+        }
+        
         content.text = item.content
-        content.sizeToFit()
     
         let imagegridsize = CGSizeMake(ScreenSize.SCREEN_WIDTH - 16, CGFloat.max)
         
@@ -229,7 +242,7 @@ class SJThreadTableViewCell: UITableViewCell {
         heightOfCell += 3
         
         if let content = item.content{
-            heightOfCell += content.calculateLabelHeight(defaultFont(14), width: ScreenSize.SCREEN_WIDTH-16)
+            heightOfCell += content.calculateLabelHeight(defaultFont(16), width: ScreenSize.SCREEN_WIDTH-16)
         }
         heightOfCell += 3
         
@@ -246,6 +259,11 @@ class SJThreadTableViewCell: UITableViewCell {
         return heightOfCell
     }
     
+    func setContentDelegate(delegate : protocol<UITextViewDelegate>, index : Int){
+        content.delegate = delegate
+        objc_setAssociatedObject(content, &closureKey, index, .OBJC_ASSOCIATION_ASSIGN)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -258,3 +276,5 @@ func eachImageSize() -> CGSize{
     
     return CGSizeMake(imageWidth, imageHeight)
 }
+
+private var closureKey: Void?

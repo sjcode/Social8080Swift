@@ -50,3 +50,28 @@ struct SJReplyModel{
     var formhash : String?
     var touid : String?
 }
+
+struct SJReplyFormModel {
+    var action : String?
+    var formhash : String?
+    var posttime : String?
+    var noticeauthor : String?
+    var noticetrimstr : String?
+    var noticeauthormsg : String?
+    var reppid : String?
+    var reppost : String?
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

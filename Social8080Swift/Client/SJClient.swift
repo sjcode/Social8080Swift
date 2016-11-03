@@ -182,13 +182,14 @@ class SJClient: NSObject {
         }
     }
     
-    func getPostList(link : String, page : Int, completeHandle: (posts : [SJPostModel]) -> ()) {
+    func getPostList(link : String, page : Int, completeHandle: (title : String, posts : [SJPostModel]) -> ()) {
         var url = ""
         if page == 1{
             url = BASE_URL + link
         }else{
             url = BASE_URL + link + "&page=" + String(page)
         }
+        var title : String?
         Alamofire.request(.GET, url)
                 .responseData{ (response) in
                 guard response.result.isSuccess else{
@@ -200,8 +201,12 @@ class SJClient: NSObject {
                         if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                             let bodyNode = doc.body
                             
+                            if let titleNode = bodyNode?.at_xpath("//div[@class='bm_h']/a"){
+                                title = titleNode.content
+                            }
+                            
                             var dataList = [SJPostModel]()
-                            if let nodes = bodyNode?.xpath("//div[@class='bm_c bm_c_bg' or @class='pbody']"){
+                            if let nodes = bodyNode?.xpath("//div[@class='bm_c bm_c_bg' or @class='pbody' or @class='box pd2 mbn']"){
                                 var post : SJPostModel?
                                 for node in nodes{
                                     if node.className == "bm_c bm_c_bg"{
@@ -220,25 +225,34 @@ class SJClient: NSObject {
                                         post!.postid = node["id"]
                                         post!.author = author
                                         post!.datetime = NSDate.dateFromString(datetime!)
+                                    }else if(node.className == "box pd2 mbn"){
+                                        let replylink = node.at_xpath("a")?["href"]
+                                        post!.replylink = replylink
+                                        dataList.append(post!)
                                     }else{
                                         let messageNode = node.xpath("div/div")
                                         if case let XPathObject.NodeSet(nodeset) = messageNode{
                                             for (_, element) in nodeset.enumerate(){
-                                                if let pstatus = element.at_xpath("i"){
+                                                let ps = element.at_xpath("i")
+                                                if let pstatus = ps{
                                                     post!.pstatus = pstatus.text
                                                 }
-                                                if let quote = element.at_xpath("div"){
+                                                let qu = element.at_xpath("div")
+                                                if let quote = qu{
                                                     post!.quote = quote.text
                                                 }
-                                                if case let XPathObject.NodeSet(nodeset) = element.xpath("text()"){
-                                                    var contents = ""
-                                                    for (_, content) in nodeset.enumerate(){
-                                                        if let value = content.text{
-                                                            contents.appendContentsOf(value)
-                                                        }
-                                                    }
-                                                    post!.content = contents.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
+                                                if ps != nil{
+                                                    element.removeChild(element.at_xpath("i")!)
                                                 }
+                                                if qu != nil{
+                                                    element.removeChild(element.at_xpath("div")!)
+                                                }
+
+                                                let content = element.content!.stringByReplacingOccurrencesOfString("<br>\r\n", withString: "\n")
+                                                .stringByReplacingOccurrencesOfString("<br>", withString: "").stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                                                
+                                                post!.content = content.isEmpty ? "[表情]" : content
+
                                                 if case let XPathObject.NodeSet(anodes) = element.xpath("a"){
                                                     
                                                     for (_, ahref) in anodes.enumerate(){
@@ -268,14 +282,14 @@ class SJClient: NSObject {
                                                 }
                                             }
                                         }
-                                        dataList.append(post!)
+                                        
                                     }
                                 }
-                                completeHandle(posts: dataList)
+                                completeHandle(title : title!, posts: dataList)
                             }
                         }
                     }else{
-                        completeHandle(posts: [])
+                        completeHandle(title : "", posts: [])
                     }
         }
     }
@@ -357,7 +371,7 @@ class SJClient: NSObject {
             if response.result.value != nil{
                 completed(finish: true)
             }else{
-            
+                completed(finish: false)
             }
         }
     }
@@ -511,6 +525,82 @@ class SJClient: NSObject {
                 }
             }else{
                 completed(finish: true, notices: [])
+            }
+        }
+    }
+    
+    func getReplyForm(link : String, completed : (finish : Bool, result : SJReplyFormModel?) -> ()){
+        let url = "http://bbs.8080.net/" + link
+        Alamofire.request(.GET, url).responseString { (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false, result : nil)
+                return
+            }
+            
+            if let doc = Kanna.HTML(html : response.result.value! as String, encoding: NSUTF8StringEncoding){
+                let bodyNode = doc.body
+                if let formnode = bodyNode?.xpath("//form[@id='postform']"){
+                    let node = formnode[0]
+                    var model = SJReplyFormModel()
+                    model.action = node["action"]
+                    let inputs = node.xpath("input")
+                    if case let XPathObject.NodeSet(nodeset) = inputs{
+                        for (_, element) in nodeset.enumerate(){
+                            if element["name"] == "formhash"{
+                                model.formhash = element["value"]
+                            }
+                            else if element["name"] == "posttime"{
+                                model.posttime = element["value"]
+                            }
+                            else if element["name"] == "noticeauthor"{
+                                model.noticeauthor = element["value"]
+                            }
+                            else if element["name"] == "noticetrimstr"{
+                                model.noticetrimstr = element["value"]
+                            }
+                            else if element["name"] == "noticeauthormsg"{
+                                model.noticeauthormsg = element["value"]
+                            }
+                            else if element["name"] == "reppid"{
+                                model.reppid = element["value"]
+                            }
+                            else if element["name"] == "reppost"{
+                                model.reppost = element["value"]
+                            }
+                        }
+                    }
+                    completed(finish: true, result: model)
+                }
+            }
+        }
+    }
+    
+    func sendReply(content : String, replyform : SJReplyFormModel, completed : (finish : Bool) -> ()){
+        let url = "http://bbs.8080.net/" + replyform.action!
+        
+        let params = ["formhash" : replyform.formhash!,
+                      "posttime" : replyform.posttime!,
+                      "noticeauthor" : replyform.noticeauthor!,
+                      "noticeauthormsg" : replyform.noticeauthormsg!,
+                      "noticetrimstr" : replyform.noticetrimstr!,
+                      "reppid" : replyform.reppid!,
+                      "reppost" : replyform.reppost!,
+                      "message" : content,
+                      "submit" : "回复"
+        ]
+        
+        Alamofire.request(.POST, url, parameters: params).responseString{ (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false)
+                return
+            }
+            
+            if response.result.value != nil{
+                completed(finish: true)
+            }else{
+                completed(finish: false)
             }
         }
     }

@@ -13,6 +13,11 @@
 		AA36EEC61DC3359C0045C055 /* SJMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */; };
 		AA51385F1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */; };
 		AA7C666C1DC88D1800C949B9 /* SJTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C666B1DC88D1800C949B9 /* SJTextField.swift */; };
+		AA7C66911DCA1C1600C949B9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7C66901DCA1C1600C949B9 /* Accelerate.framework */; };
+		AA7C66971DCA1FE200C949B9 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C66961DCA1FE100C949B9 /* UIImageEffects.swift */; };
+		AA7C66991DCAD24D00C949B9 /* UIButton+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */; };
+		AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */; };
+		AA7C669D1DCB279400C949B9 /* SJReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */; };
 		AA7D22291DB5C35900E23E7E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22281DB5C35900E23E7E /* Model.swift */; };
 		AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */; };
 		AA7D22321DB61A8600E23E7E /* SJForumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */; };
@@ -70,6 +75,11 @@
 		AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailViewController.swift; sourceTree = "<group>"; };
 		AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AA7C666B1DC88D1800C949B9 /* SJTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextField.swift; sourceTree = "<group>"; };
+		AA7C66901DCA1C1600C949B9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AA7C66961DCA1FE100C949B9 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
+		AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Action.swift"; sourceTree = "<group>"; };
+		AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJReplyViewController.swift; sourceTree = "<group>"; };
 		AA7D22281DB5C35900E23E7E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJHomeTableViewCell.swift; sourceTree = "<group>"; };
 		AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumTableViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7C66911DCA1C1600C949B9 /* Accelerate.framework in Frameworks */,
 				92BDA753FEFF39A330256927 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +195,8 @@
 				AA7D22331DB61F3400E23E7E /* UILabel+Extension.swift */,
 				AA7D225F1DB7AF5200E23E7E /* Utility.swift */,
 				AAF90D771DC6EE3000F33C44 /* GlobalDefined.swift */,
+				AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */,
+				AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -203,6 +216,7 @@
 				AADAC2CC1DB4AA4A0048AEDF /* SJMessageListViewController.swift */,
 				AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */,
 				AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */,
+				AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,6 +245,7 @@
 		AAA784B81DB4A0ED00A4AA3C /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				AA7C66961DCA1FE100C949B9 /* UIImageEffects.swift */,
 				AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */,
 			);
 			path = Vendor;
@@ -266,6 +281,7 @@
 		D560FF2373FE61EB44D5F7D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA7C66901DCA1C1600C949B9 /* Accelerate.framework */,
 				4488B16A4E013A8085C9C499 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -414,9 +430,12 @@
 				AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */,
 				AADAC2CF1DB4AAA40048AEDF /* SJMineViewController.swift in Sources */,
 				AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */,
+				AA7C669D1DCB279400C949B9 /* SJReplyViewController.swift in Sources */,
 				AA7D22761DBA401F00E23E7E /* UIImage+Resize.swift in Sources */,
 				AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */,
+				AA7C66971DCA1FE200C949B9 /* UIImageEffects.swift in Sources */,
 				AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */,
+				AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */,
 				AA7D22381DB66F4200E23E7E /* SJForumViewController.swift in Sources */,
 				AADAC2CA1DB4A8AE0048AEDF /* SJTableViewController.swift in Sources */,
 				AA7D22741DBA0CA500E23E7E /* SJLoginViewController.swift in Sources */,
@@ -428,6 +447,7 @@
 				AAA784B31DB4A0C300A4AA3C /* DeviceUtil.swift in Sources */,
 				AA7D223C1DB6AFEB00E23E7E /* SJScrollTitleView.swift in Sources */,
 				AADAC2CD1DB4AA4A0048AEDF /* SJMessageListViewController.swift in Sources */,
+				AA7C66991DCAD24D00C949B9 /* UIButton+Action.swift in Sources */,
 				AA7D225E1DB76DED00E23E7E /* SJThreadTableViewCell.swift in Sources */,
 				AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */,
 				AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */,
