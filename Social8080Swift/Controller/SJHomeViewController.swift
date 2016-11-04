@@ -116,6 +116,7 @@ class SJHomeViewController: UIViewController {
     func clicksend(sender : UIButton){
         let vc = SJWritePostViewController()
         vc.fid = currentfid
+        vc.menus = menus
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -127,7 +128,7 @@ class SJHomeViewController: UIViewController {
         fixedspace.width = -20
         let items = [fixedspace,  UIBarButtonItem(customView: leftbutton)]
         navigationItem.leftBarButtonItems = items
-        
+        fixedspace.width += 10
         let itmes2 = [fixedspace, UIBarButtonItem(customView: rightbutton)]
         navigationItem.rightBarButtonItems = itmes2
         

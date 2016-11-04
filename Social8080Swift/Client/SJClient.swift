@@ -529,6 +529,57 @@ class SJClient: NSObject {
         }
     }
     
+    func getNewThreadForm(fid : Int, completed : (finish : Bool, result : SJNewThreadFormModel?) -> ()) {
+        let url = "http://bbs.8080.net/forum.php?mod=post&action=newthread&fid=" + String(fid) + "&mobile=yes"
+        Alamofire.request(.GET, url).responseString { (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false, result : nil)
+                return
+            }
+            if let doc = Kanna.HTML(html : response.result.value! as String, encoding: NSUTF8StringEncoding){
+                let bodyNode = doc.body
+                if let formnode = bodyNode?.xpath("//form[@id='postform']"){
+                    let node = formnode[0]
+                    var model = SJNewThreadFormModel()
+                    model.action = node["action"]
+                    
+                    let categorys = node.xpath("div/div/select[@name='typeid']/option")
+                    if case let XPathObject.NodeSet(nodeset) = categorys{
+                        for (_, element) in nodeset.enumerate(){
+                            dprint("\(element.content) : \(element["value"])")
+                            if element["value"] != "0"{
+                                model.category.append(SJNewThreadFormModel.SJCategoryModel(name : element.content, value : element["value"]))
+                            }
+                        }
+                    }
+                    
+                    let inputs = node.xpath("input")
+                    if case let XPathObject.NodeSet(nodeset) = inputs{
+                        for (_, element) in nodeset.enumerate(){
+                            if element["name"] == "formhash"{
+                                model.formhash = element["value"]
+                            }
+                            else if element["name"] == "posttime"{
+                                model.posttime = element["value"]
+                            }
+                        }
+                    }
+                    
+                    completed(finish: true, result: model)
+                }else{
+                    completed(finish: false, result: nil)
+                }
+            }else{
+                completed(finish: false, result: nil)
+            }
+        }
+    }
+    
+    func sendNewThread(content : String, fid : Int, model : SJNewThreadFormModel, completed : (finish : Bool) -> ()) {
+        
+    }
+    
     func getReplyForm(link : String, completed : (finish : Bool, result : SJReplyFormModel?) -> ()){
         let url = "http://bbs.8080.net/" + link
         Alamofire.request(.GET, url).responseString { (response) in
@@ -571,6 +622,8 @@ class SJClient: NSObject {
                         }
                     }
                     completed(finish: true, result: model)
+                }else{
+                    completed(finish: false, result: nil)
                 }
             }
         }

@@ -62,6 +62,17 @@ struct SJReplyFormModel {
     var reppost : String?
 }
 
+struct SJNewThreadFormModel{
+    struct SJCategoryModel{
+        var name : String?
+        var value : String?
+    }
+    var action : String?
+    var formhash : String?
+    var posttime : String?
+    var category = [SJCategoryModel]()
+    
+}
 
 
 

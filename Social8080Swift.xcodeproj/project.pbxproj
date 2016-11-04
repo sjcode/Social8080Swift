@@ -18,6 +18,7 @@
 		AA7C66991DCAD24D00C949B9 /* UIButton+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */; };
 		AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */; };
 		AA7C669D1DCB279400C949B9 /* SJReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */; };
+		AA7C669F1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669E1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift */; };
 		AA7D22291DB5C35900E23E7E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22281DB5C35900E23E7E /* Model.swift */; };
 		AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */; };
 		AA7D22321DB61A8600E23E7E /* SJForumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Action.swift"; sourceTree = "<group>"; };
 		AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJReplyViewController.swift; sourceTree = "<group>"; };
+		AA7C669E1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		AA7D22281DB5C35900E23E7E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJHomeTableViewCell.swift; sourceTree = "<group>"; };
 		AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumTableViewCell.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */,
 				AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */,
 				AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */,
+				AA7C669E1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */,
 				AA7D22381DB66F4200E23E7E /* SJForumViewController.swift in Sources */,
 				AADAC2CA1DB4A8AE0048AEDF /* SJTableViewController.swift in Sources */,
+				AA7C669F1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift in Sources */,
 				AA7D22741DBA0CA500E23E7E /* SJLoginViewController.swift in Sources */,
 				AA7D225C1DB76C6500E23E7E /* SJThreadViewController.swift in Sources */,
 				AA51385F1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift in Sources */,

@@ -282,6 +282,7 @@ class SJThreadViewController: SJViewController {
     
     func clicksend(sender : UIButton){
         textView.endEditing(true)
+        maskDarkView.removeFromSuperview()
         let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
         progressHud.labelText = "发送中..."
         

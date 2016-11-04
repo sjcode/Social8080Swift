@@ -99,6 +99,7 @@ class SJReplyViewController: SJViewController {
     }
     
     func sendReply(){
+        
         let text = textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.labelText = "回复中..."
