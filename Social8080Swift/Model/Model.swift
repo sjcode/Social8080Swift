@@ -33,6 +33,12 @@ struct SJPostModel {
     }
 }
 
+struct SJSecCodeModel{
+    var secvalue : String?
+    var secimage : String?
+    var seccode : String?
+}
+
 struct SJImageItem {
     var originalurl : String?
     var thumbnailurl : String?
@@ -67,6 +73,7 @@ struct SJNewThreadFormModel{
         var name : String?
         var value : String?
     }
+    var fid :  String?
     var action : String?
     var formhash : String?
     var posttime : String?

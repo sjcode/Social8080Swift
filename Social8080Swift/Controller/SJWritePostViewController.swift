@@ -186,10 +186,22 @@ extension SJWritePostViewController : SJChooseCategoryDataSource, SJChooseCatego
         
         let progresshud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progresshud.labelText = "提交中..."
-        progresshud.completionBlock = { [weak self] in
-            
-            //self!.navigationController?.popViewControllerAnimated(true)
+        
+        SJClient.sharedInstance.sendNewThread(suject.text!, content: textView.text, category: (model?.category[index].value)!, model: model!) { [weak self] (finish) in
+            if !finish{
+                progresshud.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
+                progresshud.labelText = "发贴失败"
+            }else{
+                progresshud.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
+                progresshud.labelText = "发贴成功"
+                progresshud.completionBlock = {
+                    self!.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+            progresshud.mode = .CustomView
+            progresshud.hide(true)
         }
+        
         progresshud.hide(true, afterDelay: 1)
         
     }

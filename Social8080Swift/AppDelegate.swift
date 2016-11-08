@@ -18,22 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        let string = "laskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdflaskdfjlkasjdfljaslkdfjlaksfwoeioijoasdifoaisdfosjdfoisjdofijsodfjasdf"
-        let font = UIFont.systemFontOfSize(14)
-        let lineHeight = font.lineHeight
-        let size = (string as NSString).boundingRectWithSize(CGSizeMake(200, CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName : font], context: nil)
-        let line = size.height / lineHeight
-        let actualheight = lineHeight * min(line, 3)
-        dprint("actualheight = \(actualheight)")
-        
-        
-        
-        
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
-        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
         let appearance = UINavigationBar.appearance()
         appearance.translucent = false
         appearance.barTintColor = UIColor(hexString: "#28384D")
@@ -65,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
         siren.minorUpdateAlertType = .Option
         siren.patchUpdateAlertType = .Skip
         siren.revisionUpdateAlertType = .Skip
+        siren.countryCode = "CN"
         siren.checkVersion(.Immediately)
     }
     

@@ -94,7 +94,13 @@ class SJHomeViewController: UIViewController {
         b.layer.cornerRadius = 24
         b.clipsToBounds = true
         b.setImage(UIImage.init(named: "person_normal"), forState: .Normal)
-        b.addTarget(self, action: #selector(clickperson(_:)), forControlEvents: .TouchUpInside)
+        b.handleControlEvent(.TouchUpInside, closure: { [weak self] in
+            if SJClient.sharedInstance.uid == nil {
+                self!.presentViewController(SJLoginViewController(), animated: true, completion: nil)
+            }else{
+                self!.tabBarController?.selectedIndex = 2
+            }
+        })
         return b
     }()
     
@@ -104,24 +110,19 @@ class SJHomeViewController: UIViewController {
         b.setTitle("发贴", forState: .Normal)
         b.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         b.clipsToBounds = true
-        b.addTarget(self, action: #selector(clicksend(_:)), forControlEvents: .TouchUpInside)
+        b.handleControlEvent(.TouchUpInside, closure: { [weak self] in
+            let vc = SJWritePostViewController()
+            vc.fid = self!.currentfid
+            vc.menus = self!.menus
+            self!.navigationController?.pushViewController(vc, animated: true)
+        })
         return b
     }()
     
-    func clickperson(sender : UIButton) {
-        let vc = SJLoginViewController()
-        self.presentViewController(vc, animated: true, completion: nil)
-    }
-    
-    func clicksend(sender : UIButton){
-        let vc = SJWritePostViewController()
-        vc.fid = currentfid
-        vc.menus = menus
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         navigationItem.titleView = segmentControl
         
         let fixedspace = UIBarButtonItem.init(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -149,8 +150,6 @@ class SJHomeViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserverForName(kNotificationLoginSuccess, object: self, queue: NSOperationQueue.mainQueue()) { [weak self](notification) in
             let uid = notification.userInfo!["uid"] as! String
             self?.leftbutton.kf_setImageWithURL(NSURL.init(string: getMiddleAvatarUrl(uid)), forState: .Normal)
-            self?.leftbutton.userInteractionEnabled = false
-            
         }
         
         SJClient.sharedInstance.tryLoginAndLoadUI(false) { [weak self] (finish, error, uid) in
@@ -160,7 +159,6 @@ class SJHomeViewController: UIViewController {
                     KingfisherManager.sharedManager.downloader.downloadImageWithURL(NSURL.init(string: getMiddleAvatarUrl(uid!))!, options: [.ForceRefresh], progressBlock: nil, completionHandler: { [weak self](image, error, imageURL, originalData) in
                         if (image != nil){
                             self!.leftbutton.setImage(maskRoundedImage(image!.resizedImageWithBounds(CGSizeMake(30, 30)), radius: 15), forState: .Normal)
-                            self!.leftbutton.userInteractionEnabled = false
                         }
                     })
                 }
@@ -187,11 +185,11 @@ class SJHomeViewController: UIViewController {
     }
     
     func loadData(fid : Int, typeid : Int){
-        let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
-        progressHud.labelText = "加载中..."
+        //let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
+        //progressHud.labelText = "加载中..."
 
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (finish, threads) in
-            progressHud.hide(true)
+            //progressHud.hide(true)
             if finish{
                 if self!.page == 1{
                     self!.dataArray = threads
@@ -271,6 +269,7 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
             let vc = SJThreadViewController()
             vc.link = item.link
             vc.title = item.title
+            vc.fid = currentfid
             navigationController?.pushViewController(vc, animated: true)
         }
         

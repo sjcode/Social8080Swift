@@ -2,10 +2,25 @@
 
 import Cocoa
 
-var str = "Hello, playground"
+var str = " 2016-10-30 15:37 回1 "
 var array : [String] = []
 
 array.append("hello")
+
+
+var datetime : String!
+var reply : String!
+if let range = str.rangeOfString("回"){
+    datetime = str.substringToIndex(range.startIndex.advancedBy(-1))
+    reply = str.substringFromIndex(range.startIndex.advancedBy(1))
+    print(datetime)
+    print(reply)
+}else{
+    let result = str
+    print(result)
+}
+
+
 
 func myfunction(closure : (String,Int)->String) -> Void{
     print(closure("A String for closure",34))

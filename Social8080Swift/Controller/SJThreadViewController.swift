@@ -13,8 +13,10 @@ import FDFullscreenPopGesture
 import MBProgressHUD
 import MWPhotoBrowser
 import SVWebViewController
+import FLAnimatedImage
 
 class SJThreadViewController: SJViewController {
+    var fid : Int!
     var link : String?{
         didSet{
             tid = Int(extractByRegex(link!, pattern : "forum.php\\?mod=viewthread&tid=(\\d+)&mobile=yes"))
@@ -27,7 +29,7 @@ class SJThreadViewController: SJViewController {
     private var page : Int = 1
     private var dataArray = [SJPostModel]()
     private var lastArray = [SJPostModel]()
-    
+    private var sec : SJSecCodeModel?
     private var selectedPost : Int?
     
     private lazy var maskDarkView : UIView = { [unowned self] in
@@ -36,7 +38,7 @@ class SJThreadViewController: SJViewController {
         v.backgroundColor = UIColor.init(white: 0.126, alpha: 0.5)
         v.addTapEventHandle { [weak self ](gesture) in
             self!.maskDarkView.removeFromSuperview()
-            self!.textView.endEditing(true)
+            self!.view.endEditing(true)
         }
         return v
     }()
@@ -47,6 +49,9 @@ class SJThreadViewController: SJViewController {
         vc.reply.handleControlEvent(.TouchUpInside, closure: { [weak self] in
             self!.popupViewController.hide()
             let vc = SJReplyViewController()
+            vc.fid = self!.fid
+            vc.tid = self!.tid
+            
             vc.post = self!.dataArray[self!.selectedPost!] as SJPostModel
             self!.navigationController?.pushViewController(vc, animated: true)
         })
@@ -92,7 +97,7 @@ class SJThreadViewController: SJViewController {
         
         let label = SJMarginLabel()
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
+        label.layer.cornerRadius = 5
         label.layer.borderColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 ).CGColor
         label.layer.borderWidth = 0.5
         label.text = "我想说些..."
@@ -104,7 +109,7 @@ class SJThreadViewController: SJViewController {
         label.snp_makeConstraints(closure: { (make) in
             make.centerY.equalTo(v)
             make.left.equalTo(8)
-            make.right.equalTo(v).offset(-30)
+            make.right.equalTo(v).offset(-8)
             make.height.equalTo(28)
         })
         v.addTapEventHandle({ [weak self] (gesture) in
@@ -112,6 +117,12 @@ class SJThreadViewController: SJViewController {
             self!.editPanel.hidden = true
             self!.panelTitle.text = "写跟帖"
             self!.selectedPost = -1
+            if self!.sec != nil{
+                self!.textView.snp_updateConstraints { (make) in
+                    make.height.equalTo(45)
+                }
+            }
+            
             self!.textView.becomeFirstResponder()
         })
         return v
@@ -123,6 +134,45 @@ class SJThreadViewController: SJViewController {
         l.textColor = UIColor.grayColor()
         l.font = defaultFont(16)
         return l
+    }()
+    
+    private lazy var sendBtn : UIButton = {
+        let b = UIButton(type: .System)
+        b.setTitle("发送", forState: .Normal)
+        b.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+        b.setTitleColor(UIColor ( red: 0.1938, green: 0.5085, blue: 0.8523, alpha: 1.0 ), forState: .Normal)
+        b.titleLabel?.font = defaultFont(12)
+        b.enabled = false
+        b.handleControlEvent(.TouchUpInside, closure: { [weak self] in
+            self!.view.endEditing(true)
+            self!.maskDarkView.removeFromSuperview()
+            let progressHud = MBProgressHUD.showHUDAddedTo((self!.navigationController?.view)!, animated: true)
+            progressHud.labelText = "发送中..."
+            
+            //直接回贴
+            SJClient.sharedInstance.sendPost(self!.textView.text, tid: self!.tid!, sec : self!.sec, seccode: self!.sectextfield.text) { [weak self] (finish) in
+                progressHud.hide(true)
+                if finish{
+                    self!.textView.text = ""
+                    self!.sectextfield.text = ""
+                    let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                    progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
+                    progressHUD.mode = .CustomView
+                    progressHUD.labelText = "回贴成功"
+                    progressHUD.completionBlock = { [weak self] in
+                        self!.tableView.mj_header.beginRefreshing()
+                    }
+                    progressHUD.hide(true, afterDelay: 1)
+                }else{
+                    let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                    progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
+                    progressHUD.mode = .CustomView
+                    progressHUD.labelText = "网络不给力"
+                    progressHUD.hide(true, afterDelay: 1)
+                }
+            }
+        })
+        return b
     }()
     
     private lazy var showPanel : UIView = { [unowned self] in
@@ -139,7 +189,7 @@ class SJThreadViewController: SJViewController {
             make.left.equalTo(v).offset(10)
             make.top.equalTo(v).offset(30)
             make.right.equalTo(v).offset(-10)
-            make.bottom.equalTo(v).offset(-10)
+            make.height.equalTo(70)
         })
         
         v.addSubview(self.panelTitle)
@@ -154,7 +204,7 @@ class SJThreadViewController: SJViewController {
         cancel.titleLabel?.font = defaultFont(12)
         cancel.handleControlEvent(.TouchUpInside, closure: { [weak self] in
             self!.maskDarkView.removeFromSuperview()
-            self!.textView.endEditing(true)
+            self!.view.endEditing(true)
         })
         
         v.addSubview(cancel)
@@ -164,16 +214,25 @@ class SJThreadViewController: SJViewController {
             make.size.equalTo(CGSizeMake(50, 30))
         })
         
-        let send = UIButton(type: .System)
-        send.setTitle("发送", forState: .Normal)
-        send.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        send.titleLabel?.font = defaultFont(12)
-        send.addTarget(self, action: #selector(clicksend(_:)), forControlEvents: .TouchUpInside)
-        v.addSubview(send)
-        send.snp_makeConstraints(closure: { (make) in
+        v.addSubview(self.sendBtn)
+        self.sendBtn.snp_makeConstraints(closure: { (make) in
             make.right.equalTo(-8)
             make.top.equalTo(2)
             make.size.equalTo(CGSizeMake(50, 30))
+        })
+        
+        v.addSubview(self.secImageView)
+        self.secImageView.snp_makeConstraints(closure : { [weak self] (make) in
+            make.size.equalTo(CGSizeMake(80, 30))
+            make.left.equalTo(self!.textView)
+            make.top.equalTo(self!.textView.snp_bottom).offset(3)
+        })
+        
+        v.addSubview(self.sectextfield)
+        self.sectextfield.snp_makeConstraints(closure : { [weak self] (make) in
+            make.size.equalTo(CGSizeMake(80, 30))
+            make.left.equalTo(self!.secImageView.snp_right).offset(3)
+            make.top.equalTo(self!.textView.snp_bottom).offset(3)
         })
         return v
     }()
@@ -194,9 +253,36 @@ class SJThreadViewController: SJViewController {
         return t
     }()
     
+    private lazy var secImageView : UIImageView = {
+        let v = UIImageView(image: UIImage.init(named: "loadingImage_50x118"))
+        v.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(clicksecret))
+        v.addGestureRecognizer(tap)
+        v.hidden = true
+        return v
+    }()
+    
+    private lazy var sectextfield : UITextField = {
+        let t = UITextField()
+        t.placeholder = "请输入验证码"
+        t.font = defaultFont(12)
+        t.backgroundColor = UIColor.whiteColor()
+        t.autocapitalizationType = .Words
+        t.autocorrectionType = .No
+        t.delegate = self
+        t.textColor = UIColor.grayColor()
+        t.tintColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
+        t.layer.masksToBounds = true
+        t.layer.cornerRadius = 5
+        t.layer.borderColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 ).CGColor
+        t.layer.borderWidth = 0.5
+        t.hidden = true
+        return t
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addSubview(tableView)
         view.addSubview(editPanel)
         view.addSubview(showPanel)
@@ -226,6 +312,7 @@ class SJThreadViewController: SJViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        
         super.viewWillDisappear(animated)
         let viewControllers = (navigationController?.viewControllers)! as NSArray
         if viewControllers.count > 1 && viewControllers[viewControllers.count - 2] as! NSObject == self{
@@ -249,11 +336,22 @@ class SJThreadViewController: SJViewController {
     }
     
     func loadData(link : String){
-        let progressHud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        progressHud.labelText = "加载中..."
-        SJClient.sharedInstance.getPostList(link, page: page) { [weak self](title, posts) in
+        SJClient.sharedInstance.getPostList(link, page: page) { [weak self](title, posts, sec) in
             self!.title = title
-            progressHud.hide(true)
+            self!.sec = sec
+            if let s = self!.sec{
+                SJClient.sharedInstance.downloadReplySeccodeImage(self!.tid!, src: s.secimage!, completed: { (imagefile) in
+                    let imagefile = dp("secreply.png")
+                    if let imagedata = NSData(contentsOfFile: imagefile) {
+                        self!.secImageView.image = UIImage.init(data: imagedata)
+                    }
+                })
+                self!.secImageView.hidden = false
+                self!.sectextfield.hidden = false
+            }else{
+                self!.secImageView.hidden = true
+                self!.sectextfield.hidden = true
+            }
             if self!.page == 1{
                 self!.dataArray = posts
             }else{
@@ -261,7 +359,8 @@ class SJThreadViewController: SJViewController {
                     self!.dataArray.appendContentsOf(posts)
                 }else{
                     let b = self!.lastArray.elementsEqual(posts, isEquivalent: { (src, dest) -> Bool in
-                        let b = src.postid == dest.postid
+                        //let b = src.postid == dest.postid
+                        let b = src.floor == dest.floor
                         return b
                     })
                     if !b {
@@ -279,34 +378,9 @@ class SJThreadViewController: SJViewController {
             self!.tableView.mj_footer.endRefreshing()
         }
     }
+
+    func clicksecret(){
     
-    func clicksend(sender : UIButton){
-        textView.endEditing(true)
-        maskDarkView.removeFromSuperview()
-        let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
-        progressHud.labelText = "发送中..."
-        
-        //直接回贴
-        SJClient.sharedInstance.sendPost(textView.text, tid: tid!) { [weak self] (finish) in
-            progressHud.hide(true)
-            if finish{
-                self?.textView.text = ""
-                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
-                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
-                progressHUD.mode = .CustomView
-                progressHUD.labelText = "回贴成功"
-                progressHUD.completionBlock = { [weak self] in
-                    self!.tableView.mj_header.beginRefreshing()
-                }
-                progressHUD.hide(true, afterDelay: 1)
-            }else{
-                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
-                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))
-                progressHUD.mode = .CustomView
-                progressHUD.labelText = "网络不给力"
-                progressHUD.hide(true, afterDelay: 1)
-            }
-        }
     }
     
     func clickimage(gesture : UITapGestureRecognizer){
@@ -437,6 +511,17 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+extension SJThreadViewController : UITextFieldDelegate{
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0 && sectextfield.text?.characters.count > 0{
+            sendBtn.enabled = true
+        }else{
+            sendBtn.enabled = false
+        }
+        return true
+    }
+}
+
 extension SJThreadViewController : UITextViewDelegate{
     func textViewDidEndEditing(textView: UITextView) {
         dprint("textViewDidEndEditing")
@@ -453,6 +538,14 @@ extension SJThreadViewController : UITextViewDelegate{
             }
         }
         return true;
+    }
+    
+    func textViewDidChange(textView: UITextView){
+        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0 && sectextfield.text?.characters.count > 0{
+            sendBtn.enabled = true
+        }else{
+            sendBtn.enabled = false
+        }
     }
     
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {

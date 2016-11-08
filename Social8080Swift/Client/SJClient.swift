@@ -8,7 +8,7 @@
 
 import Alamofire
 import Kanna
-//*[@id="postmessage_12137293"]/text()[1]
+
 let kNotificationLoginSuccess = "kNotificationLoginSuccess"
 
 class SJClient: NSObject {
@@ -29,7 +29,7 @@ class SJClient: NSObject {
     var logout : String?
     
     //account
-    var uid : String = ""
+    var uid : String?
     var nickname: String?
     
     override init() {
@@ -182,7 +182,68 @@ class SJClient: NSObject {
         }
     }
     
-    func getPostList(link : String, page : Int, completeHandle: (title : String, posts : [SJPostModel]) -> ()) {
+    func downloadReplySeccodeImage(tid : Int, src : String, completed : (imagefile : String)->()){
+        let url = "http://bbs.8080.net/" + src
+        let headers = [
+            "Accept": "image/webp,image/*,*/*;q=0.8",
+            "Referer": "http://bbs.8080.net/forum.php?mod=viewthread&tid="+String(tid)+"&mobile=yes",
+        ]
+        
+        do{
+            try NSFileManager.defaultManager().removeItemAtPath(dp("secreply.png"))
+        }catch _{
+            dprint("not found secreply.png")
+        }
+        let destination : Alamofire.Request.DownloadFileDestination = {_, response in
+            let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let pathComponent = "secreply.png"
+            
+            let localPath = directoryURL.URLByAppendingPathComponent(pathComponent)
+            return localPath
+        }
+        
+        Alamofire.download(.GET, url, headers : headers, destination: destination)
+            .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                print(totalBytesRead)
+            }
+            .response { request, response, _, error in
+                print(response)
+                completed(imagefile: "ok")
+        }
+    }
+    
+    func downloadReplySeccodeImage2(fid : Int, tid : Int, reppost : String, src : String, completed : (imagefile : String)->()){
+        let url = "http://bbs.8080.net/" + src
+        let headers = [
+            "Accept": "image/webp,image/*,*/*;q=0.8",
+            "Referer": "http://bbs.8080.net/forum.php?mod=post&action=reply&fid="+String(fid)+"&tid="+String(tid)+"&reppost="+reppost+"&page=1&mobile=yes",
+            ]
+        
+        do{
+            try NSFileManager.defaultManager().removeItemAtPath(dp("secreply.png"))
+        }catch _{
+            dprint("not found secreply.png")
+        }
+        let destination : Alamofire.Request.DownloadFileDestination = {_, response in
+            let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let pathComponent = "secreply.png"
+            
+            let localPath = directoryURL.URLByAppendingPathComponent(pathComponent)
+            return localPath
+        }
+        
+        Alamofire.download(.GET, url, headers : headers, destination: destination)
+            .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                print(totalBytesRead)
+            }
+            .response { request, response, _, error in
+                print(response)
+                completed(imagefile: "ok")
+        }
+        
+    }
+    
+    func getPostList(link : String, page : Int, completeHandle: (title : String, posts : [SJPostModel], sec : SJSecCodeModel?) -> ()) {
         var url = ""
         if page == 1{
             url = BASE_URL + link
@@ -190,6 +251,7 @@ class SJClient: NSObject {
             url = BASE_URL + link + "&page=" + String(page)
         }
         var title : String?
+        var sec : SJSecCodeModel?
         Alamofire.request(.GET, url)
                 .responseData{ (response) in
                 guard response.result.isSuccess else{
@@ -285,11 +347,23 @@ class SJClient: NSObject {
                                         
                                     }
                                 }
-                                completeHandle(title : title!, posts: dataList)
+                                
                             }
+                            let inbox = bodyNode?.xpath("//div[@class='inbox']")
+                            if let secnode  = inbox{
+                                if case let XPathObject.NodeSet(nodeset) = secnode{
+                                    if nodeset.count > 2{
+                                        let secvalue = nodeset[1].at_xpath("input[@name='sechash']")!["value"]
+                                        let secimage = nodeset[1].at_xpath("p/img")!["src"]
+                                        let seccode = nodeset[1].at_xpath("p/input[@name='seccodeverify']")!["id"]
+                                        sec = SJSecCodeModel(secvalue: secvalue, secimage: secimage, seccode: seccode)
+                                    }
+                                }
+                            }
+                            completeHandle(title : title!, posts: dataList, sec : sec)
                         }
                     }else{
-                        completeHandle(title : "", posts: [])
+                        completeHandle(title : "", posts: [], sec : nil)
                     }
         }
     }
@@ -321,32 +395,24 @@ class SJClient: NSObject {
                                     let author = userNode.content!.stringByRemovingWhitespaceAndNewlineCharacterSet
                                     
                                     let uid = extractByRegex(userNode["href"]!, pattern: "uid=(\\d+)&mobile=yes")
-                                    
-                                    let writedate = node.xpath("span")[0].content!.stringByReplacingOccurrencesOfString("\r\n", withString: " ")
-                                    
-                                    let regex = try! NSRegularExpression(pattern:
-                                        "\\s+([0-9]{4}-[0-9]{1,2}-[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2})\\s+回(\\d+)",
-                                        options: .CaseInsensitive)
-                                    
-                                    let results = regex.matchesInString(writedate, options: NSMatchingOptions.ReportProgress, range: NSMakeRange(0, writedate.characters.count))
-                                    
-                                    if results.count == 1{
-                                        let match = results[0]
-                                        
-                                        let range1 = match.rangeAtIndex(1)
-                                        let range2 = match.rangeAtIndex(2)
-                                        
-                                        let datetimestring = writedate[range1]
-                                        
-                                        let reply = Int(writedate[range2])!
-                                        
-                                        let dateFormatter = NSDateFormatter()
-                                        dateFormatter.locale = NSLocale(localeIdentifier: "zh_CN")
-                                        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm")
-                                        let datetime = dateFormatter.dateFromString(datetimestring)
-                                        let thread = SJThreadModel(title: title, link: link!, datetime: datetime!, reply: reply, author: author, uid: uid)
-                                        dataList.append(thread)
+                                    let spancontent = node.at_xpath("span[@class='xg1']/text()[2]")!.content!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+                                    var datetimestring : String!
+                                    var reply : Int!
+                                    if let range = spancontent.rangeOfString("回"){
+                                        datetimestring = spancontent.substringToIndex(range.startIndex.advancedBy(-1))
+                                        reply = Int(spancontent.substringFromIndex(range.startIndex.advancedBy(1)))!
+                                    }else{
+                                        datetimestring = spancontent
+                                        reply = 0
                                     }
+                                    
+                                    let dateFormatter = NSDateFormatter()
+                                    dateFormatter.locale = NSLocale(localeIdentifier: "zh_CN")
+                                    dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm")
+                                    let datetime = dateFormatter.dateFromString(datetimestring)
+                                    let thread = SJThreadModel(title: title, link: link!, datetime: datetime!, reply: reply, author: author, uid: uid)
+                                    dataList.append(thread)
                                 }
                                 completeHandle(finish: true, threads: dataList)
                             }
@@ -356,11 +422,15 @@ class SJClient: NSObject {
         }
     }
     
-    func sendPost(content : String, tid : Int, completed:(finish : Bool)->()){
+    func sendPost(content : String, tid : Int, sec : SJSecCodeModel? , seccode : String?, completed:(finish : Bool)->()){
         let url = BASE_URL + "forum.php?mod=post&action=reply&tid="+String(tid)+"&extra=&replysubmit=yes&mobile=yes"
-        let params = ["formhash": formhash!,
+        var params = ["formhash": formhash!,
                       "message":content,
                       "replaysubmit":"回复"]
+        if let s = sec {
+            params["sechash"] = s.secvalue
+            params["seccodeverify"] = seccode
+        }
         Alamofire.request(.POST, url, parameters : params ).responseData { ( response) in
             guard response.result.isSuccess else{
                 dprint("失败")
@@ -539,34 +609,42 @@ class SJClient: NSObject {
             }
             if let doc = Kanna.HTML(html : response.result.value! as String, encoding: NSUTF8StringEncoding){
                 let bodyNode = doc.body
-                if let formnode = bodyNode?.xpath("//form[@id='postform']"){
-                    let node = formnode[0]
-                    var model = SJNewThreadFormModel()
-                    model.action = node["action"]
-                    
-                    let categorys = node.xpath("div/div/select[@name='typeid']/option")
-                    if case let XPathObject.NodeSet(nodeset) = categorys{
-                        for (_, element) in nodeset.enumerate(){
-                            dprint("\(element.content) : \(element["value"])")
-                            if element["value"] != "0"{
-                                model.category.append(SJNewThreadFormModel.SJCategoryModel(name : element.content, value : element["value"]))
+                let formnode = bodyNode?.xpath("//form[@id='postform']")
+                
+                if (formnode != nil){
+                    if case let XPathObject.NodeSet(nodeset) = formnode!{
+                        let node = nodeset[0]
+                        var model = SJNewThreadFormModel()
+                        model.fid = String(fid)
+                        model.action = node["action"]
+                        
+                        let categorys = node.xpath("div/div/select[@name='typeid']/option")
+                        if case let XPathObject.NodeSet(nodeset) = categorys{
+                            for (_, element) in nodeset.enumerate(){
+                                dprint("\(element.content) : \(element["value"])")
+                                if element["value"] != "0"{
+                                    model.category.append(SJNewThreadFormModel.SJCategoryModel(name : element.content, value : element["value"]))
+                                }
                             }
                         }
-                    }
-                    
-                    let inputs = node.xpath("input")
-                    if case let XPathObject.NodeSet(nodeset) = inputs{
-                        for (_, element) in nodeset.enumerate(){
-                            if element["name"] == "formhash"{
-                                model.formhash = element["value"]
-                            }
-                            else if element["name"] == "posttime"{
-                                model.posttime = element["value"]
+                        
+                        let inputs = node.xpath("input")
+                        if case let XPathObject.NodeSet(nodeset) = inputs{
+                            for (_, element) in nodeset.enumerate(){
+                                if element["name"] == "formhash"{
+                                    model.formhash = element["value"]
+                                }
+                                else if element["name"] == "posttime"{
+                                    model.posttime = element["value"]
+                                }
                             }
                         }
+                        
+                        completed(finish: true, result: model)
+                    }else{
+                        completed(finish: false, result: nil)
                     }
                     
-                    completed(finish: true, result: model)
                 }else{
                     completed(finish: false, result: nil)
                 }
@@ -576,19 +654,38 @@ class SJClient: NSObject {
         }
     }
     
-    func sendNewThread(content : String, fid : Int, model : SJNewThreadFormModel, completed : (finish : Bool) -> ()) {
-        
+    func sendNewThread(suject : String, content : String, category : String, model : SJNewThreadFormModel, completed : (finish : Bool) -> ()) {
+        let url = "http://bbs.8080.net/" + model.action!
+        let params = ["formhash" : model.formhash!,
+                      "posttime" : model.posttime!,
+                      "typeid" : category,
+                      "subject" : suject,
+                      "message" : content,
+                      "topicsubmit" : "发表贴子"]
+        Alamofire.request(.POST, url, parameters: params).responseString{ (response) in
+            guard response.result.isSuccess else{
+                dprint("失败")
+                completed(finish: false)
+                return
+            }
+            
+            if response.result.value != nil{
+                completed(finish: true)
+            }else{
+                completed(finish: false)
+            }
+        }
     }
     
-    func getReplyForm(link : String, completed : (finish : Bool, result : SJReplyFormModel?) -> ()){
+    func getReplyForm(link : String, completed : (finish : Bool, result : SJReplyFormModel?, sec : SJSecCodeModel?) -> ()){
         let url = "http://bbs.8080.net/" + link
         Alamofire.request(.GET, url).responseString { (response) in
             guard response.result.isSuccess else{
                 dprint("失败")
-                completed(finish: false, result : nil)
+                completed(finish: false, result : nil, sec : nil)
                 return
             }
-            
+            var sec: SJSecCodeModel?
             if let doc = Kanna.HTML(html : response.result.value! as String, encoding: NSUTF8StringEncoding){
                 let bodyNode = doc.body
                 if let formnode = bodyNode?.xpath("//form[@id='postform']"){
@@ -621,18 +718,31 @@ class SJClient: NSObject {
                             }
                         }
                     }
-                    completed(finish: true, result: model)
+                    let content = response.result.value!
+                    if let _ = content.rangeOfString("<strong>验证码</strong>"){
+                        if let secnode  = bodyNode?.xpath("//div[@class='inbox']"){
+                            
+                            if case let XPathObject.NodeSet(nodeset) = secnode{
+                                let secvalue = nodeset[2].at_xpath("input[@name='sechash']")!["value"]
+                                let secimage = nodeset[2].at_xpath("p/img")!["src"]
+                                let seccode = nodeset[2].at_xpath("p/input[@name='seccodeverify']")!["id"]
+                                sec = SJSecCodeModel(secvalue: secvalue, secimage: secimage, seccode: seccode)
+                            }
+                        }
+                    }
+                    
+                    completed(finish: true, result: model, sec : sec)
                 }else{
-                    completed(finish: false, result: nil)
+                    completed(finish: false, result: nil, sec : nil)
                 }
             }
         }
     }
     
-    func sendReply(content : String, replyform : SJReplyFormModel, completed : (finish : Bool) -> ()){
+    func sendReply(content : String, replyform : SJReplyFormModel, sec : SJSecCodeModel? , seccode : String?,completed : (finish : Bool) -> ()){
         let url = "http://bbs.8080.net/" + replyform.action!
         
-        let params = ["formhash" : replyform.formhash!,
+        var params = ["formhash" : replyform.formhash!,
                       "posttime" : replyform.posttime!,
                       "noticeauthor" : replyform.noticeauthor!,
                       "noticeauthormsg" : replyform.noticeauthormsg!,
@@ -642,6 +752,11 @@ class SJClient: NSObject {
                       "message" : content,
                       "submit" : "回复"
         ]
+        
+        if let s = sec {
+            params["sechash"] = s.secvalue
+            params["seccodeverify"] = seccode
+        }
         
         Alamofire.request(.POST, url, parameters: params).responseString{ (response) in
             guard response.result.isSuccess else{

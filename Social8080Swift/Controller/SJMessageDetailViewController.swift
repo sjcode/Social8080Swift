@@ -161,7 +161,6 @@ class SJMessageDetailViewController: SJViewController {
         UIView.animateWithDuration(0.25) { [weak self] in
             self!.tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 49)
         }
-        IQKeyboardManager.sharedManager().enable = false
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -173,7 +172,6 @@ class SJMessageDetailViewController: SJViewController {
                 self!.tabBarController?.tabBar.transform = CGAffineTransformIdentity
             }
         }
-        IQKeyboardManager.sharedManager().enable = true
     }
     
     //MARK: Appearance
