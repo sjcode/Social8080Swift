@@ -38,6 +38,19 @@ class SJClient: NSObject {
         Alamofire.Manager.sharedInstance.session.configuration.timeoutIntervalForRequest = 5
     }
     
+    func doLogout(completed: (finish : Bool)->()){
+        let url = "http://bbs.8080.net/" + logout!
+        Alamofire.request(.GET, url).responseString { [weak self] (response) in
+            guard response.result.isSuccess else{
+                completed(finish: false)
+                return
+            }
+            
+            self!.uid = nil
+            completed(finish: true)
+        }
+    }
+    
     func doLoginWithUsername(username : String, password: String, secode : String, completed:(finished : Bool, error : NSError?, uid : String?)->()){
         let url = "http://bbs.8080.net/member.php?mod=logging&action=login&loginsubmit=yes&loginhash="+self.loginhash!+"&mobile=yes"
         let params = [
@@ -290,7 +303,9 @@ class SJClient: NSObject {
                                     }else if(node.className == "box pd2 mbn"){
                                         let replylink = node.at_xpath("a")?["href"]
                                         post!.replylink = replylink
-                                        dataList.append(post!)
+                                        if self.uid != nil{
+                                            dataList.append(post!)
+                                        }
                                     }else{
                                         let messageNode = node.xpath("div/div")
                                         if case let XPathObject.NodeSet(nodeset) = messageNode{
@@ -345,6 +360,9 @@ class SJClient: NSObject {
                                             }
                                         }
                                         
+                                        if self.uid == nil{
+                                            dataList.append(post!)
+                                        }
                                     }
                                 }
                                 

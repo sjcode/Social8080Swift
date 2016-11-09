@@ -103,6 +103,15 @@ extension SJMineViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         dprint("退出")
+        SJClient.sharedInstance.doLogout { [weak self] (finish) in
+            if finish {
+                
+                self!.tabBarController?.selectedIndex = 0
+                
+            }else{
+                
+            }
+        }
     }
 }
 

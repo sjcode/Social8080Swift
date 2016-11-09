@@ -25,7 +25,7 @@ class SJHomeTableViewCell: UITableViewCell {
         return v
     }()
     
-    private lazy var title : UILabel = {
+    lazy var title : UILabel = {
         let l = UILabel()
         l.textColor = UIColor.darkGrayColor()
         l.font = defaultFont(14)

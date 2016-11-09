@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "viewWillDisappear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "SJThreadViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
             landmarkName = "textView(_:shouldInteractWithURL:inRange:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "tableView"
             landmarkType = "19">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,7 +170,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "loadData(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "358"
@@ -186,27 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500290565.950072"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "editPanel"
             landmarkType = "19">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "editPanel"
             landmarkType = "19">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,27 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290565.950072"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "getPostList(_:page:completeHandle:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "getReplyForm(_:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "697"
-            endingLineNumber = "697"
+            startingLineNumber = "715"
+            endingLineNumber = "715"
             landmarkName = "getReplyForm(_:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500303425.042315"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "757"
-            endingLineNumber = "757"
+            startingLineNumber = "775"
+            endingLineNumber = "775"
             landmarkName = "sendReply(_:replyform:sec:seccode:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500303425.042315"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "745"
-            endingLineNumber = "745"
+            startingLineNumber = "763"
+            endingLineNumber = "763"
             landmarkName = "sendReply(_:replyform:sec:seccode:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "615"
-            endingLineNumber = "615"
+            startingLineNumber = "633"
+            endingLineNumber = "633"
             landmarkName = "getNewThreadForm(_:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
+            startingLineNumber = "683"
+            endingLineNumber = "683"
             landmarkName = "sendNewThread(_:content:category:model:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,7 +618,119 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
+            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
+            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "633"
+            endingLineNumber = "633"
+            landmarkName = "getNewThreadForm(_:completed:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "632"
+            endingLineNumber = "632"
+            landmarkName = "getNewThreadForm(_:completed:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "709"
+            endingLineNumber = "709"
+            landmarkName = "getReplyForm(_:completed:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
@@ -650,123 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
-            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
-            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "615"
-            endingLineNumber = "615"
-            landmarkName = "getNewThreadForm(_:completed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
-            landmarkName = "getNewThreadForm(_:completed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
-            landmarkName = "getReplyForm(_:completed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "getThreadList(_:typeid:page:completeHandle:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -777,13 +761,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
-            landmarkName = "loadData(_:)"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -794,7 +778,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500268421.010426"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "210"
@@ -810,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500268421.010426"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -826,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500267983.03564"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -842,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500268421.010426"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,27 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500268421.010426"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500268247.306616"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -890,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
             landmarkName = "textViewDidEndEditing(_:)"
             landmarkType = "5">
             <Locations>
@@ -938,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "textView(_:shouldChangeTextInRange:replacementText:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -954,11 +922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
             landmarkName = "textViewShouldEndEditing(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -970,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "textViewDidChange(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -986,7 +954,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "textViewDidChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "547"
@@ -1002,27 +986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
-            landmarkName = "textViewDidChange(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
+            startingLineNumber = "520"
+            endingLineNumber = "520"
             landmarkName = "textField(_:shouldChangeCharactersInRange:replacementString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1034,11 +1002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500291738.533694"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "showPanel"
             landmarkType = "19">
          </BreakpointContent>
@@ -1050,11 +1018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "sendPost(_:tid:sec:seccode:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1066,11 +1034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292299.593088"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
             landmarkName = "sendPost(_:tid:sec:seccode:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1082,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500290588.230972"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "downloadReplySeccodeImage2(_:tid:reppost:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1130,11 +1098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500303425.042315"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "743"
-            endingLineNumber = "743"
+            startingLineNumber = "761"
+            endingLineNumber = "761"
             landmarkName = "sendReply(_:replyform:sec:seccode:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1146,11 +1114,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292296.112174"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
             landmarkName = "getPostList(_:page:completeHandle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1162,11 +1130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "500301584.938951"
+            timestampString = "500353574.313324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "loadData(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1178,11 +1146,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500292426.43426"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "downloadReplySeccodeImage(_:src:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1274,11 +1242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Client/SJClient.swift"
-            timestampString = "500303425.042315"
+            timestampString = "500365475.475215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "733"
-            endingLineNumber = "733"
+            startingLineNumber = "751"
+            endingLineNumber = "751"
             landmarkName = "getReplyForm(_:completed:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1297,6 +1265,231 @@
             endingLineNumber = "98"
             landmarkName = "leftbutton"
             landmarkType = "19">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
+            timestampString = "500353565.392488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "500363544.055656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            condition = "count == 1"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "500363544.055656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "isUnread(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
+            timestampString = "500362262.010236"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "579"
+            endingLineNumber = "579"
+            landmarkName = "storeRecentRead()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "500362450.468955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "isUnread(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
+            timestampString = "500363910.297777"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "loadData(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "getPostList(_:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "getPostList(_:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
+            landmarkName = "getPostList(_:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "getPostList(_:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Client/SJClient.swift"
+            timestampString = "500365475.475215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
+            landmarkName = "getPostList(_:page:completeHandle:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "500364830.100002"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "clickforum(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social8080Swift.SJHomeViewController.clickforum (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "&#x6781;&#x901f;&#x793e;&#x533a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujian/Desktop/Social8080Swift/Social8080Swift/Controller/SJHomeViewController.swift"
+                  timestampString = "500364830.209551"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "129">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social8080Swift.SJHomeViewController.(clickforum (__ObjC.UIButton) -&gt; ()).(implicit closure #1)"
+                  moduleName = "&#x6781;&#x901f;&#x793e;&#x533a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujian/Desktop/Social8080Swift/Social8080Swift/Controller/SJHomeViewController.swift"
+                  timestampString = "500364830.209724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

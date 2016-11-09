@@ -185,12 +185,13 @@ class SJHomeViewController: UIViewController {
     }
     
     func loadData(fid : Int, typeid : Int){
-        //let progressHud = MBProgressHUD.showHUDAddedTo((navigationController?.view)!, animated: true)
-        //progressHud.labelText = "加载中..."
-
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (finish, threads) in
-            //progressHud.hide(true)
             if finish{
+                
+                
+                
+                
+                
                 if self!.page == 1{
                     self!.dataArray = threads
                 }else{
@@ -240,6 +241,18 @@ class SJHomeViewController: UIViewController {
         cell.backgroundColor = UIColor.redColor()
         return cell
     }()
+    
+    func isUnread(thread : SJThreadModel) -> Bool{
+        if let tid = Int(extractByRegex(thread.link!, pattern : "forum.php\\?mod=viewthread&tid=(\\d+)&mobile=yes")){
+            let predicate = NSPredicate(format: "tid == %@", String(tid))
+            let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
+            
+            
+            return count == 0 ? true : false
+        }
+        
+        return true
+    }
 }
 
 extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
@@ -255,7 +268,13 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
         
         if tableView == tableView_root{
             let cell = tableView.dequeueReusableCellWithIdentifier("SJHomeTableViewCell", forIndexPath: indexPath) as! SJHomeTableViewCell
-            cell.configCell(dataArray[indexPath.row])
+            let thread = dataArray[indexPath.row]
+            cell.configCell(thread)
+            if isUnread(thread){
+                cell.title.textColor = UIColor ( red: 0.1118, green: 0.1118, blue: 0.1118, alpha: 1.0 )
+            }else{
+                cell.title.textColor = UIColor ( red: 0.5178, green: 0.5816, blue: 0.5862, alpha: 1.0 )
+            }
             return cell
         }else{
             return forumTableCells[indexPath.row]
@@ -401,6 +420,21 @@ extension SJHomeViewController{
     func clickforum(sender : UIButton) {
         let fid = sender.tag
         dprint("fid - \(fid)")
+        
+        if SJClient.sharedInstance.uid == nil && fid == 88{
+            let vc = SJLoginViewController()
+            presentViewController(vc, animated: true, completion: { [weak self] in
+                NSUserDefaults.standardUserDefaults().setInteger(fid, forKey: "currentfid")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                self!.currentfid = fid
+                
+                let index = 0
+                self!.scrollView.scrollRectToVisible(CGRect(x: index == 0 ? 0 : self!.view.bounds.size.width, y: 0, width: self!.view.bounds.size.width, height: self!.view.bounds.size.height-64-49), animated: true)
+                self!.segmentControl.selectedSegmentIndex = 0
+                self!.tableView_root.mj_header.beginRefreshing()
+            })
+            return
+        }
         
         NSUserDefaults.standardUserDefaults().setInteger(fid, forKey: "currentfid")
         NSUserDefaults.standardUserDefaults().synchronize()

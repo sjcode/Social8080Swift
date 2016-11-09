@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import Alamofire
 import AlamofireNetworkActivityIndicator
 import Siren
+import MagicalRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
@@ -18,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //init database
+        MagicalRecord.setupAutoMigratingCoreDataStack()
+        MagicalRecord.setLoggingLevel(.Off)
+        
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let appearance = UINavigationBar.appearance()

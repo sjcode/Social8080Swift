@@ -14,6 +14,7 @@ import MBProgressHUD
 import MWPhotoBrowser
 import SVWebViewController
 import FLAnimatedImage
+import MagicalRecord
 
 class SJThreadViewController: SJViewController {
     var fid : Int!
@@ -283,6 +284,8 @@ class SJThreadViewController: SJViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        storeRecentRead()
+        
         view.addSubview(tableView)
         view.addSubview(editPanel)
         view.addSubview(showPanel)
@@ -568,6 +571,20 @@ extension SJThreadViewController : UITextViewDelegate{
             }
         }
         return false
+    }
+}
+
+extension SJThreadViewController{
+    func storeRecentRead() {
+        let predicate = NSPredicate(format: "tid == %@", String(tid!))
+        let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
+        if count == 0{
+            if let r = RecentReadThread.MR_createEntity(){
+                r.tid = String(tid!)
+                r.uid = SJClient.sharedInstance.uid
+                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+            }
+        }
     }
 }
 
