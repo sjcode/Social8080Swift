@@ -65,7 +65,7 @@ class SJScrollTitleView: UIView {
             offsetx = CGRectGetWidth(frame) + offsetx
         }
         offsetx += 15
-        scrollView.contentSize = CGSize(width: offsetx, height: bounds.size.height)
+        scrollView.contentSize = ccs(offsetx, bounds.size.height)
         if scrollView.subviews.count > 0{
             let label = scrollView.subviews[0] as! SJTitleLabel
             label.currentScale = 1.5
@@ -111,7 +111,7 @@ class SJScrollTitleView: UIView {
     }
     
     private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height))
+        let scrollView = UIScrollView(frame: ccr(0, 0, self.bounds.size.width, self.bounds.size.height))
         scrollView.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false

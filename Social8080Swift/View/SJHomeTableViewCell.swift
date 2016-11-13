@@ -73,7 +73,7 @@ class SJHomeTableViewCell: UITableViewCell {
         avatar.snp_makeConstraints { (make) in
             make.left.equalTo(8)
             make.top.equalTo(3)
-            make.size.equalTo(CGSize(width: 30, height: 30))
+            make.size.equalTo(ccs(30,30))
         }
         
         author.snp_makeConstraints { (make) in
@@ -112,7 +112,7 @@ class SJHomeTableViewCell: UITableViewCell {
     }
     
     func configCell(item : SJThreadModel){
-        avatar.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(item.uid!)),
+        avatar.kf_setImageWithURL(NSURL.init(string: SJUserModel.getAvatarUrl(item.uid!)),
                                      placeholderImage: UIImage.init(named: "noavatar"),
                                      optionsInfo: [.Transition(ImageTransition.Fade(1))],
                                      progressBlock: nil,

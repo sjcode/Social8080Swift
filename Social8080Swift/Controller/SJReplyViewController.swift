@@ -19,7 +19,7 @@ class SJReplyViewController: SJViewController {
     var replyform : SJReplyFormModel?
     var sec : SJSecCodeModel?
     private lazy var textView : KMPlaceholderTextView = { [unowned self] in
-        let v = KMPlaceholderTextView(frame : CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, CGRectGetHeight(self.view.bounds)))
+        let v = KMPlaceholderTextView(frame : ccr(0, 0, ScreenSize.SCREEN_WIDTH, CGRectGetHeight(self.view.bounds)))
         v.placeholder = "此刻我正在想对Ta说些什么..."
         v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.font = defaultFont(14)
@@ -67,24 +67,24 @@ class SJReplyViewController: SJViewController {
     }()
     
     private lazy var secPanel : UIView = { [unowned self] in
-        let v = UIView(frame: CGRectMake(0, CGRectGetHeight(self.view.bounds) - 35, ScreenSize.SCREEN_WIDTH, 35 ))
+        let v = UIView(frame: ccr(0, CGRectGetHeight(self.view.bounds) - 35, ScreenSize.SCREEN_WIDTH, 35 ))
         v.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
         v.autoresizingMask = [.FlexibleWidth, .FlexibleTopMargin]
         let divide = UIView()
         divide.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
-        divide.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
+        divide.frame = ccr(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
         v.addSubview(divide)
         
         v.addSubview(self.secImageView)
         self.secImageView.snp_makeConstraints(closure : { [weak self] (make) in
-            make.size.equalTo(CGSizeMake(80, 30))
+            make.size.equalTo(ccs(80, 30))
             make.left.equalTo(8)
             make.centerY.equalTo(v)
             })
         
         v.addSubview(self.sectextfield)
         self.sectextfield.snp_makeConstraints(closure : { [weak self] (make) in
-            make.size.equalTo(CGSizeMake(80, 30))
+            make.size.equalTo(ccs(80, 30))
             make.left.equalTo(self!.secImageView.snp_right).offset(3)
             make.centerY.equalTo(v)
             })

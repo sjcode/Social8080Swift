@@ -111,7 +111,7 @@ class SJThreadTableViewCell: UITableViewCell {
         avatar.snp_makeConstraints { (make) in
             make.left.equalTo(8)
             make.top.equalTo(3)
-            make.size.equalTo(CGSize(width: 30, height: 30))
+            make.size.equalTo(ccs(30, 30))
         }
         
         author.snp_makeConstraints { (make) in
@@ -161,7 +161,7 @@ class SJThreadTableViewCell: UITableViewCell {
     }
     
     func configCell(item : SJPostModel){
-        avatar.kf_setImageWithURL(NSURL.init(string: getAvatarUrl(item.uid!)),
+        avatar.kf_setImageWithURL(NSURL.init(string: SJUserModel.getAvatarUrl(item.uid!)),
                                   placeholderImage: UIImage.init(named: "noavatar"),
                                   optionsInfo: [.Transition(ImageTransition.Fade(1))],
                                   progressBlock: nil,
@@ -181,7 +181,7 @@ class SJThreadTableViewCell: UITableViewCell {
         
         content.text = item.content
     
-        let imagegridsize = CGSizeMake(ScreenSize.SCREEN_WIDTH - 16, CGFloat.max)
+        let imagegridsize = ccs(ScreenSize.SCREEN_WIDTH - 16, CGFloat.max)
         
         let imageWidth = (imagegridsize.width - 6) / 3
         let imageHeight = imageWidth
@@ -207,7 +207,7 @@ class SJThreadTableViewCell: UITableViewCell {
                     y = CGFloat(m) * imageHeight + (CGFloat(m) * CGFloat(PICTURE_SPACING))
                 }
                 
-                let imageView = UIImageView(frame: CGRectMake(x, y, imageWidth, imageHeight))
+                let imageView = UIImageView(frame: ccr(x, y, imageWidth, imageHeight))
                 imageView.backgroundColor = UIColor(hexString: "#E8ECEE")
                 imageView.contentMode = .ScaleAspectFill
                 imageView.clipsToBounds = true
@@ -219,7 +219,7 @@ class SJThreadTableViewCell: UITableViewCell {
                 imagegrid.addSubview(imageView)
             }
             imagegrid.snp_updateConstraints { (make) in
-                make.size.equalTo(CGSizeMake(imagegridsize.width, gridviewHeight))
+                make.size.equalTo(ccs(imagegridsize.width, gridviewHeight))
             }
             imagegrid.hidden = false
         }else{
@@ -274,7 +274,7 @@ func eachImageSize() -> CGSize{
     let imageWidth = (imagegridwidth - 6) / 3
     let imageHeight = imageWidth
     
-    return CGSizeMake(imageWidth, imageHeight)
+    return ccs(imageWidth, imageHeight)
 }
 
 private var closureKey: Void?

@@ -587,6 +587,8 @@
 				<string>亲亲宝贝</string>
 			</dict>
 			<dict>
+				<key>needlogin</key>
+				<true/>
 				<key>array</key>
 				<array>
 					<dict>

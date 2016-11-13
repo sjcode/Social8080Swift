@@ -14,6 +14,18 @@ PODS:
   - MagicalRecord/Core (2.3.2)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.12)
+  - MMDrawerController (0.6.0):
+    - MMDrawerController/Core (= 0.6.0)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
+    - MMDrawerController/MMDrawerVisualStates (= 0.6.0)
+    - MMDrawerController/Subclass (= 0.6.0)
+  - MMDrawerController/Core (0.6.0)
+  - MMDrawerController/MMDrawerBarButtonItem (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.6.0):
+    - MMDrawerController/Core
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -24,9 +36,12 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - Siren (0.9.5)
+  - SlideMenuControllerSwift (2.3.0)
   - SnapKit (0.22.0)
+  - SVProgressHUD (2.0.3)
   - SVWebViewController (1.0)
   - SwiftHEXColors (1.0.4)
+  - TLYShyNavBar (1.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.1)
@@ -40,12 +55,16 @@ DEPENDENCIES:
   - MagicalRecord (~> 2.3.2)
   - MBProgressHUD (~> 0.9.0)
   - MJRefresh (~> 3.1.12)
+  - MMDrawerController (~> 0.6.0)
   - MWPhotoBrowser (~> 2.1.2)
   - SDCycleScrollView (~> 1.65)
   - Siren (= 0.9.5)
+  - SlideMenuControllerSwift (~> 2.3.0)
   - SnapKit (~> 0.22.0)
+  - SVProgressHUD (~> 2.0.3)
   - SVWebViewController (~> 1.0)
   - SwiftHEXColors (~> 1.0.4)
+  - TLYShyNavBar (~> 1.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
@@ -60,12 +79,16 @@ SPEC CHECKSUMS:
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Siren: a536a4fed41def10e540a9804b2a63a4b3634f6b
+  SlideMenuControllerSwift: 09ef91aa30464e7e517bce2f2ecc6e323e3fe866
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
+  TLYShyNavBar: 3150e9a03ff8ab5fd81de00167e8829b91af8326
 
 COCOAPODS: 0.39.0

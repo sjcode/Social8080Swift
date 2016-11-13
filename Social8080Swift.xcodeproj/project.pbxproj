@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		92BDA753FEFF39A330256927 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4488B16A4E013A8085C9C499 /* Pods.framework */; };
+		AA2BC66F1DD74C1E004C79B5 /* SJForumPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2BC66E1DD74C1E004C79B5 /* SJForumPanel.swift */; };
 		AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */; };
 		AA36EEC41DC330FD0045C055 /* SJMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36EEC31DC330FD0045C055 /* SJMessageTableViewCell.swift */; };
 		AA36EEC61DC3359C0045C055 /* SJMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */; };
 		AA51385F1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */; };
+		AA6CB0D81DD589C700354046 /* SJSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CB0D71DD589C700354046 /* SJSlideMenuController.swift */; };
+		AA6CB0DA1DD5F9B400354046 /* SJSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CB0D91DD5F9B400354046 /* SJSettingsViewController.swift */; };
 		AA7C666C1DC88D1800C949B9 /* SJTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C666B1DC88D1800C949B9 /* SJTextField.swift */; };
-		AA7C66911DCA1C1600C949B9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7C66901DCA1C1600C949B9 /* Accelerate.framework */; };
 		AA7C66971DCA1FE200C949B9 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C66961DCA1FE100C949B9 /* UIImageEffects.swift */; };
 		AA7C66991DCAD24D00C949B9 /* UIButton+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */; };
 		AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */; };
@@ -54,6 +56,10 @@
 		AADADC051DD2C4510096849F /* Social8080Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AADADC031DD2C4510096849F /* Social8080Swift.xcdatamodeld */; };
 		AADADC0E1DD2C6A60096849F /* RecentReadThread+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC0C1DD2C6A50096849F /* RecentReadThread+CoreDataProperties.swift */; };
 		AADADC0F1DD2C6A60096849F /* RecentReadThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC0D1DD2C6A50096849F /* RecentReadThread.swift */; };
+		AADADC111DD31C550096849F /* SJProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC101DD31C550096849F /* SJProfileViewController.swift */; };
+		AADADC131DD31CB40096849F /* SJProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC121DD31CB40096849F /* SJProfileView.swift */; };
+		AADADC151DD3547E0096849F /* SJProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */; };
+		AADADC171DD362A10096849F /* SJNoticesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC161DD362A10096849F /* SJNoticesViewController.swift */; };
 		AAF90D761DC6EDCA00F33C44 /* font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAF90D751DC6EDCA00F33C44 /* font.ttf */; };
 		AAF90D781DC6EE3000F33C44 /* GlobalDefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF90D771DC6EE3000F33C44 /* GlobalDefined.swift */; };
 /* End PBXBuildFile section */
@@ -74,30 +80,32 @@
 /* Begin PBXFileReference section */
 		4488B16A4E013A8085C9C499 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50BE783DD5D730BC46E28241 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJWritePostViewController.swift; sourceTree = "<group>"; };
+		AA2BC66E1DD74C1E004C79B5 /* SJForumPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumPanel.swift; sourceTree = "<group>"; };
+		AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJWritePostViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA36EEC31DC330FD0045C055 /* SJMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageTableViewCell.swift; sourceTree = "<group>"; };
-		AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailViewController.swift; sourceTree = "<group>"; };
+		AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJMessageDetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageDetailTableViewCell.swift; sourceTree = "<group>"; };
-		AA7C666B1DC88D1800C949B9 /* SJTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTextField.swift; sourceTree = "<group>"; };
-		AA7C66901DCA1C1600C949B9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AA6CB0D71DD589C700354046 /* SJSlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSlideMenuController.swift; sourceTree = "<group>"; };
+		AA6CB0D91DD5F9B400354046 /* SJSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSettingsViewController.swift; sourceTree = "<group>"; };
+		AA7C666B1DC88D1800C949B9 /* SJTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA7C66961DCA1FE100C949B9 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		AA7C66981DCAD24D00C949B9 /* UIButton+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Action.swift"; sourceTree = "<group>"; };
 		AA7C669A1DCAE3C700C949B9 /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJReplyViewController.swift; sourceTree = "<group>"; };
-		AA7C669E1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJChooseCategoryViewController.swift; sourceTree = "<group>"; };
+		AA7C669C1DCB279400C949B9 /* SJReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJReplyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA7C669E1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJChooseCategoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA7D22281DB5C35900E23E7E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AA7D222F1DB614F000E23E7E /* SJHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJHomeTableViewCell.swift; sourceTree = "<group>"; };
 		AA7D22311DB61A8600E23E7E /* SJForumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJForumTableViewCell.swift; sourceTree = "<group>"; };
 		AA7D22331DB61F3400E23E7E /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		AA7D22351DB665E400E23E7E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		AA7D22391DB67F9C00E23E7E /* forumtable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = forumtable.plist; sourceTree = "<group>"; };
-		AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJScrollTitleView.swift; sourceTree = "<group>"; };
-		AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJThreadViewController.swift; sourceTree = "<group>"; };
-		AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJThreadTableViewCell.swift; sourceTree = "<group>"; };
-		AA7D225F1DB7AF5200E23E7E /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJLoginViewController.swift; sourceTree = "<group>"; };
+		AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJScrollTitleView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJThreadViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJThreadTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA7D225F1DB7AF5200E23E7E /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utility.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJLoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA7D22751DBA401F00E23E7E /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
-		AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJPopUpViewControllerSwift.swift; sourceTree = "<group>"; };
+		AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJPopUpViewControllerSwift.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAA7849F1DB4A01300A4AA3C /* 极速社区.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "极速社区.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA784A21DB4A01300A4AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAA784A41DB4A01300A4AA3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,17 +121,21 @@
 		AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJNavigationController.swift; sourceTree = "<group>"; };
 		AADAC2C31DB4A7360048AEDF /* SJTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTabBarController.swift; sourceTree = "<group>"; };
 		AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJRootTabBarController.swift; sourceTree = "<group>"; };
-		AADAC2C71DB4A8270048AEDF /* SJHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJHomeViewController.swift; sourceTree = "<group>"; };
-		AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJTableViewController.swift; sourceTree = "<group>"; };
+		AADAC2C71DB4A8270048AEDF /* SJHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJHomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADAC2CC1DB4AA4A0048AEDF /* SJMessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMessageListViewController.swift; sourceTree = "<group>"; };
 		AADAC2CE1DB4AAA40048AEDF /* SJMineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMineViewController.swift; sourceTree = "<group>"; };
-		AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJLeftMenuViewController.swift; sourceTree = "<group>"; };
+		AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJLeftMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADAC2D41DB4B9870048AEDF /* SJClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJClient.swift; sourceTree = "<group>"; };
 		AADAC2E41DB4CE570048AEDF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSettingTableViewCell.swift; sourceTree = "<group>"; };
+		AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJSettingTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADADC041DD2C4510096849F /* Social8080Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Social8080Swift.xcdatamodel; sourceTree = "<group>"; };
 		AADADC0C1DD2C6A50096849F /* RecentReadThread+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentReadThread+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AADADC0D1DD2C6A50096849F /* RecentReadThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentReadThread.swift; sourceTree = "<group>"; };
+		AADADC101DD31C550096849F /* SJProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJProfileViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AADADC121DD31CB40096849F /* SJProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJProfileView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJProfileTableViewCell.swift; sourceTree = "<group>"; };
+		AADADC161DD362A10096849F /* SJNoticesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJNoticesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAF90D751DC6EDCA00F33C44 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
 		AAF90D771DC6EE3000F33C44 /* GlobalDefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefined.swift; sourceTree = "<group>"; };
 		CAF2FE28940F35BD157A1FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,7 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7C66911DCA1C1600C949B9 /* Accelerate.framework in Frameworks */,
 				92BDA753FEFF39A330256927 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +230,7 @@
 				AA7D22731DBA0CA500E23E7E /* SJLoginViewController.swift */,
 				AA36EEC51DC3359C0045C055 /* SJMessageDetailViewController.swift */,
 				AADAC2CC1DB4AA4A0048AEDF /* SJMessageListViewController.swift */,
+				AADADC161DD362A10096849F /* SJNoticesViewController.swift */,
 				AADAC2CE1DB4AAA40048AEDF /* SJMineViewController.swift */,
 				AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */,
 				AA9F1CD51DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift */,
@@ -226,6 +238,8 @@
 				AADAC2C51DB4A7E10048AEDF /* SJRootTabBarController.swift */,
 				AA7D225B1DB76C6500E23E7E /* SJThreadViewController.swift */,
 				AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */,
+				AADADC101DD31C550096849F /* SJProfileViewController.swift */,
+				AA6CB0D91DD5F9B400354046 /* SJSettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +262,9 @@
 				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
 				AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */,
 				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
+				AADADC121DD31CB40096849F /* SJProfileView.swift */,
+				AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */,
+				AA2BC66E1DD74C1E004C79B5 /* SJForumPanel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,6 +293,7 @@
 				AADAC2C91DB4A8AE0048AEDF /* SJTableViewController.swift */,
 				AA7C666B1DC88D1800C949B9 /* SJTextField.swift */,
 				AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */,
+				AA6CB0D71DD589C700354046 /* SJSlideMenuController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -301,7 +319,6 @@
 		D560FF2373FE61EB44D5F7D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA7C66901DCA1C1600C949B9 /* Accelerate.framework */,
 				4488B16A4E013A8085C9C499 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -343,6 +360,7 @@
 				TargetAttributes = {
 					AAA7849E1DB4A01300A4AA3C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = D5N5Q39H75;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -434,14 +452,18 @@
 			files = (
 				AA7C666C1DC88D1800C949B9 /* SJTextField.swift in Sources */,
 				AA9F1CD61DBB4D1F00A2D7CF /* SJPopUpViewControllerSwift.swift in Sources */,
+				AADADC131DD31CB40096849F /* SJProfileView.swift in Sources */,
 				AADAC2C41DB4A7360048AEDF /* SJTabBarController.swift in Sources */,
 				AA36EEC61DC3359C0045C055 /* SJMessageDetailViewController.swift in Sources */,
+				AA2BC66F1DD74C1E004C79B5 /* SJForumPanel.swift in Sources */,
 				AADAC2D11DB4B5030048AEDF /* SJLeftMenuViewController.swift in Sources */,
 				AADADC051DD2C4510096849F /* Social8080Swift.xcdatamodeld in Sources */,
 				AADAC2D51DB4B9870048AEDF /* SJClient.swift in Sources */,
 				AA7D22361DB665E400E23E7E /* NSDate+Extension.swift in Sources */,
 				AAA784A31DB4A01300A4AA3C /* AppDelegate.swift in Sources */,
+				AADADC111DD31C550096849F /* SJProfileViewController.swift in Sources */,
 				AADAC2C81DB4A8270048AEDF /* SJHomeViewController.swift in Sources */,
+				AADADC171DD362A10096849F /* SJNoticesViewController.swift in Sources */,
 				AAA784BC1DB4A12F00A4AA3C /* SJViewController.swift in Sources */,
 				AA7D22291DB5C35900E23E7E /* Model.swift in Sources */,
 				AA36EEC41DC330FD0045C055 /* SJMessageTableViewCell.swift in Sources */,
@@ -458,6 +480,8 @@
 				AA7C66971DCA1FE200C949B9 /* UIImageEffects.swift in Sources */,
 				AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */,
 				AADADC011DD20D5A0096849F /* SJSettingTableViewCell.swift in Sources */,
+				AA6CB0DA1DD5F9B400354046 /* SJSettingsViewController.swift in Sources */,
+				AA6CB0D81DD589C700354046 /* SJSlideMenuController.swift in Sources */,
 				AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */,
 				AADAC2CA1DB4A8AE0048AEDF /* SJTableViewController.swift in Sources */,
 				AA7C669F1DCC2EC700C949B9 /* SJChooseCategoryViewController.swift in Sources */,
@@ -472,6 +496,7 @@
 				AA7D223C1DB6AFEB00E23E7E /* SJScrollTitleView.swift in Sources */,
 				AADAC2CD1DB4AA4A0048AEDF /* SJMessageListViewController.swift in Sources */,
 				AA7C66991DCAD24D00C949B9 /* UIButton+Action.swift in Sources */,
+				AADADC151DD3547E0096849F /* SJProfileTableViewCell.swift in Sources */,
 				AA7D225E1DB76DED00E23E7E /* SJThreadTableViewCell.swift in Sources */,
 				AA7D22301DB614F000E23E7E /* SJHomeTableViewCell.swift in Sources */,
 				AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */,

@@ -19,6 +19,6 @@ class SJTextField: UITextField {
     }
     //clear按钮向左移35
     override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectMake(CGRectGetWidth(bounds) - 35, 0, 30, 30)
+        return ccr(CGRectGetWidth(bounds) - 35, 0, 30, 30)
     }
 }

@@ -28,7 +28,7 @@ public class SJPopUpViewControllerSwift: UIViewController {
     lazy var popupView : UIView = { [unowned self] in
         let v = UIView()
         v.backgroundColor = UIColor(hexString: "#E8ECEE")
-        v.frame = CGRectMake(0, 0, 300, 200)
+        v.frame = ccr(0, 0, 300, 200)
         v.layer.cornerRadius = 5
         v.layer.borderColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 ).CGColor
         v.layer.borderWidth = 0.5

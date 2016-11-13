@@ -19,7 +19,7 @@ class SJRootTabBarController: SJTabBarController {
         
         self.tabBar.tintColor = UIColor(hexString: "#FBC700")
         
-        let v = UIView.init(frame: CGRect(x: 0, y: 0, width: ScreenSize.SCREEN_WIDTH, height: ControlSize.TABBAR_HEIGHT))
+        let v = UIView.init(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH, ControlSize.TABBAR_HEIGHT))
 
         v.backgroundColor = UIColor(hexString: "#28384D")
         self.tabBar.addSubview(v)

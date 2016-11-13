@@ -18,7 +18,7 @@ class SJWritePostViewController: SJViewController {
     var model : SJNewThreadFormModel?
     //MARK: Private Property
     private lazy var suject : SJTextField = { [unowned self] in
-        let f = SJTextField(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 30))
+        let f = SJTextField(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH, 30))
         f.autoresizingMask = [.FlexibleWidth, .FlexibleBottomMargin]  //左右上两边紧贴父视图, 下部为可边距.
         f.borderStyle = .None
         f.font = defaultFont(14)
@@ -42,7 +42,7 @@ class SJWritePostViewController: SJViewController {
     }()
     
     private lazy var textView : KMPlaceholderTextView = { [unowned self] in
-        let v = KMPlaceholderTextView(frame : CGRectMake(0, 32, ScreenSize.SCREEN_WIDTH, CGRectGetHeight(self.view.bounds) - 30))
+        let v = KMPlaceholderTextView(frame : ccr(0, 32, ScreenSize.SCREEN_WIDTH, CGRectGetHeight(self.view.bounds) - 30))
         v.placeholder = "此刻我正在想些什么..."
         v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.font = defaultFont(14)
@@ -52,7 +52,7 @@ class SJWritePostViewController: SJViewController {
     }()
     
     private lazy var divideline : UIView = {
-        let v = UIView(frame : CGRectMake(0, 30, ScreenSize.SCREEN_WIDTH, 0.5))
+        let v = UIView(frame : ccr(0, 30, ScreenSize.SCREEN_WIDTH, 0.5))
         v.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
         v.autoresizingMask = [.FlexibleWidth, .FlexibleBottomMargin]
         return v

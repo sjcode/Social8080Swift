@@ -10,6 +10,7 @@ import Alamofire
 import Kanna
 
 let kNotificationLoginSuccess = "kNotificationLoginSuccess"
+let kNotificationLogoutSuccess = "kNotificationLogoutSuccess"
 
 class SJClient: NSObject {
     let BASE_URL = "http://bbs.8080.net/"
@@ -19,6 +20,8 @@ class SJClient: NSObject {
         }
         return Singleton.instance
     }
+    
+    var user : SJUserModel?
     
     //login before
     var loginhash : String?
@@ -47,11 +50,14 @@ class SJClient: NSObject {
             }
             
             self!.uid = nil
+            self!.logout = nil
+            let cookiestronge = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+            cookiestronge.removeCookiesSinceDate(NSDate.distantPast())
             completed(finish: true)
         }
     }
     
-    func doLoginWithUsername(username : String, password: String, secode : String, completed:(finished : Bool, error : NSError?, uid : String?)->()){
+    func doLoginWithUsername(username : String, password: String, secode : String, completed:(finished : Bool, error : NSError?, user : SJUserModel?)->()){
         let url = "http://bbs.8080.net/member.php?mod=logging&action=login&loginsubmit=yes&loginhash="+self.loginhash!+"&mobile=yes"
         let params = [
             "formhash": self.formhash!,
@@ -68,7 +74,7 @@ class SJClient: NSObject {
             ]
         Alamofire.request(.POST, url, parameters : params ).responseData { [weak self] ( response) in
             guard response.result.isSuccess else{
-                completed(finished: false, error: response.result.error!, uid: nil)
+                completed(finished: false, error: response.result.error!, user: nil)
                 return
             }
             if response.result.value != nil{
@@ -76,15 +82,23 @@ class SJClient: NSObject {
                 if content.rangeOfString("欢迎您回来").location != NSNotFound{
                     if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                         let ahref = doc.xpath("//div[@class='pd2']/a")[0]
-                        self!.uid = extractByRegex(ahref["href"]!, pattern: "uid=(\\d+)&do=profile&mobile=yes")
+                        
+                        self!.user = SJUserModel()
+
+                        self!.user!.uid = extractByRegex(ahref["href"]!, pattern: "uid=(\\d+)&do=profile&mobile=yes")
+                        self!.user!.nickname = (ahref.content?.stringByRemovingWhitespaceAndNewlineCharacterSet)!
+                        self!.user!.logout = doc.xpath("//a[@class='exit']")[0]["href"]
+                        self!.user!.formhash = extractByRegex(self!.user!.logout!, pattern: "formhash=(\\w+)&mobile=yes")
+                        
+                        //保存cookie
+                        if let
+                            headerFields = response.response?.allHeaderFields as? [String: String],
+                            URL = response.request?.URL {
+                            let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
+                            Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cookies, forURL: URL, mainDocumentURL: nil)
+                        }
                     }
-                    if let
-                        headerFields = response.response?.allHeaderFields as? [String: String],
-                        URL = response.request?.URL {
-                        let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
-                        Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cookies, forURL: URL, mainDocumentURL: nil)
-                    }
-                    completed(finished: true, error : nil, uid: self!.uid)
+                    completed(finished: true, error : nil, user: self!.user)
                 }else{
                     func makeerror(message : String) -> NSError{
                         let error = NSError(domain: "http://bbs.8080.net", code: 1, userInfo: ["message": message])
@@ -93,7 +107,7 @@ class SJClient: NSObject {
                     
                     if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                         let message = doc.xpath("//div[@id='messagetext']/p")[0].content!
-                        completed(finished: false, error: makeerror(message), uid: nil)
+                        completed(finished: false, error: makeerror(message), user: nil)
                         
                     }
                 }
@@ -102,12 +116,11 @@ class SJClient: NSObject {
         
     }
     
-    func tryLoginAndLoadUI(loadUI : Bool,completed: (finish : Bool, error : NSError?, uid : String?)->()){
+    func tryLoginAndLoadUI(loadUI : Bool,completed: (finish : Bool, error : NSError?, user : SJUserModel?)->()){
         let url = "http://bbs.8080.net/member.php?mod=logging&action=login&mobile=yes"
         Alamofire.request(.GET, url)
                  .responseData{[weak self](response) in
                     guard response.result.isSuccess else{
-                    dprint("失败")
                     return
                  }
                     if response.result.value != nil{
@@ -115,18 +128,21 @@ class SJClient: NSObject {
                         if content.rangeOfString("欢迎您回来").location != NSNotFound{
                             if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
                                 let ahref = doc.xpath("//div[@class='pd2']/a")[0]
-                                self?.uid = extractByRegex(ahref["href"]!, pattern: "uid=(\\d+)&do=profile&mobile=yes")
-                                self?.nickname = (ahref.content?.stringByRemovingWhitespaceAndNewlineCharacterSet)!
                                 
-                                self?.logout = doc.xpath("//a[@class='exit']")[0]["href"]
-                                self?.formhash = extractByRegex((self?.logout!)!, pattern: "formhash=(\\w+)&mobile=yes")
+                                self!.user = SJUserModel()
+                                
+                                self!.user!.uid = extractByRegex(ahref["href"]!, pattern: "uid=(\\d+)&do=profile&mobile=yes")
+                                self!.user!.nickname = (ahref.content?.stringByRemovingWhitespaceAndNewlineCharacterSet)!
+                                self!.user!.logout = doc.xpath("//a[@class='exit']")[0]["href"]
+                                self!.user!.formhash = extractByRegex(self!.user!.logout!, pattern: "formhash=(\\w+)&mobile=yes")
+                                
                                 if let
                                     headerFields = response.response?.allHeaderFields as? [String: String],
                                     URL = response.request?.URL {
                                     let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: URL)
                                     Alamofire.Manager.sharedInstance.session.configuration.HTTPCookieStorage?.setCookies(cookies, forURL: URL, mainDocumentURL: nil)
                                 }
-                                completed(finish: true, error: nil , uid : self?.uid)
+                                completed(finish: true, error: nil , user : self!.user)
                             }
                         }else{
                             if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
@@ -141,11 +157,11 @@ class SJClient: NSObject {
                                 if loadUI{
                                     self!.downloadSecodeImage(self!.idhash!, completed: { (imagefile) in
                                         if imagefile.characters.count > 0{
-                                            completed(finish: true, error:nil, uid : nil )
+                                            completed(finish: true, error:nil, user : nil )
                                         }
                                     })
                                 }else{
-                                    completed(finish: true, error:nil, uid : nil )
+                                    completed(finish: true, error:nil, user : nil )
                                 }
                             }
                         }
@@ -157,7 +173,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/misc.php?mod=seccode&action=update&idhash="+idhash+"&inajax=1&ajaxtarget=seccode_"+idhash
         Alamofire.request(.GET, url).responseData {(response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 return
             }
             if response.result.value != nil{
@@ -268,7 +283,6 @@ class SJClient: NSObject {
         Alamofire.request(.GET, url)
                 .responseData{ (response) in
                 guard response.result.isSuccess else{
-                    dprint("失败")
                     return
                 }
                     if response.result.value != nil{
@@ -451,7 +465,6 @@ class SJClient: NSObject {
         }
         Alamofire.request(.POST, url, parameters : params ).responseData { ( response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false)
                 return
             }
@@ -468,7 +481,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/home.php?mod=space&do=pm&mobile=yes&page=" + String(page)
         Alamofire.request(.GET, url).responseData { (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false, messages: [])
                 return
             }
@@ -505,7 +517,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/" + link
         Alamofire.request(.GET, url).responseData { (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false, messages: [], reply: nil)
                 return
             }
@@ -568,7 +579,6 @@ class SJClient: NSObject {
                       "topmuid":reply.touid!]
         Alamofire.request(.POST, url, parameters : params ).responseData { ( response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false)
                 return
             }
@@ -585,7 +595,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/home.php?mod=space&do=notice&mobile=yes" + (type == SJNoticeType.OldNotice ? "&&isread=1" : "") + "&page=" + String(page)
         Alamofire.request(.GET, url).responseString { (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false, notices : [])
                 return
             }
@@ -621,7 +630,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/forum.php?mod=post&action=newthread&fid=" + String(fid) + "&mobile=yes"
         Alamofire.request(.GET, url).responseString { (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false, result : nil)
                 return
             }
@@ -682,7 +690,6 @@ class SJClient: NSObject {
                       "topicsubmit" : "发表贴子"]
         Alamofire.request(.POST, url, parameters: params).responseString{ (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false)
                 return
             }
@@ -699,7 +706,6 @@ class SJClient: NSObject {
         let url = "http://bbs.8080.net/" + link
         Alamofire.request(.GET, url).responseString { (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false, result : nil, sec : nil)
                 return
             }
@@ -778,7 +784,6 @@ class SJClient: NSObject {
         
         Alamofire.request(.POST, url, parameters: params).responseString{ (response) in
             guard response.result.isSuccess else{
-                dprint("失败")
                 completed(finish: false)
                 return
             }

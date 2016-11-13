@@ -36,7 +36,7 @@ class SJMessageDetailViewController: SJViewController {
         v.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
         let divide = UIView()
         divide.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
-        divide.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
+        divide.frame = ccr(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
         v.addSubview(divide)
         
         let label = SJMarginLabel()
@@ -66,10 +66,10 @@ class SJMessageDetailViewController: SJViewController {
     private lazy var showPanel : UIView = { [unowned self] in
         let v = UIView()
         v.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
-        v.frame = CGRectMake(0, ScreenSize.SCREEN_HEIGHT, ScreenSize.SCREEN_WIDTH, 110)
+        v.frame = ccr(0, ScreenSize.SCREEN_HEIGHT, ScreenSize.SCREEN_WIDTH, 110)
         let divide = UIView()
         divide.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
-        divide.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
+        divide.frame = ccr(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
         v.addSubview(divide)
         
         v.addSubview(self.textView)
@@ -100,7 +100,7 @@ class SJMessageDetailViewController: SJViewController {
         cancel.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(8)
             make.top.equalTo(2)
-            make.size.equalTo(CGSizeMake(50, 30))
+            make.size.equalTo(ccs(50, 30))
         })
         
         let send = UIButton(type: .System)
@@ -112,7 +112,7 @@ class SJMessageDetailViewController: SJViewController {
         send.snp_makeConstraints(closure: { (make) in
             make.right.equalTo(-8)
             make.top.equalTo(2)
-            make.size.equalTo(CGSizeMake(50, 30))
+            make.size.equalTo(ccs(50, 30))
         })
         return v
         }()

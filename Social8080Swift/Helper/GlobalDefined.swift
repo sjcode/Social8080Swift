@@ -12,3 +12,12 @@ import UIKit
 func defaultFont(fontSize : CGFloat) -> UIFont{
     return UIFont.init(name: ".PingFang-SC-Light", size: fontSize)!
 }
+
+func boldFont(fontSize : CGFloat) -> UIFont{
+    return UIFont.init(name: ".PingFangSC-Semibold", size: fontSize)!
+}
+
+func appdelegate() -> AppDelegate{
+    let appdelegate = UIApplication.sharedApplication().delegate
+    return appdelegate as! AppDelegate
+}

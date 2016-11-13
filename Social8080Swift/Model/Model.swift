@@ -8,6 +8,55 @@
 
 import Foundation
 
+struct SJUserModel{
+
+    
+    //account
+    var uid : String?{
+        didSet{
+            smallavatarurl = SJUserModel.getAvatarUrl(uid!)
+            middleavatarurl = SJUserModel.getMiddleAvatarUrl(uid!)
+            bigavatarurl = SJUserModel.getBigAvatarUrl(uid!)
+        }
+    }
+    var nickname: String?
+    
+    //login after
+    var formhash : String?
+    var logout : String?
+    
+    var smallavatarurl : String!
+    var middleavatarurl : String!
+    var bigavatarurl : String!
+    
+    static func getAvatarUrl(uid : String) -> String{
+        let uid = Int(uid)!
+        
+        let a = uid/10000%10000
+        let b = uid/100%100
+        let c = uid%100
+        return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_small.jpg",a,b,c)
+    }
+    
+    static func getMiddleAvatarUrl(uid : String) -> String{
+        let uid = Int(uid)!
+        
+        let a = uid/10000%10000
+        let b = uid/100%100
+        let c = uid%100
+        return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_middle.jpg",a,b,c)
+    }
+    
+    static func getBigAvatarUrl(uid : String) -> String{
+        let uid = Int(uid)!
+        
+        let a = uid/10000%10000
+        let b = uid/100%100
+        let c = uid%100
+        return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_big.jpg",a,b,c)
+    }
+}
+
 struct SJThreadModel {
     var title : String?
     var link : String?

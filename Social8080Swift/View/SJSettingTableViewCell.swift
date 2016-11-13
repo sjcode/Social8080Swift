@@ -11,13 +11,13 @@ import UIKit
 class SJSettingTableViewCell: UITableViewCell {
     
     lazy var icon : UIImageView = {
-        let v = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let v = UIImageView(frame: ccr(0, 0, 30, 30))
         v.contentMode = .ScaleToFill
         return v
     }()
     
     lazy var title : UILabel = {
-        let l = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        let l = UILabel(frame: ccr(0, 0, 200, 30))
         l.textColor = UIColor.blackColor()
         l.font = defaultFont(14)
         l.textAlignment = .Left
@@ -30,7 +30,7 @@ class SJSettingTableViewCell: UITableViewCell {
         contentView.addSubview(icon)
         icon.snp_makeConstraints { [weak self](make) in
             make.centerY.equalTo(self!.contentView)
-            make.size.equalTo(CGSizeMake(30, 30))
+            make.size.equalTo(ccs(30, 30))
             make.left.equalTo(8)
         }
         

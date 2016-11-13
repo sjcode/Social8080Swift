@@ -66,7 +66,7 @@ class SJThreadViewController: SJViewController {
     }()
     
     private lazy var tableView : UITableView = {
-        let v = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenSize.SCREEN_WIDTH, height: ScreenSize.SCREEN_HEIGHT - 35 ), style: .Plain)
+        let v = UITableView(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT - 35 ), style: .Plain)
         v.backgroundColor = UIColor.groupTableViewBackgroundColor()
         let header = MJRefreshNormalHeader(refreshingBlock: {
             self.loadData(self.link!)
@@ -93,7 +93,7 @@ class SJThreadViewController: SJViewController {
         v.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
         let divide = UIView()
         divide.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
-        divide.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
+        divide.frame = ccr(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
         v.addSubview(divide)
         
         let label = SJMarginLabel()
@@ -179,10 +179,10 @@ class SJThreadViewController: SJViewController {
     private lazy var showPanel : UIView = { [unowned self] in
         let v = UIView()
         v.backgroundColor = UIColor ( red: 0.9082, green: 0.9264, blue: 0.9317, alpha: 1.0 )
-        v.frame = CGRectMake(0, ScreenSize.SCREEN_HEIGHT, ScreenSize.SCREEN_WIDTH, 110)
+        v.frame = ccr(0, ScreenSize.SCREEN_HEIGHT, ScreenSize.SCREEN_WIDTH, 110)
         let divide = UIView()
         divide.backgroundColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
-        divide.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
+        divide.frame = ccr(0, 0, ScreenSize.SCREEN_WIDTH, 0.5)
         v.addSubview(divide)
         
         v.addSubview(self.textView)
@@ -212,26 +212,26 @@ class SJThreadViewController: SJViewController {
         cancel.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(8)
             make.top.equalTo(2)
-            make.size.equalTo(CGSizeMake(50, 30))
+            make.size.equalTo(ccs(50, 30))
         })
         
         v.addSubview(self.sendBtn)
         self.sendBtn.snp_makeConstraints(closure: { (make) in
             make.right.equalTo(-8)
             make.top.equalTo(2)
-            make.size.equalTo(CGSizeMake(50, 30))
+            make.size.equalTo(ccs(50, 30))
         })
         
         v.addSubview(self.secImageView)
         self.secImageView.snp_makeConstraints(closure : { [weak self] (make) in
-            make.size.equalTo(CGSizeMake(80, 30))
+            make.size.equalTo(ccs(80, 30))
             make.left.equalTo(self!.textView)
             make.top.equalTo(self!.textView.snp_bottom).offset(3)
         })
         
         v.addSubview(self.sectextfield)
         self.sectextfield.snp_makeConstraints(closure : { [weak self] (make) in
-            make.size.equalTo(CGSizeMake(80, 30))
+            make.size.equalTo(ccs(80, 30))
             make.left.equalTo(self!.secImageView.snp_right).offset(3)
             make.top.equalTo(self!.textView.snp_bottom).offset(3)
         })
@@ -283,7 +283,7 @@ class SJThreadViewController: SJViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //mm_drawerController.openDrawerGestureModeMask = .None
         storeRecentRead()
         
         view.addSubview(tableView)
@@ -296,6 +296,8 @@ class SJThreadViewController: SJViewController {
             make.right.equalTo(self!.view)
             make.bottom.equalTo(self!.view)
         }
+        
+        shyNavBarManager.scrollView = tableView
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name:
             UIKeyboardWillShowNotification, object: nil)
@@ -340,7 +342,7 @@ class SJThreadViewController: SJViewController {
     
     func loadData(link : String){
         SJClient.sharedInstance.getPostList(link, page: page) { [weak self](title, posts, sec) in
-            self!.title = title
+            //self!.title = title
             self!.sec = sec
             if let s = self!.sec{
                 SJClient.sharedInstance.downloadReplySeccodeImage(self!.tid!, src: s.secimage!, completed: { (imagefile) in
@@ -435,7 +437,7 @@ class SJThreadViewController: SJViewController {
         let keyboardRect = userinfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
         let keyboardHeight = keyboardRect?.size.height
         
-        showPanel.transform = CGAffineTransformMakeTranslation(0, -(110+keyboardHeight!+64))
+        showPanel.transform = CGAffineTransformMakeTranslation(0, -(110+keyboardHeight!))
         
         
         var heightOfVisibleCells : CGFloat = 0

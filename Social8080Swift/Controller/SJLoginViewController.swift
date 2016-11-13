@@ -9,14 +9,16 @@
 import UIKit
 import FLAnimatedImage
 import MBProgressHUD
+import IQKeyboardManagerSwift
+
+typealias LoginSuccessActionClosure = (user: SJUserModel)->()
 
 class SJLoginViewController: SJViewController {
-    
+    var loginSuccessAction : LoginSuccessActionClosure?
     private var token : NSDictionary?
     private lazy var backButton : UIButton = { [unowned self] in
         let b = UIButton.init(type: .Custom)
-        b.setImage(UIImage.init(named: "back_normal"), forState: .Normal)
-        b.setImage(UIImage.init(named: "back_highlight"), forState: .Highlighted)
+        b.setImage(UIImage.init(named: "icon_close"), forState: .Normal)
         b.sizeToFit()
         b.addTarget(self, action: #selector(clickback(_:)), forControlEvents: .TouchUpInside)
         return b
@@ -35,7 +37,9 @@ class SJLoginViewController: SJViewController {
         f.delegate = self
         f.borderStyle = .None
         f.autocorrectionType = .No
-        f.autocapitalizationType = .Words
+        f.keyboardType = .ASCIICapable
+        f.keyboardAppearance = .Dark
+        f.autocapitalizationType = .None
         f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Next
@@ -52,7 +56,9 @@ class SJLoginViewController: SJViewController {
         f.text = "g6m8c6n3"
         f.secureTextEntry = true
         f.autocorrectionType = .No
-        f.autocapitalizationType = .Words
+        f.keyboardType = .ASCIICapable
+        f.keyboardAppearance = .Dark
+        f.autocapitalizationType = .None
         f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Next
@@ -67,7 +73,9 @@ class SJLoginViewController: SJViewController {
         f.borderStyle = .None
         f.delegate = self
         f.autocorrectionType = .No
-        f.autocapitalizationType = .Words
+        f.keyboardType = .ASCIICapable
+        f.keyboardAppearance = .Dark
+        f.autocapitalizationType = .None
         f.font = defaultFont(18)
         f.textColor = UIColor(hexString: "ffffff", alpha: 0.8)
         f.returnKeyType = .Go
@@ -102,7 +110,7 @@ class SJLoginViewController: SJViewController {
         person.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(v).offset(12)
             make.top.equalTo(v).offset(20)
-            make.size.equalTo(CGSizeMake(20,20))
+            make.size.equalTo(ccs(20,20))
         })
         
         v.addSubview(self.username)
@@ -126,7 +134,7 @@ class SJLoginViewController: SJViewController {
         lock.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(v).offset(12)
             make.top.equalTo(divide).offset(15)
-            make.size.equalTo(CGSizeMake(20,20))
+            make.size.equalTo(ccs(20,20))
         })
         v.addSubview(self.password)
         self.password.snp_makeConstraints(closure : {(make) in
@@ -146,7 +154,7 @@ class SJLoginViewController: SJViewController {
         secimage.snp_makeConstraints(closure: { (make) in
             make.left.equalTo(v).offset(12)
             make.centerY.equalTo(v)
-            make.size.equalTo(CGSizeMake(20,20))
+            make.size.equalTo(ccs(20,20))
         })
         v.addSubview(self.seccode)
         self.seccode.snp_makeConstraints(closure : {(make) in
@@ -190,8 +198,8 @@ class SJLoginViewController: SJViewController {
         view.addSubview(loginbutton)
         
         backButton.snp_makeConstraints { (make) in
-            make.top.equalTo(20)
-            make.left.equalTo(5)
+            make.top.equalTo(35)
+            make.left.equalTo(22)
         }
         
         avatarImageView.snp_makeConstraints { (make) in
@@ -224,6 +232,18 @@ class SJLoginViewController: SJViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         loadSecCodeImage()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+        IQKeyboardManager.sharedManager().enable = false
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
     }
     
     //MARK: Action
@@ -277,10 +297,11 @@ class SJLoginViewController: SJViewController {
         
         let progressHUD = MBProgressHUD.showHUDAddedTo(view, animated: true)
         progressHUD.labelText = "登陆中..."
-        SJClient.sharedInstance.doLoginWithUsername(username.text!, password: password.text!, secode: seccode.text!, completed:{ [weak self] finished ,error, uid in
-            
+        SJClient.sharedInstance.doLoginWithUsername(username.text!, password: password.text!, secode: seccode.text!, completed:{ [weak self] finished ,error, user in
             if finished{
-                NSNotificationCenter.defaultCenter().postNotificationName(kNotificationLoginSuccess, object: self, userInfo: ["uid":uid!])
+                if let block = self!.loginSuccessAction , let u = user{
+                    block(user: u)
+                }
                 self!.dismissViewControllerAnimated(true, completion: nil)
             }else{
                 progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_failed"))

@@ -23,37 +23,6 @@ func extractByRegex(string : String, pattern : String) -> String{
     return ""
 }
 
-func getAvatarUrl(uid : String) -> String{
-    let uid = Int(uid)!
-    
-    let a = uid/10000%10000
-    let b = uid/100%100
-    let c = uid%100
-    return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_small.jpg",a,b,c)
-}
-
-func getMiddleAvatarUrl(uid : String) -> String{
-    let uid = Int(uid)!
-    
-    let a = uid/10000%10000
-    let b = uid/100%100
-    let c = uid%100
-    return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_middle.jpg",a,b,c)
-}
-
-func getBigAvatarUrl(uid : String) -> String{
-    let uid = Int(uid)!
-    
-    let a = uid/10000%10000
-    let b = uid/100%100
-    let c = uid%100
-    return String(format: "http://bbs.8080.net/uc_server/data/avatar/000/%02d/%02d/%02d_avatar_big.jpg",a,b,c)
-}
-
-/*
- #define dp(filename) [([NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]) stringByAppendingPathComponent:filename]
- */
-
 func dp(filename : String) -> String{
     let file : NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString
     return file.stringByAppendingPathComponent(filename)
@@ -83,4 +52,12 @@ func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
     UIGraphicsEndImageContext()
     
     return roundedImage
+}
+
+func ccs(width: CGFloat, _ height: CGFloat) -> CGSize{
+    return CGSizeMake(width, height)
+}
+
+func ccr(x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
+    return CGRectMake(x, y, width, height)
 }

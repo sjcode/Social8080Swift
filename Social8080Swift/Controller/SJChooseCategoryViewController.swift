@@ -23,7 +23,7 @@ public class SJChooseCategoryViewController : UIViewController {
     weak var datasource : SJChooseCategoryDataSource?
     
     private lazy var tableView : UITableView = {
-        let v = UITableView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH - 100, CGFloat((self.datasource?.numberOfMenus(self))! * 40 + 30)), style: .Grouped)
+        let v = UITableView(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH - 100, CGFloat((self.datasource?.numberOfMenus(self))! * 40 + 30)), style: .Grouped)
         v.center = self.view.center
         v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.showsVerticalScrollIndicator = false
@@ -40,7 +40,7 @@ public class SJChooseCategoryViewController : UIViewController {
         v.layer.shadowOpacity = 0.7
         v.layer.shadowRadius = 15
         v.layer.shadowColor = UIColor.blackColor().CGColor
-        v.layer.shadowOffset = CGSizeMake(5, 5)
+        v.layer.shadowOffset = ccs(5, 5)
         return v
     }()
     
@@ -89,7 +89,7 @@ public class SJChooseCategoryViewController : UIViewController {
 extension SJChooseCategoryViewController : UITableViewDataSource, UITableViewDelegate{
 
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let v = UIView(frame: CGRectMake(0,0, 100, 30))
+        let v = UIView(frame: ccr(0,0, 100, 30))
         v.backgroundColor = UIColor ( red: 0.1335, green: 0.1823, blue: 0.2519, alpha: 1.0 )
         let l = UILabel(frame: v.frame)
         l.text = "请选择主题"

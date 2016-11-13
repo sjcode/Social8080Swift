@@ -12,28 +12,57 @@ import Alamofire
 import AlamofireNetworkActivityIndicator
 import Siren
 import MagicalRecord
+import SlideMenuControllerSwift
+import MMDrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
 
     var window: UIWindow?
     
+    var leftMenuViewController = SJLeftMenuViewController()
+    var homeViewController = SJHomeViewController()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
         //init database
         MagicalRecord.setupAutoMigratingCoreDataStack()
         MagicalRecord.setLoggingLevel(.Off)
         
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+        
+        
+        //init cache
+        let cache = NSURLCache.init(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
+        NSURLCache.setSharedURLCache(cache)
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let appearance = UINavigationBar.appearance()
         appearance.translucent = false
-        appearance.barTintColor = UIColor(hexString: "#28384D")
+        appearance.shadowImage = UIImage()
+        
+        appearance.barTintColor = UIColor(hexString: "#3182D9")
         appearance.tintColor = UIColor.whiteColor()
-        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:defaultFont(14)]
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont.boldSystemFontOfSize(20)]
+        
         IQKeyboardManager.sharedManager().enable = false
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        
-        self.window!.rootViewController = SJRootTabBarController()
+
+        let nav = SJNavigationController(rootViewController: homeViewController)
+        /*
+        let drawerController = MMDrawerController.init(centerViewController: nav, leftDrawerViewController: leftMenuViewController)
+        drawerController.openDrawerGestureModeMask = .None
+        drawerController.closeDrawerGestureModeMask = .All
+        drawerController.maximumLeftDrawerWidth = ScreenSize.SCREEN_WIDTH - 200
+
+        drawerController.setDrawerVisualStateBlock { (drawerController, drawerSide, percentVisible) in
+            let block = MMDrawerVisualState.slideVisualStateBlock()
+            if block != nil{
+                block(drawerController, drawerSide, percentVisible)
+            }
+        }
+ */
+        self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         
         setupSiren()
