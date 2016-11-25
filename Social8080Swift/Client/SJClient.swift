@@ -42,7 +42,7 @@ class SJClient: NSObject {
     }
     
     func doLogout(completed: (finish : Bool)->()){
-        let url = "http://bbs.8080.net/" + logout!
+        let url = "http://bbs.8080.net/" + user!.logout!
         Alamofire.request(.GET, url).responseString { [weak self] (response) in
             guard response.result.isSuccess else{
                 completed(finish: false)
@@ -146,22 +146,24 @@ class SJClient: NSObject {
                             }
                         }else{
                             if let doc = Kanna.HTML(html : content as String, encoding : NSUTF8StringEncoding){
-                                let formnode = doc.xpath("//form")[0]
-                                let action = formnode["action"]!
-                                
-                                self!.loginhash = extractByRegex(action, pattern: "loginsubmit=yes&loginhash=(.*?)&mobile=yes")
-                                self!.formhash = doc.xpath("//form/input[@name='formhash']")[0]["value"]!
-                                let imageurl = doc.xpath("//img")[1]["src"]!
-                                self!.idhash = extractByRegex(imageurl, pattern: "&idhash=(.*?)&mobile=yes")
-                                
-                                if loadUI{
-                                    self!.downloadSecodeImage(self!.idhash!, completed: { (imagefile) in
-                                        if imagefile.characters.count > 0{
-                                            completed(finish: true, error:nil, user : nil )
-                                        }
-                                    })
-                                }else{
-                                    completed(finish: true, error:nil, user : nil )
+                                if case let XPathObject.NodeSet(nodeset) = doc.xpath("//form"){
+                                    let formnode = nodeset[0]
+                                    let action = formnode["action"]!
+                                    
+                                    self!.loginhash = extractByRegex(action, pattern: "loginsubmit=yes&loginhash=(.*?)&mobile=yes")
+                                    self!.formhash = doc.xpath("//form/input[@name='formhash']")[0]["value"]!
+                                    let imageurl = doc.xpath("//img")[1]["src"]!
+                                    self!.idhash = extractByRegex(imageurl, pattern: "&idhash=(.*?)&mobile=yes")
+                                    
+                                    if loadUI{
+                                        self!.downloadSecodeImage(self!.idhash!, completed: { (imagefile) in
+                                            if imagefile.characters.count > 0{
+                                                completed(finish: true, error:nil, user : nil )
+                                            }
+                                        })
+                                    }else{
+                                        completed(finish: true, error:nil, user : nil )
+                                    }
                                 }
                             }
                         }
@@ -271,12 +273,12 @@ class SJClient: NSObject {
         
     }
     
-    func getPostList(link : String, page : Int, completeHandle: (title : String, posts : [SJPostModel], sec : SJSecCodeModel?) -> ()) {
+    func getPostList(tid : String, page : Int, completeHandle: (title : String?, posts : [SJPostModel], sec : SJSecCodeModel?) -> ()) {
         var url = ""
         if page == 1{
-            url = BASE_URL + link
+            url = "http://bbs.8080.net/forum.php?mod=viewthread&tid="+tid+"&page=1&mobile=yes"
         }else{
-            url = BASE_URL + link + "&page=" + String(page)
+            url = "http://bbs.8080.net/forum.php?mod=viewthread&tid="+tid+"&page=1&mobile=yes&page=" + String(page)
         }
         var title : String?
         var sec : SJSecCodeModel?
@@ -293,8 +295,90 @@ class SJClient: NSObject {
                             if let titleNode = bodyNode?.at_xpath("//div[@class='bm_h']/a"){
                                 title = titleNode.content
                             }
-                            
+                            ///root/actors/actor[@id='2']/following-sibling::*
                             var dataList = [SJPostModel]()
+                            
+                            if let nodes = bodyNode?.xpath("//div[@class='bm_c bm_c_bg']"){
+                                var post : SJPostModel?
+                                for node in nodes{
+                                    
+                                    let floornode = node.xpath("div[@class='bm_user']")[0].content!
+                                    let array = floornode.componentsSeparatedByString("\t")
+                                    let floor = array[1].stringByRemovingWhitespaceAndNewlineCharacterSet
+                                    
+                                    let usernode = node.xpath("div[@class='bm_user']/a")[0]
+                                    let uid = extractByRegex(usernode["href"]!, pattern: "uid=(\\d+)&mobile=yes")
+                                    let author = usernode.content
+                                    let datetime = node.xpath("div[@class='bm_user']/em/font")[0].content
+                                    
+                                    post = SJPostModel()
+                                    post!.uid = uid
+                                    post!.floor = floor
+                                    post!.postid = node["id"]
+                                    post!.author = author
+                                    post!.datetime = NSDate.dateFromString(datetime!)
+                                    
+                                    if let sibling = node.at_xpath("following-sibling::*"){
+                                    
+                                        if let messagenode = sibling.at_xpath("div[@class='pbody']/div[@class='mes']"){
+                                            
+                                            let qu = messagenode.at_xpath("div[@class='quote']")
+                                            if let quote = qu{
+                                                post!.quote = quote.text
+                                            }
+                                            
+                                            if qu != nil{
+                                                messagenode.removeChild(qu!)
+                                            }
+                                            
+                                            let content = messagenode.content!.stringByReplacingOccurrencesOfString("<br>\r\n", withString: "\n")
+                                                .stringByReplacingOccurrencesOfString("<br>", withString: "").stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                                            
+                                            post!.content = content.isEmpty ? "[表情]" : content
+                                            
+                                            let anodes = messagenode.xpath("div/a")
+                                            for (_, ahref) in anodes.enumerate(){
+                                                if let originalurl = ahref["href"]{
+                                                    if let imagenode = ahref.at_xpath("img"){
+                                                        if let thumbnialurl = imagenode["src"]{
+                                                            var original : String?
+                                                            var thumbnail : String?
+                                                            if !originalurl.hasPrefix("http://"){
+                                                                original = "http://bbs.8080.net/" + originalurl
+                                                            }else{
+                                                                original = originalurl
+                                                            }
+                                                            
+                                                            if !thumbnialurl.hasPrefix("http://"){
+                                                                thumbnail = "http://bbs.8080.net/" + thumbnialurl
+                                                            }else{
+                                                                thumbnail = thumbnialurl
+                                                            }
+                                                            
+                                                            let image = SJImageItem(originalurl: original, thumbnailurl : thumbnail)
+                                                            post!.images?.append(image)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                        if let replynode = sibling.at_xpath("div[@class='box pd2 mbn']/a"){
+                                            post!.replylink = replynode["href"]
+                                        }
+                                    }
+                                    dataList.append(post!)
+                                }
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            /*
+                            
                             if let nodes = bodyNode?.xpath("//div[@class='bm_c bm_c_bg' or @class='pbody' or @class='box pd2 mbn']"){
                                 var post : SJPostModel?
                                 for node in nodes{
@@ -381,6 +465,10 @@ class SJClient: NSObject {
                                 }
                                 
                             }
+                            
+                            */
+                            
+                            
                             let inbox = bodyNode?.xpath("//div[@class='inbox']")
                             if let secnode  = inbox{
                                 if case let XPathObject.NodeSet(nodeset) = secnode{
@@ -392,7 +480,7 @@ class SJClient: NSObject {
                                     }
                                 }
                             }
-                            completeHandle(title : title!, posts: dataList, sec : sec)
+                            completeHandle(title : title, posts: dataList, sec : sec)
                         }
                     }else{
                         completeHandle(title : "", posts: [], sec : nil)
@@ -420,13 +508,16 @@ class SJClient: NSObject {
                             var dataList = [SJThreadModel]()
                             if let inputNodes = bodyNode?.xpath("//div[@class='bm_c' or @class='bm_c bt']") {
                                 for node in inputNodes {
-                                    let href = node.xpath("a")[0]
-                                    let link = href["href"]
-                                    let title = href.content!.stringByRemovingWhitespaceAndNewlineCharacterSet
-                                    let userNode = node.xpath("span/a")[0]
-                                    let author = userNode.content!.stringByRemovingWhitespaceAndNewlineCharacterSet
                                     
-                                    let uid = extractByRegex(userNode["href"]!, pattern: "uid=(\\d+)&mobile=yes")
+                                    var thread = SJThreadModel()
+                                    
+                                    let href = node.xpath("a")[0]
+                                    thread.link = href["href"]!
+                                    thread.title = href.content!.stringByRemovingWhitespaceAndNewlineCharacterSet
+                                    let userNode = node.xpath("span/a")[0]
+                                    thread.author = userNode.content!.stringByRemovingWhitespaceAndNewlineCharacterSet
+                                    
+                                    thread.uid = extractByRegex(userNode["href"]!, pattern: "uid=(\\d+)&mobile=yes")
                                     let spancontent = node.at_xpath("span[@class='xg1']/text()[2]")!.content!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
                                     var datetimestring : String!
@@ -439,11 +530,10 @@ class SJClient: NSObject {
                                         reply = 0
                                     }
                                     
-                                    let dateFormatter = NSDateFormatter()
-                                    dateFormatter.locale = NSLocale(localeIdentifier: "zh_CN")
-                                    dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd HH:mm")
-                                    let datetime = dateFormatter.dateFromString(datetimestring)
-                                    let thread = SJThreadModel(title: title, link: link!, datetime: datetime!, reply: reply, author: author, uid: uid)
+                                    
+                                    thread.datetime = datetimestring
+                                    thread.reply = reply
+
                                     dataList.append(thread)
                                 }
                                 completeHandle(finish: true, threads: dataList)
@@ -454,9 +544,98 @@ class SJClient: NSObject {
         }
     }
     
+    func getFavourList(type: SJFavourType, page: Int, completeHandle: (finish : Bool, favours : [SJFavourModel]) -> ()){
+        var url = ""
+        if type == .Thread{
+            url = "http://bbs.8080.net/home.php?mod=space&uid="+self.user!.uid!+"&do=favorite&view=me&type=thread&mobile=yes&page=" + String(page)
+        }else if(type == .Forum){
+            url = "http://bbs.8080.net/home.php?mod=space&uid="+self.user!.uid!+"&do=favorite&view=me&type=forum&mobile=yes&page=" + String(page)
+        }
+        Alamofire.request(.GET, url).responseString { (response) in
+            guard response.result.isSuccess else{
+                completeHandle(finish: false, favours: [])
+                return
+            }
+            if let doc = Kanna.HTML(html : response.result.value! as String, encoding : NSUTF8StringEncoding){
+                let bodyNode = doc.body
+                var dataList = [SJFavourModel]()
+                if let inputNodes = bodyNode?.xpath("//div[@class='bm_c']") {
+                    for node in inputNodes {
+                        
+                        var model = SJFavourModel()
+                        if let nodea = node.at_xpath("a"){
+                            model.title = nodea.text
+                            model.link = nodea["href"]
+                        }
+                        
+                        if let nodep = node.at_xpath("p"){
+                            let spans = nodep.xpath("span")
+                            if case let XPathObject.NodeSet(nodeset) = spans{
+                                if nodeset.count == 2{
+                                    model.category = nodeset[0].text
+                                    model.datetime = nodeset[1].text
+                                }else if (nodeset.count == 1){
+                                    model.datetime = nodeset[0].text
+                                }
+                                                            }
+                            if let hrefa = nodep.at_xpath("a[@class='o']"){
+                                model.dellink = hrefa["href"]
+                            }
+                        }
+                        if model.link != nil{
+                            dataList.append(model)
+                        }
+                    }
+                    completeHandle(finish: true, favours: dataList)
+                }
+            }else{
+                completeHandle(finish: false, favours: [])
+            }
+        }
+    }
+    
+    func getMyThreadList(page: Int, completeHandle: (finish: Bool, threads: [SJThreadModel]) -> ()){
+        let url = "http://bbs.8080.net/home.php?mod=space&uid="+user!.uid!+"&do=thread&view=me&mobile=yes&page=" + String(page)
+        Alamofire.request(.GET, url).responseString { (response) in
+            guard response.result.isSuccess else{
+                completeHandle(finish: false, threads: [])
+                return
+            }
+            if let doc = Kanna.HTML(html : response.result.value! as String, encoding : NSUTF8StringEncoding){
+                let bodyNode = doc.body
+                var dataList = [SJThreadModel]()
+                
+                if let inputNodes = bodyNode?.xpath("//div[@class='bm_c']") {
+                    for node in inputNodes {
+                        var model = SJThreadModel()
+                        if let ahref = node.at_xpath("a"){
+                            model.link = ahref["href"]
+                            model.title = ahref.text
+                            model.reply = 0
+                        }
+                        if let span = node.at_xpath("span"){
+                            if let text = span.text{
+                                if let range = text.rangeOfString("回"){
+                                    let reply = text.substringFromIndex(range.startIndex.advancedBy(1))
+                                    model.reply = Int(reply)!
+                                }
+                            }
+                            dataList.append(model)
+                        }
+                    }
+                    completeHandle(finish: true, threads: dataList)
+                }else{
+                    completeHandle(finish: false, threads: [])
+                }
+            }else{
+                completeHandle(finish: false, threads: [])
+            }
+        }
+    }
+
     func sendPost(content : String, tid : Int, sec : SJSecCodeModel? , seccode : String?, completed:(finish : Bool)->()){
         let url = BASE_URL + "forum.php?mod=post&action=reply&tid="+String(tid)+"&extra=&replysubmit=yes&mobile=yes"
-        var params = ["formhash": formhash!,
+        var params = ["formhash": user!.formhash!,
                       "message":content,
                       "replaysubmit":"回复"]
         if let s = sec {
@@ -591,7 +770,7 @@ class SJClient: NSObject {
         }
     }
     
-    func getNoticeList(type : SJNoticeType, page : Int, completed : (finish : Bool, notices : [SJMessageModel])->()){
+    func getNoticeList(type : SJNoticeType, page : Int, completed : (finish : Bool, notices : [SJNoticeModel])->()){
         let url = "http://bbs.8080.net/home.php?mod=space&do=notice&mobile=yes" + (type == SJNoticeType.OldNotice ? "&&isread=1" : "") + "&page=" + String(page)
         Alamofire.request(.GET, url).responseString { (response) in
             guard response.result.isSuccess else{
@@ -601,22 +780,23 @@ class SJClient: NSObject {
             if let doc = Kanna.HTML(html : response.result.value! as String, encoding : NSUTF8StringEncoding){
                 let bodyNode = doc.body
                 if let inputNodes = bodyNode?.xpath("//div[@class='bm_c']"){
-                    var datalist = [SJMessageModel]()
+                    var datalist = [SJNoticeModel]()
                     for node in inputNodes{
-                        var message = SJMessageModel()
-                        if let ahref = node.at_xpath("div/a[2]"){
-                            message.content = ahref.content
-                            message.link = ahref["href"]
-                        }
+                        var notice = SJNoticeModel()
                         
-                        if let people = node.at_xpath("div/a[1]"){
-                            message.talk = people.content
+                        if let a1 = node.at_xpath("div/a[1]"){
+                            notice.uid = extractByRegex(a1["href"]!, pattern: "mod=space&uid=(\\d+)&mobile=yes")
+                            notice.talk = a1.text
                         }
-                        
+                        if let a2 = node.at_xpath("div/a[2]"){
+                            notice.tid = extractByRegex(a2["href"]!, pattern: "findpost&ptid=(\\d+)&pid=")
+                            notice.title = a2.text
+                        }
                         if let datetime = node.at_xpath("div[2]"){
-                            message.datetime = datetime.content
+                            notice.datetime = datetime.text
                         }
-                        datalist.append(message)
+                        
+                        datalist.append(notice)
                     }
                     completed(finish: true, notices: datalist)
                 }
@@ -795,6 +975,8 @@ class SJClient: NSObject {
             }
         }
     }
+    
+    
 }
 
 

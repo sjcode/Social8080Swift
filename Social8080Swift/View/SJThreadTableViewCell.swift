@@ -174,7 +174,7 @@ class SJThreadTableViewCell: UITableViewCell {
         
         
         let contentHeight = item.content?.calculateLabelHeight(defaultFont(16), width: ScreenSize.SCREEN_WIDTH - 16)
-        dprint("height = \(contentHeight) content = \(item.content)")
+        
         content.snp_updateConstraints { (make) in
             make.height.equalTo(contentHeight! + 2)
         }

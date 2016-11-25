@@ -16,5 +16,9 @@ extension RecentReadThread {
 
     @NSManaged var tid: String?
     @NSManaged var uid: String?
-
+    @NSManaged var title: String?
+    @NSManaged var datetime: String?
+    @NSManaged var author: String?
+    @NSManaged var link: String?
+    @NSManaged var owner: String?
 }

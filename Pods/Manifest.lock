@@ -30,6 +30,7 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - RKNotificationHub (2.0.4)
   - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.12)
   - MMDrawerController (~> 0.6.0)
   - MWPhotoBrowser (~> 2.1.2)
+  - RKNotificationHub (~> 2.0.4)
   - SDCycleScrollView (~> 1.65)
   - Siren (= 0.9.5)
   - SlideMenuControllerSwift (~> 2.3.0)
@@ -81,6 +83,7 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  RKNotificationHub: 3765424499139c3d3885b681bb0837f072d12ae6
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Siren: a536a4fed41def10e540a9804b2a63a4b3634f6b

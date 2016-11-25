@@ -40,6 +40,8 @@
 		AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784B01DB4A0BD00A4AA3C /* Logger.swift */; };
 		AAA784B31DB4A0C300A4AA3C /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784B21DB4A0C300A4AA3C /* DeviceUtil.swift */; };
 		AAA784BC1DB4A12F00A4AA3C /* SJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */; };
+		AAADC7D41DE6900D005EC99F /* SJSettingValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC7D31DE6900D005EC99F /* SJSettingValueTableViewCell.swift */; };
+		AAADC7D61DE69060005EC99F /* SJSettingButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC7D51DE69060005EC99F /* SJSettingButtonTableViewCell.swift */; };
 		AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */; };
 		AAD2E7D11DC1D2B700D94A01 /* SJMarginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */; };
 		AADAC2C21DB4A1970048AEDF /* SJNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2C11DB4A1970048AEDF /* SJNavigationController.swift */; };
@@ -52,7 +54,6 @@
 		AADAC2D11DB4B5030048AEDF /* SJLeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */; };
 		AADAC2D51DB4B9870048AEDF /* SJClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2D41DB4B9870048AEDF /* SJClient.swift */; };
 		AADAC2E51DB4CE570048AEDF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAC2E41DB4CE570048AEDF /* String+Extension.swift */; };
-		AADADC011DD20D5A0096849F /* SJSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */; };
 		AADADC051DD2C4510096849F /* Social8080Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AADADC031DD2C4510096849F /* Social8080Swift.xcdatamodeld */; };
 		AADADC0E1DD2C6A60096849F /* RecentReadThread+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC0C1DD2C6A50096849F /* RecentReadThread+CoreDataProperties.swift */; };
 		AADADC0F1DD2C6A60096849F /* RecentReadThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC0D1DD2C6A50096849F /* RecentReadThread.swift */; };
@@ -60,6 +61,12 @@
 		AADADC131DD31CB40096849F /* SJProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC121DD31CB40096849F /* SJProfileView.swift */; };
 		AADADC151DD3547E0096849F /* SJProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */; };
 		AADADC171DD362A10096849F /* SJNoticesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADADC161DD362A10096849F /* SJNoticesViewController.swift */; };
+		AAF21E131DDB0C0600627224 /* SJMyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E121DDB0C0600627224 /* SJMyFooterViewController.swift */; };
+		AAF21E151DDC020900627224 /* SJFavoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E141DDC020900627224 /* SJFavoursViewController.swift */; };
+		AAF21E171DDC28AB00627224 /* SJFavourTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E161DDC28AB00627224 /* SJFavourTableViewCell.swift */; };
+		AAF21E191DDC33F400627224 /* SJTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E181DDC33F400627224 /* SJTableViewCell.swift */; };
+		AAF21E1D1DDCA0D900627224 /* SJMyThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E1C1DDCA0D900627224 /* SJMyThreadsViewController.swift */; };
+		AAF21E1F1DDE8E2100627224 /* SJMyThreadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF21E1E1DDE8E2100627224 /* SJMyThreadsTableViewCell.swift */; };
 		AAF90D761DC6EDCA00F33C44 /* font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAF90D751DC6EDCA00F33C44 /* font.ttf */; };
 		AAF90D781DC6EE3000F33C44 /* GlobalDefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF90D771DC6EE3000F33C44 /* GlobalDefined.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +121,8 @@
 		AAA784B01DB4A0BD00A4AA3C /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		AAA784B21DB4A0C300A4AA3C /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJViewController.swift; sourceTree = "<group>"; };
+		AAADC7D31DE6900D005EC99F /* SJSettingValueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSettingValueTableViewCell.swift; sourceTree = "<group>"; };
+		AAADC7D51DE69060005EC99F /* SJSettingButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJSettingButtonTableViewCell.swift; sourceTree = "<group>"; };
 		AAD2E7CE1DC19C0A00D94A01 /* SJOtherViewContrller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJOtherViewContrller.swift; sourceTree = "<group>"; };
 		AAD2E7D01DC1D2B700D94A01 /* SJMarginLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMarginLabel.swift; sourceTree = "<group>"; };
 		AAD2E83A1DC1DD8600D94A01 /* changelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog; sourceTree = "<group>"; };
@@ -128,7 +137,6 @@
 		AADAC2D01DB4B5030048AEDF /* SJLeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJLeftMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADAC2D41DB4B9870048AEDF /* SJClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJClient.swift; sourceTree = "<group>"; };
 		AADAC2E41DB4CE570048AEDF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJSettingTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADADC041DD2C4510096849F /* Social8080Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Social8080Swift.xcdatamodel; sourceTree = "<group>"; };
 		AADADC0C1DD2C6A50096849F /* RecentReadThread+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecentReadThread+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AADADC0D1DD2C6A50096849F /* RecentReadThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentReadThread.swift; sourceTree = "<group>"; };
@@ -136,6 +144,12 @@
 		AADADC121DD31CB40096849F /* SJProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJProfileView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJProfileTableViewCell.swift; sourceTree = "<group>"; };
 		AADADC161DD362A10096849F /* SJNoticesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SJNoticesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AAF21E121DDB0C0600627224 /* SJMyFooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMyFooterViewController.swift; sourceTree = "<group>"; };
+		AAF21E141DDC020900627224 /* SJFavoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJFavoursViewController.swift; sourceTree = "<group>"; };
+		AAF21E161DDC28AB00627224 /* SJFavourTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJFavourTableViewCell.swift; sourceTree = "<group>"; };
+		AAF21E181DDC33F400627224 /* SJTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SJTableViewCell.swift; path = ../Controller/SJTableViewCell.swift; sourceTree = "<group>"; };
+		AAF21E1C1DDCA0D900627224 /* SJMyThreadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMyThreadsViewController.swift; sourceTree = "<group>"; };
+		AAF21E1E1DDE8E2100627224 /* SJMyThreadsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJMyThreadsTableViewCell.swift; sourceTree = "<group>"; };
 		AAF90D751DC6EDCA00F33C44 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
 		AAF90D771DC6EE3000F33C44 /* GlobalDefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalDefined.swift; sourceTree = "<group>"; };
 		CAF2FE28940F35BD157A1FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +254,9 @@
 				AA2C51181DC8564E00006926 /* SJWritePostViewController.swift */,
 				AADADC101DD31C550096849F /* SJProfileViewController.swift */,
 				AA6CB0D91DD5F9B400354046 /* SJSettingsViewController.swift */,
+				AAF21E121DDB0C0600627224 /* SJMyFooterViewController.swift */,
+				AAF21E141DDC020900627224 /* SJFavoursViewController.swift */,
+				AAF21E1C1DDCA0D900627224 /* SJMyThreadsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,11 +277,12 @@
 				AA51385E1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift */,
 				AA36EEC31DC330FD0045C055 /* SJMessageTableViewCell.swift */,
 				AA7D223B1DB6AFEB00E23E7E /* SJScrollTitleView.swift */,
-				AADADC001DD20D5A0096849F /* SJSettingTableViewCell.swift */,
 				AA7D225D1DB76DED00E23E7E /* SJThreadTableViewCell.swift */,
 				AADADC121DD31CB40096849F /* SJProfileView.swift */,
 				AADADC141DD3547E0096849F /* SJProfileTableViewCell.swift */,
 				AA2BC66E1DD74C1E004C79B5 /* SJForumPanel.swift */,
+				AAF21E161DDC28AB00627224 /* SJFavourTableViewCell.swift */,
+				AAF21E1E1DDE8E2100627224 /* SJMyThreadsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +312,9 @@
 				AA7C666B1DC88D1800C949B9 /* SJTextField.swift */,
 				AAA784BB1DB4A12F00A4AA3C /* SJViewController.swift */,
 				AA6CB0D71DD589C700354046 /* SJSlideMenuController.swift */,
+				AAF21E181DDC33F400627224 /* SJTableViewCell.swift */,
+				AAADC7D31DE6900D005EC99F /* SJSettingValueTableViewCell.swift */,
+				AAADC7D51DE69060005EC99F /* SJSettingButtonTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -360,7 +381,7 @@
 				TargetAttributes = {
 					AAA7849E1DB4A01300A4AA3C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = D5N5Q39H75;
+						DevelopmentTeam = 3B2WCPZDT3;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -460,10 +481,13 @@
 				AADADC051DD2C4510096849F /* Social8080Swift.xcdatamodeld in Sources */,
 				AADAC2D51DB4B9870048AEDF /* SJClient.swift in Sources */,
 				AA7D22361DB665E400E23E7E /* NSDate+Extension.swift in Sources */,
+				AAF21E151DDC020900627224 /* SJFavoursViewController.swift in Sources */,
+				AAF21E131DDB0C0600627224 /* SJMyFooterViewController.swift in Sources */,
 				AAA784A31DB4A01300A4AA3C /* AppDelegate.swift in Sources */,
 				AADADC111DD31C550096849F /* SJProfileViewController.swift in Sources */,
 				AADAC2C81DB4A8270048AEDF /* SJHomeViewController.swift in Sources */,
 				AADADC171DD362A10096849F /* SJNoticesViewController.swift in Sources */,
+				AAF21E191DDC33F400627224 /* SJTableViewCell.swift in Sources */,
 				AAA784BC1DB4A12F00A4AA3C /* SJViewController.swift in Sources */,
 				AA7D22291DB5C35900E23E7E /* Model.swift in Sources */,
 				AA36EEC41DC330FD0045C055 /* SJMessageTableViewCell.swift in Sources */,
@@ -474,12 +498,14 @@
 				AAD2E7CF1DC19C0A00D94A01 /* SJOtherViewContrller.swift in Sources */,
 				AADAC2CF1DB4AAA40048AEDF /* SJMineViewController.swift in Sources */,
 				AAA784B11DB4A0BD00A4AA3C /* Logger.swift in Sources */,
+				AAF21E1D1DDCA0D900627224 /* SJMyThreadsViewController.swift in Sources */,
 				AA7C669D1DCB279400C949B9 /* SJReplyViewController.swift in Sources */,
 				AA7D22761DBA401F00E23E7E /* UIImage+Resize.swift in Sources */,
 				AADAC2C61DB4A7E10048AEDF /* SJRootTabBarController.swift in Sources */,
+				AAADC7D61DE69060005EC99F /* SJSettingButtonTableViewCell.swift in Sources */,
+				AAADC7D41DE6900D005EC99F /* SJSettingValueTableViewCell.swift in Sources */,
 				AA7C66971DCA1FE200C949B9 /* UIImageEffects.swift in Sources */,
 				AA2C51191DC8564E00006926 /* SJWritePostViewController.swift in Sources */,
-				AADADC011DD20D5A0096849F /* SJSettingTableViewCell.swift in Sources */,
 				AA6CB0DA1DD5F9B400354046 /* SJSettingsViewController.swift in Sources */,
 				AA6CB0D81DD589C700354046 /* SJSlideMenuController.swift in Sources */,
 				AA7C669B1DCAE3C700C949B9 /* View+Extension.swift in Sources */,
@@ -488,9 +514,11 @@
 				AA7D22741DBA0CA500E23E7E /* SJLoginViewController.swift in Sources */,
 				AA7D225C1DB76C6500E23E7E /* SJThreadViewController.swift in Sources */,
 				AA51385F1DC34433002BE8D4 /* SJMessageDetailTableViewCell.swift in Sources */,
+				AAF21E1F1DDE8E2100627224 /* SJMyThreadsTableViewCell.swift in Sources */,
 				AAF90D781DC6EE3000F33C44 /* GlobalDefined.swift in Sources */,
 				AADAC2E51DB4CE570048AEDF /* String+Extension.swift in Sources */,
 				AADAC2C21DB4A1970048AEDF /* SJNavigationController.swift in Sources */,
+				AAF21E171DDC28AB00627224 /* SJFavourTableViewCell.swift in Sources */,
 				AADADC0E1DD2C6A60096849F /* RecentReadThread+CoreDataProperties.swift in Sources */,
 				AAA784B31DB4A0C300A4AA3C /* DeviceUtil.swift in Sources */,
 				AA7D223C1DB6AFEB00E23E7E /* SJScrollTitleView.swift in Sources */,
@@ -606,7 +634,8 @@
 			baseConfigurationReference = 50BE783DD5D730BC46E28241 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dongfang Wu (955UB4H7QB)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 546814800@qq.com (2UBEQKNDRM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -619,10 +648,10 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = org.august.social8080;
+				PRODUCT_BUNDLE_IDENTIFIER = org.august.social;
 				PRODUCT_MODULE_NAME = Social8080Swift;
 				PRODUCT_NAME = "极速社区";
-				PROVISIONING_PROFILE = "2cf97a3c-caa3-4569-8a16-137155506dcf";
+				PROVISIONING_PROFILE = "345bc6ac-9c26-47d4-baf7-cb7ceb860273";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -632,7 +661,8 @@
 			baseConfigurationReference = CAF2FE28940F35BD157A1FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing Overtaking Lane Network Technology Co., Ltd. (D5N5Q39H75)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: su jian (3B2WCPZDT3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -645,10 +675,10 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = org.august.social8080;
+				PRODUCT_BUNDLE_IDENTIFIER = org.august.social;
 				PRODUCT_MODULE_NAME = Social8080Swift;
 				PRODUCT_NAME = "极速社区";
-				PROVISIONING_PROFILE = "c1baf479-3924-4626-b156-f65c8043cc9b";
+				PROVISIONING_PROFILE = "d764fbc5-70eb-4e75-b665-a1049ca69dc6";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

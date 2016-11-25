@@ -21,3 +21,5 @@ func appdelegate() -> AppDelegate{
     let appdelegate = UIApplication.sharedApplication().delegate
     return appdelegate as! AppDelegate
 }
+
+let DEFAULT_NAVIGATIONBAR_COLOR = UIColor(hexString: "#404E95")

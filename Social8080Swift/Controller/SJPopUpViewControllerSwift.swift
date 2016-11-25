@@ -85,8 +85,9 @@ public class SJPopUpViewControllerSwift: UIViewController {
         popupView.addSubview(reply)
         reply.snp_makeConstraints { (make) in
             make.centerX.equalTo(popupView)
-            make.top.equalTo(20)
+            make.centerY.equalTo(popupView)
         }
+        /*
         popupView.addSubview(favour)
         favour.snp_makeConstraints { (make) in
             make.centerX.equalTo(popupView)
@@ -96,7 +97,7 @@ public class SJPopUpViewControllerSwift: UIViewController {
         share.snp_makeConstraints { (make) in
             make.centerX.equalTo(popupView)
             make.top.equalTo(favour.snp_bottom).offset(5)
-        }
+        }*/
         
         popupView.addSubview(cancel)
         cancel.snp_makeConstraints { (make) in

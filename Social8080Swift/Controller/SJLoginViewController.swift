@@ -33,11 +33,11 @@ class SJLoginViewController: SJViewController {
         let f = UITextField()
         f.attributedPlaceholder = NSAttributedString(string:"用户名",
                                                             attributes:[NSForegroundColorAttributeName: UIColor(hexString: "ffffff", alpha: 0.2)!])
-        f.text = "sexsexdog@163.com"
+        f.text = ""
         f.delegate = self
         f.borderStyle = .None
         f.autocorrectionType = .No
-        f.keyboardType = .ASCIICapable
+        f.keyboardType = .Default
         f.keyboardAppearance = .Dark
         f.autocapitalizationType = .None
         f.font = defaultFont(18)
@@ -53,7 +53,7 @@ class SJLoginViewController: SJViewController {
                                                             attributes:[NSForegroundColorAttributeName: UIColor(hexString: "ffffff", alpha: 0.2)!])
         f.borderStyle = .None
         f.delegate = self
-        f.text = "g6m8c6n3"
+        f.text = ""
         f.secureTextEntry = true
         f.autocorrectionType = .No
         f.keyboardType = .ASCIICapable

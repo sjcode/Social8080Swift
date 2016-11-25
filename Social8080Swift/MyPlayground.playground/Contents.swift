@@ -2,18 +2,20 @@
 
 import Cocoa
 
-var str = " 2016-10-30 15:37 回1 "
+var str = "回1"
 var array : [String] = []
 
 array.append("hello")
+
+let a1 : [Dictionary<String, String>] = [["name":"aaaa"],["name":"bug"]]
 
 
 var datetime : String!
 var reply : String!
 if let range = str.rangeOfString("回"){
-    datetime = str.substringToIndex(range.startIndex.advancedBy(-1))
+    //datetime = str.substringToIndex(range.startIndex.advancedBy(-1))
     reply = str.substringFromIndex(range.startIndex.advancedBy(1))
-    print(datetime)
+    //print(datetime)
     print(reply)
 }else{
     let result = str
@@ -45,7 +47,7 @@ if case let XPathObject.NodeSet(nodeset) = obj{
 
 let session = NSURLSession()
 
-let string = "大猫对我说"
+let string = "大猫我对说"
 if let range = string.rangeOfString("我对"){
     let startindex = range.endIndex
     let endindex = string.endIndex.advancedBy(-1)

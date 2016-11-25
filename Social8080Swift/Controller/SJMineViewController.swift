@@ -10,12 +10,12 @@ import UIKit
 import MJRefresh
 import MBProgressHUD
 
-class SJMineViewController: UIViewController {
+class SJMineViewController: SJViewController {
     private lazy var tableView : UITableView = { [unowned self] in
         let v = UITableView(frame: self.view.bounds, style: .Grouped)
         v.delegate = self
         v.dataSource = self
-        v.registerClass(SJSettingTableViewCell.self, forCellReuseIdentifier: "settings")
+        v.registerClass(SJProfileTableViewCell.self, forCellReuseIdentifier: "profilecell")
         return v
     }()
     
@@ -45,7 +45,7 @@ extension SJMineViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("settings") as! SJSettingTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("profilecell") as! SJProfileTableViewCell
             cell.accessoryType = .DisclosureIndicator
             if indexPath.row == 0{
                 cell.title.text = "我的足迹"

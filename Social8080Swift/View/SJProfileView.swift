@@ -18,7 +18,7 @@ class SJProfileView: UIView {
         v.layer.masksToBounds = true
         v.layer.cornerRadius = 40
         v.layer.borderColor = UIColor.init(white: 1, alpha: 0.3).CGColor
-        v.layer.borderWidth = 2
+        v.layer.borderWidth = 5
         return v
     }()
     
@@ -62,7 +62,7 @@ class SJProfileView: UIView {
     
     private override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(hexString: "#3182D9")
+        backgroundColor = DEFAULT_NAVIGATIONBAR_COLOR
         
         addSubview(defaultavatar)
         defaultavatar.snp_makeConstraints { [weak self] (make) in

@@ -38,6 +38,10 @@ func alertmessage(aView : UIView, message : String){
     progressHUD.hide(true, afterDelay: 1)
 }
 
+func asyncHandleWithMBProgressHUD(block : ()->()){
+    
+}
+
 func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
     let imageView: UIImageView = UIImageView(image: image)
     var layer: CALayer = CALayer()

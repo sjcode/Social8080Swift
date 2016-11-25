@@ -67,10 +67,18 @@ class SJMessageTableViewCell: UITableViewCell {
         }
     }
     
-    func configCell(item : SJMessageModel) {
-        content.text = item.content
-        talk.text = item.talk
-        datetime.text = item.datetime
+    func configCell(item : Any) {
+        if item is SJMessageModel{
+            let message = item as! SJMessageModel
+            content.text = message.content
+            talk.text = message.talk
+            datetime.text = message.datetime
+        }else if item is SJNoticeModel{
+            let notice = item as! SJNoticeModel
+            content.text = notice.title
+            talk.text = notice.talk
+            datetime.text = notice.datetime
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

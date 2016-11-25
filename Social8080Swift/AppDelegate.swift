@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SirenDelegate {
         appearance.translucent = false
         appearance.shadowImage = UIImage()
         
-        appearance.barTintColor = UIColor(hexString: "#3182D9")
+        appearance.barTintColor = DEFAULT_NAVIGATIONBAR_COLOR
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName:UIFont.boldSystemFontOfSize(20)]
         

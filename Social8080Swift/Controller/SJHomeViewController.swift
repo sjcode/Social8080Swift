@@ -13,7 +13,10 @@ import MBProgressHUD
 import Kingfisher
 import MMDrawerController
 import TLYShyNavBar
-class SJHomeViewController: UIViewController {
+import MagicalRecord
+import RKNotificationHub
+
+class SJHomeViewController: SJViewController {
     
     var forumPanelManager = SJForumPanelManager()
     var dataArray = [SJThreadModel]()
@@ -22,7 +25,8 @@ class SJHomeViewController: UIViewController {
         didSet{
             loadMenus(currentfid)
             menuBar.reloadMenus()
-            tableView_root.mj_header.beginRefreshing()
+            //tableView_root.mj_header.beginRefreshing()
+            self.loadData(self.currentfid, typeid: -1)
         }
     }
     var forumTable : NSArray?
@@ -124,24 +128,38 @@ class SJHomeViewController: UIViewController {
         let itmes2 = [fixedspace, UIBarButtonItem(customView: rightbutton)]
         navigationItem.rightBarButtonItems = itmes2
         
+        shyNavBarManager.scrollView = tableView_root
+        
+//        let hub = RKNotificationHub(view: self.rightbutton)
+//        let badgeWidth : CGFloat = 15
+//        let badgeHeight : CGFloat = 15
+//        let x = CGRectGetMaxX(rightbutton.bounds)-badgeWidth - 5
+//        let y : CGFloat = 5
+//        hub.setCircleAtFrame(ccr(x, y, badgeWidth, badgeHeight))
+//        hub.incrementBy(12)
+        
         forumPanelManager.setupPanelAtContainer(navigationController!.view) { [weak self] (fid) in
             dprint("click forum item")
             self!.darkMaskView.hidden = true
             self!.isOpenPanel = false
-            
-            
-            self!.currentfid = fid
-            
+
+            if let info = self!.findForumInfo(String(fid)){
+                if let _ = info["needlogin"] where SJClient.sharedInstance.user == nil{
+                    let vc = SJLoginViewController()
+                    vc.loginSuccessAction = {[weak self] (uid) in
+                        self!.currentfid = fid
+                    }
+                    self!.presentViewController(vc, animated: true, completion: nil)
+                }else{
+                    self!.storelastfid(String(fid))
+                    self!.currentfid = fid
+                }
+            }
         }
-        
         
         view.addSubview(menuBar)
         view.addSubview(tableView_root)
-        
         view.addSubview(darkMaskView)
-        
-        
-        shyNavBarManager.scrollView = tableView_root
         
         if let fid = NSUserDefaults.standardUserDefaults().valueForKey("currentfid"){
             currentfid = Int(fid as! String)!
@@ -164,11 +182,27 @@ class SJHomeViewController: UIViewController {
             self!.tableView_root.mj_header.beginRefreshing()
         }
     }
+        
+    func findForumInfo(fid : String) -> NSDictionary?{
+        for section in forumTable!{
+            let forums = section["array"] as! NSArray
+            for forum in forums{
+                let f = forum as! NSDictionary
+                if f["fid"] as! String == fid{
+                    return forum as? NSDictionary
+                }
+            }
+        }
+        return nil
+    }
+    
+    func storelastfid(fid: String){
+        NSUserDefaults.standardUserDefaults().setValue(fid, forKey: "currentfid")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //mm_drawerController.openDrawerGestureModeMask = .All  //此页支持左滑打开侧滑页
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -185,8 +219,6 @@ class SJHomeViewController: UIViewController {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask{
         return .Portrait
     }
-    
-    
     
     func loadData(fid : Int, typeid : Int){
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (finish, threads) in
@@ -212,7 +244,10 @@ class SJHomeViewController: UIViewController {
     
     func updateLoginState(user: SJUserModel?){
         if let u = user {
-            rightbutton.kf_setImageWithURL(NSURL.init(string: u.middleavatarurl), forState: .Normal)
+            KingfisherManager.sharedManager.downloader.downloadImageWithURL(NSURL.init(string: u.middleavatarurl)!, progressBlock: { (receivedSize, totalSize) in
+                }, completionHandler: { [weak self] (image, error, imageURL, originalData) in
+                    self!.rightbutton.setImage(maskRoundedImage(image!.resizedImageWithBounds(ccs(30, 30)), radius: 15), forState: .Normal)
+            })
         }else{
             rightbutton.setImage(UIImage(named:"person_normal"), forState: .Normal)
         }
@@ -246,11 +281,9 @@ class SJHomeViewController: UIViewController {
     }()
     
     func isUnread(thread : SJThreadModel) -> Bool{
-        if let tid = Int(extractByRegex(thread.link!, pattern : "forum.php\\?mod=viewthread&tid=(\\d+)&mobile=yes")){
-            let predicate = NSPredicate(format: "tid == %@", String(tid))
+        if let tid = thread.tid{
+            let predicate = NSPredicate(format: "tid == %@", tid)
             let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
-            
-            
             return count == 0 ? true : false
         }
         
@@ -267,10 +300,14 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCellWithIdentifier("SJHomeTableViewCell", forIndexPath: indexPath) as! SJHomeTableViewCell
         let thread = dataArray[indexPath.row]
         cell.configCell(thread)
+        cell.alpha = 0
         if isUnread(thread){
             cell.title.textColor = UIColor ( red: 0.1118, green: 0.1118, blue: 0.1118, alpha: 1.0 )
         }else{
             cell.title.textColor = UIColor ( red: 0.5178, green: 0.5816, blue: 0.5862, alpha: 1.0 )
+        }
+        UIView.animateWithDuration(0.25) { 
+            cell.alpha = 1
         }
         return cell
     }
@@ -278,14 +315,14 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if tableView == tableView_root {
-            let item = dataArray[indexPath.row]
+            let thread = dataArray[indexPath.row]
             let vc = SJThreadViewController()
-            vc.link = item.link
-            //vc.title = item.title
+            vc.threadModel = thread
+            vc.link = thread.link
             vc.fid = currentfid
+            storeRecentRead(thread)
             navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -325,3 +362,27 @@ extension SJHomeViewController : SJScrollTitleViewDataSource, SJScrollTitleViewD
         loadData(currentfid, typeid: typeid!)
     }
 }
+
+extension SJHomeViewController{
+    func storeRecentRead(thread: SJThreadModel) {
+        let predicate = NSPredicate(format: "tid == %@", thread.tid!)
+        let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
+        if count == 0{
+            if let r = RecentReadThread.MR_createEntity(){
+                guard thread.datetime != nil else{
+                    dprint("datetime = nil")
+                    return
+                }
+                r.tid = thread.tid
+                r.uid = thread.uid
+                r.title = thread.title
+                r.author = thread.author
+                r.datetime = thread.datetime
+                r.link = thread.link
+                
+                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+            }
+        }
+    }
+}
+

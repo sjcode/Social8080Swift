@@ -152,10 +152,10 @@ class SJForumPanelManager : NSObject {
     
     
     let MARGIN : CGFloat = 5
-    let SPANCING : CGFloat = 3
+    let SPANCING : CGFloat = 5
     let PANEL_MAX_LINE_ROW : CGFloat = 3
     let CELL_HEADER_HEIGHT : CGFloat = 20
-    let PANEL_BUTTON_HEIGHT : CGFloat = 20
+    let PANEL_BUTTON_HEIGHT : CGFloat = 25
 }
 
 extension SJForumPanelManager : UITableViewDataSource, UITableViewDelegate {
@@ -195,7 +195,7 @@ extension SJForumPanelManager : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let forums = dataArray[indexPath.section] as! NSDictionary
-        return calcuateEachCellHeight(forums, includeHeader: false)
+        return calcuateEachCellHeight(forums, includeHeader: false) + 5
     }
 }
 

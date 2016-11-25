@@ -20,7 +20,7 @@ pod 'SVWebViewController', '~> 1.0'
 pod 'MagicalRecord', '~> 2.3.2'
 pod 'MMDrawerController', '~> 0.6.0'
 pod 'SVProgressHUD', '~> 2.0.3'
+pod 'RKNotificationHub', '~> 2.0.4'
 pod 'TLYShyNavBar', '~> 1.1.0'
 
-pod 'SlideMenuControllerSwift', '~> 2.3.0'
 pod 'MBProgressHUD', '~> 0.9.0'

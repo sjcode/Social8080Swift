@@ -58,12 +58,28 @@ struct SJUserModel{
 }
 
 struct SJThreadModel {
+    var link : String?{
+        didSet{
+            tid = extractByRegex(link!, pattern : "forum.php\\?mod=viewthread&tid=(\\d+)&mobile=yes")
+            if tid == nil{//如果不是从home过来的, 那就一定是从message过来的
+                tid = extractByRegex(link!, pattern : "forum.php\\?mod=redirect&goto=findpost&ptid=(\\d+)&pid=")
+            }
+        }
+    }
     var title : String?
-    var link : String?
-    var datetime : NSDate?
+    var datetime : String?
     var reply : Int = 0
     var author : String?
     var uid : String?
+    var tid : String?
+}
+
+struct SJFavourModel {
+    var title : String?
+    var link : String?
+    var datetime : String?
+    var dellink : String?
+    var category : String?
 }
 
 struct SJPostModel {
@@ -100,6 +116,15 @@ struct SJMessageModel{
     var datetime : String?
 }
 
+struct SJNoticeModel{
+    var title: String?
+    var datetime: String?
+    var link: String?
+    var talk: String?
+    var uid: String?
+    var tid: String?
+}
+
 struct SJReplyModel{
     var action : String?
     var formhash : String?
@@ -130,6 +155,31 @@ struct SJNewThreadFormModel{
     
 }
 
+class Foo{
+    
+}
+
+enum SJProfileState {
+    case Online,Offline
+}
+enum SJProfileKey{
+    case Message, Notice, Footer, MyThreads, Favour
+}
+
+class SJProfileMenuItem{
+    init(key: SJProfileKey, icon: String, title: String, state: SJProfileState, controller: String){
+        self.key = key
+        self.icon = icon
+        self.title = title
+        self.state = state
+        self.controller = controller
+    }
+    var key: SJProfileKey
+    var icon: String
+    var title: String
+    var state: SJProfileState
+    var controller: String
+}
 
 
 

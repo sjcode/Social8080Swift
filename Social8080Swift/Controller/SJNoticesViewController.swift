@@ -17,7 +17,7 @@ enum SJNoticeType {
 class SJNoticesViewController: SJViewController {
     var message_page : Int = 1
     var notice_page : Int = 1
-    var noticeArray = [SJMessageModel]()
+    var noticeArray = [SJNoticeModel]()
     var noticeType : SJNoticeType = .NewNotice{
         didSet{
             self.tableView_notice.mj_header.beginRefreshing()
@@ -117,10 +117,11 @@ extension SJNoticesViewController : UITableViewDataSource, UITableViewDelegate{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let item = noticeArray[indexPath.row]
+        let notice = noticeArray[indexPath.row]
+        var thread = SJThreadModel()
+        thread.tid = notice.tid
         let vc = SJThreadViewController()
-        vc.link = item.link
-        vc.title = item.content
+        vc.threadModel = thread
         navigationController?.pushViewController(vc, animated: true)
     }
     

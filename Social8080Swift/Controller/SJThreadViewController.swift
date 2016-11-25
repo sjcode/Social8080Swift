@@ -17,6 +17,7 @@ import FLAnimatedImage
 import MagicalRecord
 
 class SJThreadViewController: SJViewController {
+    var threadModel : SJThreadModel!
     var fid : Int!
     var link : String?{
         didSet{
@@ -66,14 +67,14 @@ class SJThreadViewController: SJViewController {
     }()
     
     private lazy var tableView : UITableView = {
-        let v = UITableView(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT - 35 ), style: .Plain)
+        let v = UITableView(frame: CGRectZero, style: .Plain)
         v.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        let header = MJRefreshNormalHeader(refreshingBlock: {
-            self.loadData(self.link!)
+        let header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            self!.loadData(self!.threadModel.tid!)
         })
-        let footer = MJRefreshAutoNormalFooter(refreshingBlock: {
-            self.page = self.page+1
-            self.loadData(self.link!)
+        let footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
+            self!.page = self!.page+1
+            self!.loadData(self!.threadModel.tid!)
         })
         v.mj_header = header
         v.mj_footer = footer
@@ -244,6 +245,7 @@ class SJThreadViewController: SJViewController {
         t.showsVerticalScrollIndicator = false
         t.showsHorizontalScrollIndicator = false
         t.pagingEnabled = false
+        t.keyboardAppearance = .Dark
         t.delegate = self
         t.textColor = UIColor.grayColor()
         t.tintColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
@@ -268,8 +270,10 @@ class SJThreadViewController: SJViewController {
         t.placeholder = "请输入验证码"
         t.font = defaultFont(12)
         t.backgroundColor = UIColor.whiteColor()
-        t.autocapitalizationType = .Words
         t.autocorrectionType = .No
+        t.keyboardType = .ASCIICapable
+        t.keyboardAppearance = .Dark
+        t.autocapitalizationType = .None
         t.delegate = self
         t.textColor = UIColor.grayColor()
         t.tintColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
@@ -283,18 +287,25 @@ class SJThreadViewController: SJViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //mm_drawerController.openDrawerGestureModeMask = .None
-        storeRecentRead()
         
         view.addSubview(tableView)
-        view.addSubview(editPanel)
+        tableView.snp_makeConstraints { [weak self] (make) in
+            make.edges.equalTo(self!.view)
+            if SJClient.sharedInstance.user != nil{
+                make.height.equalTo(ScreenSize.SCREEN_HEIGHT - 35)
+            }
+        }
+        
         view.addSubview(showPanel)
         
-        editPanel.snp_makeConstraints { [weak self] (make) in
-            make.height.equalTo(35)
-            make.left.equalTo(0)
-            make.right.equalTo(self!.view)
-            make.bottom.equalTo(self!.view)
+        if SJClient.sharedInstance.user != nil {
+            view.addSubview(editPanel)
+            editPanel.snp_makeConstraints { [weak self] (make) in
+                make.height.equalTo(35)
+                make.left.equalTo(0)
+                make.right.equalTo(self!.view)
+                make.bottom.equalTo(self!.view)
+            }
         }
         
         shyNavBarManager.scrollView = tableView
@@ -340,9 +351,11 @@ class SJThreadViewController: SJViewController {
         view.insertSubview(maskDarkView, belowSubview: showPanel)
     }
     
-    func loadData(link : String){
-        SJClient.sharedInstance.getPostList(link, page: page) { [weak self](title, posts, sec) in
-            //self!.title = title
+    func loadData(tid : String){
+        SJClient.sharedInstance.getPostList(tid, page: page) { [weak self](title, posts, sec) in
+            if let t = title{
+                self!.title = t
+            }
             self!.sec = sec
             if let s = self!.sec{
                 SJClient.sharedInstance.downloadReplySeccodeImage(self!.tid!, src: s.secimage!, completed: { (imagefile) in
@@ -465,6 +478,23 @@ class SJThreadViewController: SJViewController {
             self!.tableView.frame = tableframe
         }
     }
+    
+    func updateSendButtonState(){
+        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0{
+            
+            if sec != nil{
+                if sectextfield.text?.characters.count > 0{
+                    sendBtn.enabled = true
+                }else{
+                    sendBtn.enabled = false
+                }
+            }else{
+                sendBtn.enabled = true
+            }
+        }else{
+            sendBtn.enabled = false
+        }
+    }
 }
 
 extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
@@ -497,8 +527,10 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         textView.resignFirstResponder()
         
-        selectedPost = indexPath.row
-        popupViewController.showInView(view)
+        if SJClient.sharedInstance.user != nil{
+            selectedPost = indexPath.row
+            popupViewController.showInView(view)
+        }
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -518,11 +550,7 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
 
 extension SJThreadViewController : UITextFieldDelegate{
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
-        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0 && sectextfield.text?.characters.count > 0{
-            sendBtn.enabled = true
-        }else{
-            sendBtn.enabled = false
-        }
+        updateSendButtonState()
         return true
     }
 }
@@ -546,11 +574,7 @@ extension SJThreadViewController : UITextViewDelegate{
     }
     
     func textViewDidChange(textView: UITextView){
-        if textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0 && sectextfield.text?.characters.count > 0{
-            sendBtn.enabled = true
-        }else{
-            sendBtn.enabled = false
-        }
+        updateSendButtonState()
     }
     
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
@@ -576,17 +600,22 @@ extension SJThreadViewController : UITextViewDelegate{
     }
 }
 
-extension SJThreadViewController{
-    func storeRecentRead() {
-        let predicate = NSPredicate(format: "tid == %@", String(tid!))
-        let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
-        if count == 0{
-            if let r = RecentReadThread.MR_createEntity(){
-                r.tid = String(tid!)
-                r.uid = SJClient.sharedInstance.uid
-                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
-            }
-        }
-    }
-}
+//extension SJThreadViewController{
+//    func storeRecentRead() {
+//        let predicate = NSPredicate(format: "tid == %@", String(tid!))
+//        let count = RecentReadThread.MR_countOfEntitiesWithPredicate(predicate)
+//        if count == 0{
+//            if let r = RecentReadThread.MR_createEntity(){
+//                r.tid = String(tid!)
+//                r.uid = threadModel.uid
+//                r.title = threadModel.title
+//                r.author = threadModel.author
+//                r.datetime = threadModel.datetime?.stringFromDate
+//                r.link = threadModel.link
+//                
+//                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+//            }
+//        }
+//    }
+//}
 

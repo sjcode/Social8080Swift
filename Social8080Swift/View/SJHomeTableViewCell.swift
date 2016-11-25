@@ -27,6 +27,8 @@ class SJHomeTableViewCell: UITableViewCell {
     
     lazy var title : UILabel = {
         let l = UILabel()
+        l.layer.masksToBounds = true
+        l.backgroundColor = UIColor.whiteColor()
         l.textColor = UIColor.darkGrayColor()
         l.font = defaultFont(14)
         l.textAlignment = .Left
@@ -36,6 +38,8 @@ class SJHomeTableViewCell: UITableViewCell {
     
     private lazy var author : UILabel = {
         let l = UILabel()
+        l.layer.masksToBounds = true
+        l.backgroundColor = UIColor.whiteColor()
         l.textColor = UIColor ( red: 0.1938, green: 0.5085, blue: 0.8523, alpha: 1.0 )
         l.font = defaultFont(10)
         l.textAlignment = .Left
@@ -45,6 +49,8 @@ class SJHomeTableViewCell: UITableViewCell {
     
     private lazy var datetime : UILabel = {
         let l = UILabel()
+        l.layer.masksToBounds = true
+        l.backgroundColor = UIColor.whiteColor()
         l.textColor = UIColor.grayColor()
         l.font = defaultFont(10)
         l.textAlignment = .Left
@@ -54,6 +60,8 @@ class SJHomeTableViewCell: UITableViewCell {
     
     private lazy var reply : UILabel = {
         let l = UILabel()
+        l.layer.masksToBounds = true
+        l.backgroundColor = UIColor.whiteColor()
         l.textColor = UIColor.grayColor()
         l.font = defaultFont(10)
         l.textAlignment = .Left
@@ -105,22 +113,16 @@ class SJHomeTableViewCell: UITableViewCell {
         }
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    func configCell(item : SJThreadModel){
-        avatar.kf_setImageWithURL(NSURL.init(string: SJUserModel.getAvatarUrl(item.uid!)),
+    func configCell(thread : SJThreadModel){
+        avatar.kf_setImageWithURL(NSURL.init(string: SJUserModel.getAvatarUrl(thread.uid!)),
                                      placeholderImage: UIImage.init(named: "noavatar"),
                                      optionsInfo: [.Transition(ImageTransition.Fade(1))],
                                      progressBlock: nil,
                                      completionHandler: nil)
-        author.text = item.author
-        title.text = item.title
-        datetime.text = item.datetime?.stringFromDate
-        reply.text = "回复 \(item.reply)"
+        author.text = thread.author
+        title.text = thread.title
+        datetime.text = thread.datetime
+        reply.text = "回复 \(thread.reply)"
     }
     
     required init?(coder aDecoder: NSCoder) {

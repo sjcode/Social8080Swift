@@ -79,7 +79,6 @@ class SJMessageListViewController: SJViewController {
                         if !b {
                             self!.messageArray.appendContentsOf(messages)
                         }else{
-                            dprint("没有更多的数据了")
                             alertmessage(self!.view, message: "没有更多的数据了")
                         }
                     }

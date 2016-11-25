@@ -21,6 +21,7 @@ class SJReplyViewController: SJViewController {
     private lazy var textView : KMPlaceholderTextView = { [unowned self] in
         let v = KMPlaceholderTextView(frame : ccr(0, 0, ScreenSize.SCREEN_WIDTH, CGRectGetHeight(self.view.bounds)))
         v.placeholder = "此刻我正在想对Ta说些什么..."
+        v.keyboardAppearance = .Dark
         v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         v.font = defaultFont(14)
         v.textColor = UIColor.grayColor()
@@ -54,9 +55,10 @@ class SJReplyViewController: SJViewController {
         t.placeholder = "请输入验证码"
         t.font = defaultFont(12)
         t.backgroundColor = UIColor.whiteColor()
-        t.autocapitalizationType = .Words
+        t.autocapitalizationType = .None
         t.autocorrectionType = .No
-        //t.delegate = self
+        t.keyboardType = .ASCIICapable
+        t.keyboardAppearance = .Dark
         t.textColor = UIColor.grayColor()
         t.tintColor = UIColor ( red: 0.6889, green: 0.7137, blue: 0.7345, alpha: 1.0 )
         t.layer.masksToBounds = true
@@ -96,7 +98,9 @@ class SJReplyViewController: SJViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        title = "回复 \(post?.author!)"
+        if let name = post?.author{
+            title = "回复 \(name)"
+        }
         
         let rightBar = UIBarButtonItem(customView: reply)
         navigationItem.rightBarButtonItem = rightBar

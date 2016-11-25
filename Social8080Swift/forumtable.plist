@@ -511,43 +511,6 @@
 				<array>
 					<dict>
 						<key>name</key>
-						<string>义卖活动</string>
-						<key>typeid</key>
-						<string>186</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>公益捐赠</string>
-						<key>typeid</key>
-						<string>185</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>公益介绍</string>
-						<key>typeid</key>
-						<string>184</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>爱心交流</string>
-						<key>typeid</key>
-						<string>187</string>
-					</dict>
-				</array>
-				<key>desc</key>
-				<string>爱心无限，极速公益</string>
-				<key>fid</key>
-				<string>100</string>
-				<key>icon</key>
-				<string>common_100_icon.png</string>
-				<key>title</key>
-				<string>古城大爱</string>
-			</dict>
-			<dict>
-				<key>array</key>
-				<array>
-					<dict>
-						<key>name</key>
 						<string>成长那点事</string>
 						<key>typeid</key>
 						<string>142</string>
