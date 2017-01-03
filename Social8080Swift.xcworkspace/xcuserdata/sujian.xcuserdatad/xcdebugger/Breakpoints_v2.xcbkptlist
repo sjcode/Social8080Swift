@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/View/SJThreadTableViewCell.swift"
-            timestampString = "501177628.173466"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "configCell(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -63,8 +63,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "334"
             endingLineNumber = "334"
-            landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "5">
+            landmarkName = "viewWillDisappear(animated:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "582"
-            endingLineNumber = "582"
-            landmarkName = "textView(_:shouldInteractWithURL:inRange:)"
-            landmarkType = "5">
+            startingLineNumber = "604"
+            endingLineNumber = "604"
+            landmarkName = "textView(textView:shouldInteractWithURL:inRange:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,7 +112,7 @@
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "tableView"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -154,13 +154,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "527"
-            endingLineNumber = "527"
-            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
-            landmarkType = "5">
+            startingLineNumber = "549"
+            endingLineNumber = "549"
+            landmarkName = "tableView(tableView:didSelectRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -175,8 +175,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "376"
             endingLineNumber = "376"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(tid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -191,8 +191,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "373"
             endingLineNumber = "373"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(tid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -208,7 +208,7 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "editPanel"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -224,7 +224,7 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "editPanel"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -239,8 +239,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "324"
             endingLineNumber = "324"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
+            landmarkName = "viewWillAppear(animated:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,7 +256,7 @@
             startingLineNumber = "115"
             endingLineNumber = "115"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -303,8 +303,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
             endingLineNumber = "152"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -367,8 +367,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
             endingLineNumber = "155"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -384,7 +384,7 @@
             startingLineNumber = "189"
             endingLineNumber = "189"
             landmarkName = "sendReply()"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -512,7 +512,7 @@
             startingLineNumber = "70"
             endingLineNumber = "70"
             landmarkName = "showAnimation()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -591,8 +591,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
             endingLineNumber = "126"
-            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
-            landmarkType = "5">
+            landmarkName = "tableView(tableView:didSelectRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -842,13 +842,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
-            landmarkName = "textViewDidEndEditing(_:)"
-            landmarkType = "5">
+            startingLineNumber = "582"
+            endingLineNumber = "582"
+            landmarkName = "textViewDidEndEditing(textView:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -890,13 +890,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
-            landmarkName = "textView(_:shouldChangeTextInRange:replacementText:)"
-            landmarkType = "5">
+            startingLineNumber = "590"
+            endingLineNumber = "590"
+            landmarkName = "textView(textView:shouldChangeTextInRange:replacementText:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -906,13 +906,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
-            landmarkName = "textViewShouldEndEditing(_:)"
-            landmarkType = "5">
+            startingLineNumber = "585"
+            endingLineNumber = "585"
+            landmarkName = "textViewShouldEndEditing(textView:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -922,13 +922,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJThreadViewController.swift"
-            timestampString = "501750174.09393"
+            timestampString = "502964938.539987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
-            landmarkName = "textViewDidChange(_:)"
-            landmarkType = "5">
+            startingLineNumber = "599"
+            endingLineNumber = "599"
+            landmarkName = "textViewDidChange(textView:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -944,7 +944,7 @@
             startingLineNumber = "208"
             endingLineNumber = "208"
             landmarkName = "showPanel"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1007,8 +1007,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1023,8 +1023,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
             endingLineNumber = "162"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1071,8 +1071,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "361"
             endingLineNumber = "361"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(tid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1104,7 +1104,7 @@
             startingLineNumber = "110"
             endingLineNumber = "110"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1119,8 +1119,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
             endingLineNumber = "140"
-            landmarkName = "keyboardWillShow(_:)"
-            landmarkType = "5">
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1136,7 +1136,7 @@
             startingLineNumber = "72"
             endingLineNumber = "72"
             landmarkName = "secPanel"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1151,8 +1151,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1167,8 +1167,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(link:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1200,7 +1200,7 @@
             startingLineNumber = "289"
             endingLineNumber = "289"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1211,13 +1211,13 @@
             condition = "count == 1"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504772644.60042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "isUnread(_:)"
-            landmarkType = "5">
+            landmarkName = "loadMenus(fid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1227,13 +1227,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504772644.60042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
             endingLineNumber = "284"
-            landmarkName = "isUnread(_:)"
-            landmarkType = "5">
+            landmarkName = "loadMenus(fid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1248,8 +1248,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "360"
             endingLineNumber = "360"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(tid:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1339,13 +1339,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "502957601.07954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1483,13 +1483,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504773348.193797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "numberOfMenus()"
-            landmarkType = "5">
+            startingLineNumber = "347"
+            endingLineNumber = "347"
+            landmarkName = "tableView(tableView:willDisplayCell:forRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1499,13 +1499,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504773348.193797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
-            landmarkName = "titleAtIndex(_:)"
-            landmarkType = "5">
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "tableView(tableView:willDisplayCell:forRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1771,13 +1771,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "502957601.07954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "findForumInfo(_:)"
-            landmarkType = "5">
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1787,13 +1787,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "502957601.07954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1955,13 +1955,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504773931.774747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "storeRecentRead(_:)"
-            landmarkType = "5">
+            startingLineNumber = "412"
+            endingLineNumber = "412"
+            landmarkName = "didSelectedIndexOfTitle(view:index:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2019,11 +2019,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/View/SJHomeTableViewCell.swift"
-            timestampString = "501177628.173466"
+            timestampString = "502857285.178252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "configCell(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -2035,13 +2035,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
-            timestampString = "501662851.270279"
+            timestampString = "504773931.774747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "storeRecentRead(_:)"
-            landmarkType = "5">
+            startingLineNumber = "418"
+            endingLineNumber = "418"
+            landmarkName = "didSelectedIndexOfTitle(view:index:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2089,7 +2089,7 @@
             startingLineNumber = "76"
             endingLineNumber = "76"
             landmarkName = "tableView"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2281,7 +2281,7 @@
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "popupViewController"
-            landmarkType = "19">
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2312,8 +2312,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "356"
             endingLineNumber = "356"
-            landmarkName = "loadData(_:)"
-            landmarkType = "5">
+            landmarkName = "loadData(tid:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -2441,7 +2441,7 @@
             startingLineNumber = "155"
             endingLineNumber = "155"
             landmarkName = "sendBtn"
-            landmarkType = "19">
+            landmarkType = "24">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -2505,7 +2505,7 @@
             startingLineNumber = "103"
             endingLineNumber = "103"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2521,7 +2521,151 @@
             startingLineNumber = "102"
             endingLineNumber = "102"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJReportViewController.swift"
+            timestampString = "502961228.457713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "addChecks()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504772644.60042"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "loadData(fid:typeid:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social8080Swift.SJHomeViewController.(loadData (Swift.Int, typeid : Swift.Int) -&gt; ()).(closure #1)"
+                  moduleName = "&#x6781;&#x901f;&#x793e;&#x533a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujian/Desktop/Social8080Swift/Social8080Swift/Controller/SJHomeViewController.swift"
+                  timestampString = "504772097.983447"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "1107">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Social8080Swift.SJHomeViewController.(loadData (Swift.Int, typeid : Swift.Int) -&gt; ()).(closure #1).(closure #2)"
+                  moduleName = "&#x6781;&#x901f;&#x793e;&#x533a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujian/Desktop/Social8080Swift/Social8080Swift/Controller/SJHomeViewController.swift"
+                  timestampString = "504772097.983669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504772644.60042"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "loadData(fid:typeid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504772644.60042"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "loadData(fid:typeid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504772482.593783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "loadData(fid:typeid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504773361.823661"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
+            landmarkName = "tableView(tableView:willDisplayCell:forRowAtIndexPath:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Social8080Swift/Controller/SJHomeViewController.swift"
+            timestampString = "504773484.12534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "tableView(tableView:willDisplayCell:forRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

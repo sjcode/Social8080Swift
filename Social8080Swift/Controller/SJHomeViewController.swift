@@ -222,14 +222,28 @@ class SJHomeViewController: SJViewController {
     
     func loadData(fid : Int, typeid : Int){
         SJClient.sharedInstance.getThreadList(fid, typeid : typeid , page: page) { [weak self] (finish, threads) in
+            
+            let blockfilter: (Any) -> Bool = { (t) in
+                guard let t = t as? SJThreadModel, let tid = t.tid else{
+                    return false
+                }
+                return BlockThread.MR_countOfEntitiesWithPredicate(NSPredicate(format: "tid = %@", tid)) == 0
+            }
+            
             if finish{
                 if self!.page == 1{
-                    self!.dataArray = threads
+                    self!.dataArray = threads.filter(blockfilter)
+                    self!.tableView_root.reloadData()
                 }else{
+                    let oldthreads = self!.dataArray
+                    
+                    let newthreads = threads.filter(blockfilter)
+                    
+                    let indexPaths = Array(oldthreads.count..<oldthreads.count+newthreads.count).map({ NSIndexPath(forItem: $0, inSection: 0 )})
+
                     self!.dataArray.appendContentsOf(threads)
+                    self!.tableView_root.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
                 }
-                
-                self!.tableView_root.reloadData()
                 self!.tableView_root.mj_header.endRefreshing()
                 self!.tableView_root.mj_footer.endRefreshing()
             }else{
@@ -297,20 +311,14 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SJHomeTableViewCell", forIndexPath: indexPath) as! SJHomeTableViewCell
-        let thread = dataArray[indexPath.row]
-        cell.configCell(thread)
-        cell.alpha = 0
-        if isUnread(thread){
-            cell.title.textColor = UIColor ( red: 0.1118, green: 0.1118, blue: 0.1118, alpha: 1.0 )
-        }else{
-            cell.title.textColor = UIColor ( red: 0.5178, green: 0.5816, blue: 0.5862, alpha: 1.0 )
-        }
-        UIView.animateWithDuration(0.25) { 
-            cell.alpha = 1
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("SJHomeTableViewCell", forIndexPath: indexPath) as? SJHomeTableViewCell else{
+            return UITableViewCell()
         }
         return cell
+        
     }
+    
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -341,7 +349,55 @@ extension SJHomeViewController : UITableViewDataSource, UITableViewDelegate{
         if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
             cell.layoutMargins = UIEdgeInsetsZero
         }
+        
+        guard let cell = cell as? SJHomeTableViewCell else{
+            return
+        }
+        
+        let thread = dataArray[indexPath.row]
+        cell.configCell(thread)
+        cell.popupMenu = { [weak self] (thread, sender) in
+            
+            let actionSheet = UIAlertController(title: "请选择", message: "", preferredStyle: .ActionSheet)
+            let action1 = UIAlertAction(title: "举报", style: .Default, handler: { (action) in
+                let vc = SJReportViewController()
+                self!.navigationController?.pushViewController(vc, animated: true)
+            })
+            
+            let action2 = UIAlertAction(title: "屏蔽这个贴子", style: .Default, handler: { [weak self] (action) in
+                if let strongSelf = self {
+                    if let indexPath = tableView.indexPathForCell(cell){
+                        dprint("indexPath(row: \(indexPath.row))")
+                        strongSelf.saveblockThread(thread)
+                        var newthreads = strongSelf.dataArray
+                        newthreads.removeAtIndex(indexPath.row)
+                        strongSelf.dataArray = newthreads
+                        
+                        strongSelf.tableView_root.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                        let progressHUD = MBProgressHUD.showHUDAddedTo(strongSelf.view, animated: true)
+                        progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
+                        progressHUD.mode = .CustomView
+                        progressHUD.labelText = "屏蔽成功"
+                        progressHUD.hide(true, afterDelay: 1)
+                    }
+                }
+                })
+            
+            let cancel = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+            
+            actionSheet.addAction(action1)
+            actionSheet.addAction(action2)
+            actionSheet.addAction(cancel)
+            self!.presentViewController(actionSheet, animated: true, completion: nil)
+        }
+        
+        if isUnread(thread){
+            cell.title.textColor = UIColor ( red: 0.1118, green: 0.1118, blue: 0.1118, alpha: 1.0 )
+        }else{
+            cell.title.textColor = UIColor ( red: 0.5178, green: 0.5816, blue: 0.5862, alpha: 1.0 )
+        }
     }
+    
 }
 
 extension SJHomeViewController : SJScrollTitleViewDataSource, SJScrollTitleViewDelegate{
@@ -381,6 +437,23 @@ extension SJHomeViewController{
                 r.link = thread.link
                 
                 NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+            }
+        }
+    }
+    
+    func saveblockThread(thread: SJThreadModel){
+        
+        guard let tid = thread.tid else{
+            return
+        }
+        
+        let predicate = NSPredicate(format: "tid = %@", tid)
+        let count = BlockThread.MR_countOfEntitiesWithPredicate(predicate)
+        if count == 0 {
+            if let r = BlockThread.MR_createEntity() {
+                r.tid = tid    
+                NSManagedObjectContext.MR_defaultContext().MR_saveToPersistentStoreAndWait()
+                
             }
         }
     }

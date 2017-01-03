@@ -12,7 +12,11 @@ import Kingfisher
 let MAX_LINE_ROW : Int = 3
 let PICTURE_SPACING : Int = 3
 
+typealias ThreadPopupAction = (sender: UIButton) -> ()
+
 class SJThreadTableViewCell: UITableViewCell {
+    
+    var popupMenu : ThreadPopupAction?
     
     private lazy var avatar : AnimatedImageView = {
         let v = AnimatedImageView()
@@ -95,6 +99,13 @@ class SJThreadTableViewCell: UITableViewCell {
         return tap
     }()
     
+    private lazy var popupButton : UIButton = {
+        let b = UIButton(type: .Custom)
+        b.setImage(UIImage(named: "icon_popup_button"), forState: .Normal)
+        b.addTarget(self, action: #selector(handlePopupMenu(_:)), forControlEvents: .TouchUpInside)
+        return b
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -107,6 +118,7 @@ class SJThreadTableViewCell: UITableViewCell {
         contentView.addSubview(content)
         contentView.addSubview(imagegrid)
         contentView.addSubview(datetime)
+        contentView.addSubview(popupButton)
         
         avatar.snp_makeConstraints { (make) in
             make.left.equalTo(8)
@@ -126,6 +138,11 @@ class SJThreadTableViewCell: UITableViewCell {
             make.top.equalTo(author.snp_bottom)
             make.height.equalTo(14)
             make.width.equalTo(150)
+        }
+        
+        popupButton.snp_makeConstraints { (make) in
+            make.right.equalTo(-5)
+            make.top.equalTo(5)
         }
         
         floor.snp_makeConstraints { (make) in
@@ -266,6 +283,12 @@ class SJThreadTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func handlePopupMenu(sender: UIButton) {
+        if let block = popupMenu {
+            block(sender: sender)
+        }
     }
 }
 

@@ -47,37 +47,6 @@
 				<array>
 					<dict>
 						<key>name</key>
-						<string>Android手机</string>
-						<key>typeid</key>
-						<string>1</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>Android平板</string>
-						<key>typeid</key>
-						<string>2</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>Chormebook</string>
-						<key>typeid</key>
-						<string>105</string>
-					</dict>
-				</array>
-				<key>desc</key>
-				<string>安卓系统下的各类设备讨论</string>
-				<key>fid</key>
-				<string>91</string>
-				<key>icon</key>
-				<string>common_91_icon.png</string>
-				<key>title</key>
-				<string>安卓乐园</string>
-			</dict>
-			<dict>
-				<key>array</key>
-				<array>
-					<dict>
-						<key>name</key>
 						<string>iPhone</string>
 						<key>typeid</key>
 						<string>3</string>
@@ -332,43 +301,6 @@
 				<string>common_85_icon.png</string>
 				<key>title</key>
 				<string>投资理财</string>
-			</dict>
-			<dict>
-				<key>array</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>影视作品</string>
-						<key>typeid</key>
-						<string>87</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>音乐作品</string>
-						<key>typeid</key>
-						<string>88</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>明星八卦</string>
-						<key>typeid</key>
-						<string>89</string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>资源分享</string>
-						<key>typeid</key>
-						<string>140</string>
-					</dict>
-				</array>
-				<key>desc</key>
-				<string>影音人生，属于你的盗梦空间</string>
-				<key>fid</key>
-				<string>83</string>
-				<key>icon</key>
-				<string>common_83_icon.png</string>
-				<key>title</key>
-				<string>影音人生</string>
 			</dict>
 			<dict>
 				<key>array</key>

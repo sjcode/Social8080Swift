@@ -511,6 +511,28 @@ extension SJThreadViewController : UITableViewDelegate, UITableViewDataSource{
             self!.selectedPost = gesture.view!.tag
             self!.popupViewController.showInView(self!.view)
         }
+        cell.popupMenu = { [weak self] (sender) in
+            let actionSheet = UIAlertController(title: "请选择", message: "", preferredStyle: .ActionSheet)
+            let action1 = UIAlertAction(title: "举报", style: .Default, handler: { (action) in
+                let vc = SJReportViewController()
+                self!.navigationController?.pushViewController(vc, animated: true)
+            })
+            
+            let action2 = UIAlertAction(title: "拉黑", style: .Default, handler: { [weak self] (action) in
+                let progressHUD = MBProgressHUD.showHUDAddedTo(self!.view, animated: true)
+                progressHUD.customView = UIImageView.init(image: UIImage.init(named: "icon_progress_successed"))
+                progressHUD.mode = .CustomView
+                progressHUD.labelText = "拉黑成功"
+                progressHUD.hide(true, afterDelay: 1)
+                })
+            
+            let cancel = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+            
+            actionSheet.addAction(action1)
+            actionSheet.addAction(action2)
+            actionSheet.addAction(cancel)
+            self!.presentViewController(actionSheet, animated: true, completion: nil)
+        }
         cell.content.delegate = self
         cell.content.tag = indexPath.row
         cell.configCell(item)

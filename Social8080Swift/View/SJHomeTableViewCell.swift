@@ -14,9 +14,12 @@ struct SJMargin {
     static let CELL_MARGIN : CGFloat = 3
 }
 
+typealias PopupAction = (thread: SJThreadModel, sender: UIButton) -> ()
+
 class SJHomeTableViewCell: UITableViewCell {
     static let margin : CGFloat = 3
-    
+    private var thread: SJThreadModel?
+    var popupMenu : PopupAction?
     private lazy var avatar : AnimatedImageView = {
         let v = AnimatedImageView()
         v.autoPlayAnimatedImage = false
@@ -69,6 +72,13 @@ class SJHomeTableViewCell: UITableViewCell {
         return l
     }()
     
+    private lazy var popupButton : UIButton = {
+        let b = UIButton(type: .Custom)
+        b.setImage(UIImage(named: "icon_popup_button"), forState: .Normal)
+        b.addTarget(self, action: #selector(handlePopupMenu(_:)), forControlEvents: .TouchUpInside)
+        return b
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -77,6 +87,7 @@ class SJHomeTableViewCell: UITableViewCell {
         contentView.addSubview(datetime)
         contentView.addSubview(reply)
         contentView.addSubview(title)
+        contentView.addSubview(popupButton)
         
         avatar.snp_makeConstraints { (make) in
             make.left.equalTo(8)
@@ -91,6 +102,11 @@ class SJHomeTableViewCell: UITableViewCell {
             make.width.equalTo(150)
         }
         
+        popupButton.snp_makeConstraints { (make) in
+            make.right.equalTo(-5)
+            make.top.equalTo(5)
+        }
+        
         datetime.snp_makeConstraints { (make) in
             make.left.equalTo(avatar.snp_right).offset(3)
             make.top.equalTo(author.snp_bottom).offset(1)
@@ -98,8 +114,8 @@ class SJHomeTableViewCell: UITableViewCell {
             make.width.equalTo(150)
         }
         
-        reply.snp_makeConstraints { (make) in
-            make.left.equalTo(contentView.snp_right).offset(-50)
+        reply.snp_makeConstraints { [weak self] (make) in
+            make.right.equalTo(self!.popupButton.snp_left).offset(-5)
             make.top.equalTo(3)
             make.height.equalTo(18)
             make.width.equalTo(80)
@@ -114,6 +130,7 @@ class SJHomeTableViewCell: UITableViewCell {
     }
     
     func configCell(thread : SJThreadModel){
+        self.thread = thread
         avatar.kf_setImageWithURL(NSURL.init(string: SJUserModel.getAvatarUrl(thread.uid!)),
                                      placeholderImage: UIImage.init(named: "noavatar"),
                                      optionsInfo: [.Transition(ImageTransition.Fade(1))],
@@ -123,6 +140,12 @@ class SJHomeTableViewCell: UITableViewCell {
         title.text = thread.title
         datetime.text = thread.datetime
         reply.text = "回复 \(thread.reply)"
+    }
+    
+    func handlePopupMenu(sender: UIButton) {
+        if let block = popupMenu, let t = thread {
+            block(thread: t, sender: sender)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

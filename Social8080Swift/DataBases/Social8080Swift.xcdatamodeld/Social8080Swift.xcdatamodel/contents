@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="16C67" minimumToolsVersion="Xcode 7.0">
+    <entity name="BlockThread" representedClassName=".BlockThread" syncable="YES">
+        <attribute name="tid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BlockUser" representedClassName=".BlockUser" syncable="YES">
+        <attribute name="blockuserid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="RecentReadThread" representedClassName="RecentReadThread" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="datetime" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,5 +19,7 @@
     </entity>
     <elements>
         <element name="RecentReadThread" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="BlockThread" positionX="-63" positionY="36" width="128" height="75"/>
+        <element name="BlockUser" positionX="-54" positionY="45" width="128" height="75"/>
     </elements>
 </model>

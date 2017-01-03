@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SJConfig.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>28</integer>
+		</dict>
+		<key>SJKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
 		<key>Social8080Swift.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>AA30DB011DF93F600093943F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA30DB121DF93F700093943F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AAA7849E1DB4A01300A4AA3C</key>
 		<dict>
 			<key>primary</key>

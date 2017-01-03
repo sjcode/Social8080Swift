@@ -22,7 +22,7 @@ public class SJChooseCategoryViewController : UIViewController {
     weak var delegate : SJChooseCategoryDelegate?
     weak var datasource : SJChooseCategoryDataSource?
     
-    private lazy var tableView : UITableView = {
+    private lazy var tableView : UITableView = { [unowned self] in
         let v = UITableView(frame: ccr(0, 0, ScreenSize.SCREEN_WIDTH - 100, CGFloat((self.datasource?.numberOfMenus(self))! * 40 + 30)), style: .Grouped)
         v.center = self.view.center
         v.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]

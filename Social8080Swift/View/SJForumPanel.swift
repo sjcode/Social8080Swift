@@ -87,7 +87,7 @@ class SJForumPanelManager : NSObject {
         var x : CGFloat = 5
         var y : CGFloat = 5
 
-        let labelfont = defaultFont(10)
+        let labelfont = defaultFont(14)
         
         let labelwidth : CGFloat = (ScreenSize.SCREEN_WIDTH - (MARGIN*2) - (SPANCING*2))/3
         let labelheight : CGFloat = PANEL_BUTTON_HEIGHT
